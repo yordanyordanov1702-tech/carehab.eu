@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareHab – Смарт Грижа за Дома</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --accent1: #4fffb0;
+    --accent2: #38bdf8;
+    --accent3: #f472b6;
+    --text: #e2e8f0;
+    --muted: #7c8ca0;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .logo span { color: var(--accent1); }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent1); }
+
+  .nav-cta {
+    background: var(--accent1);
+    color: #0a0e1a !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    font-weight: 600 !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: #0a0e1a !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .glow-green { background: var(--accent1); top: -150px; right: -100px; }
+  .glow-blue  { background: var(--accent2); bottom: -200px; left: -150px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(79,255,176,0.08);
+    border: 1px solid rgba(79,255,176,0.25);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    color: var(--accent1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent1);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent1);
+    color: #0a0e1a;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+
+  .btn-secondary {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .btn-secondary:hover { opacity: 1; }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 5rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .stat-item { }
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent1);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* SCROLL LINE */
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--accent1));
+    margin: 2rem auto;
+    animation: fadeIn 1s 1s both;
+  }
+
+  /* PROBLEM */
+  .section {
+    padding: 6rem 5%;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent1);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.8;
+  }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* PROBLEM CARDS */
+  .problem-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .problem-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+
+  .problem-card:hover { border-color: rgba(79,255,176,0.3); }
+
+  .problem-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: var(--surface2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .problem-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .problem-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* SOLUTION / FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .feature-card:hover { transform: translateY(-4px); border-color: rgba(79,255,176,0.2); }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-emoji { font-size: 2rem; margin-bottom: 1.2rem; }
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+  }
+  .feature-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+  /* TARGETS */
+  .targets {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .targets-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .target-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .target-card.elderly::after {
+    content: '👴';
+    font-size: 8rem;
+    position: absolute;
+    right: -1rem;
+    bottom: -1rem;
+    opacity: 0.06;
+    line-height: 1;
+  }
+
+  .target-card.children::after {
+    content: '👧';
+    font-size: 8rem;
+    position: absolute;
+    right: -1rem;
+    bottom: -1rem;
+    opacity: 0.06;
+    line-height: 1;
+  }
+
+  .target-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+  }
+
+  .tag-green { background: rgba(79,255,176,0.1); color: var(--accent1); }
+  .tag-blue  { background: rgba(56,189,248,0.1); color: var(--accent2); }
+
+  .target-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .target-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .target-card li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .target-card li::before {
+    content: '→';
+    color: var(--accent1);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .price-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: transform 0.2s;
+  }
+
+  .price-card.featured {
+    background: linear-gradient(135deg, rgba(79,255,176,0.08), rgba(56,189,248,0.08));
+    border-color: rgba(79,255,176,0.35);
+    position: relative;
+  }
+
+  .price-card.featured::before {
+    content: 'Популярен';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent1);
+    color: #0a0e1a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .price-card:hover { transform: translateY(-4px); }
+
+  .price-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .price-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .price-amount span { font-size: 1.1rem; color: var(--muted); font-weight: 400; }
+
+  .price-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .price-features li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .price-features li .check { color: var(--accent1); font-size: 0.9rem; }
+
+  .btn-outline {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--accent1); background: rgba(79,255,176,0.05); }
+
+  .price-card.featured .btn-outline {
+    background: var(--accent1);
+    color: #0a0e1a;
+    border-color: var(--accent1);
+  }
+
+  .price-card.featured .btn-outline:hover { opacity: 0.9; }
+
+  /* STATS BAND */
+  .stats-band {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .band-stat .number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .band-stat .label { font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem 5% 2rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-brand .logo { font-size: 1.3rem; margin-bottom: 0.8rem; display: block; }
+  .footer-brand p { font-size: 0.88rem; color: var(--muted); max-width: 260px; line-height: 1.7; }
+
+  footer h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  footer ul a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  footer ul a:hover { color: var(--accent1); }
+
+  .footer-bottom {
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .two-col, .targets-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .stats-band { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr 1fr; }
+    nav ul { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-band { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  }
+
+  /* IoT decorative */
+  .iot-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+  }
+
+  .iot-tile {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .iot-tile .iot-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+  .iot-tile .iot-name { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600; }
+  .iot-tile .iot-status {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--accent1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  .status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent1); animation: pulse 2s infinite; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Care<span>Hab</span></div>
+  <ul>
+    <li><a href="#problem">Проблемът</a></li>
+    <li><a href="#solution">Решение</a></li>
+    <li><a href="#targets">За кого</a></li>
+    <li><a href="#pricing">Цени</a></li>
+    <li><a href="#contact" class="nav-cta">Поръчай</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow glow-green"></div>
+  <div class="hero-glow glow-blue"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Смарт IoT система · Достъпна цена
+  </div>
+
+  <h1>Грижа без<br>граници за<br><span class="highlight">твоите близки</span></h1>
+
+  <p class="hero-sub">CareHab е модулна смарт система, която пази твоите деца и възрастни родители – дори когато не си вкъщи.</p>
+
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary">Виж пакетите</a>
+    <a href="#solution" class="btn-secondary">Как работи →</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">70%</div>
+      <div class="stat-label">от възрастните са сами вкъщи</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1.7M</div>
+      <div class="stat-label">пенсионери в България</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">550 лв</div>
+      <div class="stat-label">начална цена</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="two-col">
+    <div>
+      <div class="section-label">Проблемът</div>
+      <h2 class="section-title">Семействата са под натиск</h2>
+      <p class="section-body">Работните родители нямат достатъчно време да се грижат едновременно за деца и застаряващи роднини. Съществуващите решения са скъпи, непълни или прекалено сложни.</p>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card">
+        <div class="problem-icon">👵</div>
+        <div>
+          <h4>Самотни възрастни</h4>
+          <p>82.6% от хората над 65 г. в България имат хронично заболяване, а много от тях прекарват деня сами.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🧒</div>
+        <div>
+          <h4>Деца без надзор</h4>
+          <p>Децата на 7–15 г. прекарват средно 5–6 часа сами след училище, изложени на рискове.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <div>
+          <h4>Недостъпни алтернативи</h4>
+          <p>Частен болногледач или детегледачка струва до 1500 лв/месец – почти цяла средна заплата.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="band-stat">
+    <div class="number">6.4M</div>
+    <div class="label">население на България</div>
+  </div>
+  <div class="band-stat">
+    <div class="number">82.6%</div>
+    <div class="label">от 65+ с хронична болест</div>
+  </div>
+  <div class="band-stat">
+    <div class="number">18%</div>
+    <div class="label">от населението е 65–79 г.</div>
+  </div>
+  <div class="band-stat">
+    <div class="number">2000 лв</div>
+    <div class="label">средна месечна заплата</div>
+  </div>
+</div>
+
+<!-- SOLUTION -->
+<section class="section" id="solution">
+  <div style="text-align:center; max-width: 650px; margin: 0 auto 1rem;">
+    <div class="section-label">Решението</div>
+    <h2 class="section-title">Умен дом, грижовен дом</h2>
+    <p class="section-body" style="margin: 0 auto;">CareHab комбинира достъпен хардуер, интелигентен софтуер и семейна интеграция в едно модулно IoT решение.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-emoji">🚨</div>
+      <h3>Бутон за спешност</h3>
+      <p>При нужда – едно натискане изпраща незабавно известие до семейството и при нужда до 112.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📷</div>
+      <h3>Камери и наблюдение</h3>
+      <p>Следете близките си от телефона в реално време, с умни известия при необичайно движение.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">💊</div>
+      <h3>Напомняния за лекарства</h3>
+      <p>Гласови и визуални напомняния, за да не се пропуска нито едно лекарство.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">🌡️</div>
+      <h3>Контрол на средата</h3>
+      <p>Автоматично управление на температура, осветление и уреди за оптимален комфорт.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">📱</div>
+      <h3>Приложение за родители</h3>
+      <p>Дистанционен достъп, известия и контрол – всичко на едно място в смартфона ви.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">🔒</div>
+      <h3>Детски филтри</h3>
+      <p>Ограничения за устройства, напомняния за домашни и защита от нежелано онлайн съдържание.</p>
+    </div>
+  </div>
+
+  <!-- IoT hardware demo -->
+  <div style="margin-top: 4rem;">
+    <p style="font-family:'Syne',sans-serif; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); text-align:center; margin-bottom:1.5rem;">Включени компоненти</p>
+    <div class="iot-grid">
+      <div class="iot-tile">
+        <div class="iot-icon">📡</div>
+        <div class="iot-name">IoT Hub</div>
+        <div class="iot-status"><span class="status-dot"></span> Онлайн</div>
+      </div>
+      <div class="iot-tile">
+        <div class="iot-icon">🔔</div>
+        <div class="iot-name">Сензор за движение</div>
+        <div class="iot-status"><span class="status-dot"></span> Активен</div>
+      </div>
+      <div class="iot-tile">
+        <div class="iot-icon">🔌</div>
+        <div class="iot-name">Смарт контакти</div>
+        <div class="iot-status"><span class="status-dot"></span> Свързани</div>
+      </div>
+      <div class="iot-tile">
+        <div class="iot-icon">🎙️</div>
+        <div class="iot-name">Гласов асистент</div>
+        <div class="iot-status"><span class="status-dot"></span> Слуша</div>
+      </div>
+      <div class="iot-tile">
+        <div class="iot-icon">🪟</div>
+        <div class="iot-name">Сензор врата/прозорец</div>
+        <div class="iot-status"><span class="status-dot"></span> Затворено</div>
+      </div>
+      <div class="iot-tile">
+        <div class="iot-icon">💡</div>
+        <div class="iot-name">Смарт осветление</div>
+        <div class="iot-status"><span class="status-dot"></span> Включено</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOME ASSISTANT -->
+<section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="two-col">
+    <div>
+      <div class="section-label">Технология</div>
+      <h2 class="section-title">Работи с<br><span style="background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Home Assistant</span></h2>
+      <p class="section-body">CareHab е изградена върху Home Assistant — най-популярната open-source платформа за смарт дом. Пълна съвместимост с хиляди устройства, без заключване към един производител.</p>
+      <div style="margin-top:2rem;display:flex;flex-direction:column;gap:0.8rem;">
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--muted);"><span style="color:var(--accent1);">✓</span> Работи с Philips Hue, IKEA, Tuya, Sonoff и още 3000+ устройства</div>
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--muted);"><span style="color:var(--accent1);">✓</span> Данните остават при теб — никакъв облак на трети страни</div>
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--muted);"><span style="color:var(--accent1);">✓</span> Управление от телефон, таблет или компютър</div>
+        <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.9rem;color:var(--muted);"><span style="color:var(--accent1);">✓</span> Автоматизации без граници — правила, сценарии, известия</div>
+      </div>
+    </div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:2.5rem;text-align:center;">
+      <div style="font-size:4rem;margin-bottom:1rem;">🏠</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;">Home Assistant</div>
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem;">Open-source · Локален · Сигурен</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div style="background:var(--surface2);border-radius:12px;padding:1rem;"><div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--accent1);font-size:1.4rem;">3000+</div><div style="font-size:0.78rem;color:var(--muted);">съвместими устройства</div></div>
+        <div style="background:var(--surface2);border-radius:12px;padding:1rem;"><div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--accent2);font-size:1.4rem;">100%</div><div style="font-size:0.78rem;color:var(--muted);">локални данни</div></div>
+        <div style="background:var(--surface2);border-radius:12px;padding:1rem;"><div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--accent1);font-size:1.4rem;">∞</div><div style="font-size:0.78rem;color:var(--muted);">автоматизации</div></div>
+        <div style="background:var(--surface2);border-radius:12px;padding:1rem;"><div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--accent2);font-size:1.4rem;">Free</div><div style="font-size:0.78rem;color:var(--muted);">open-source платформа</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIY -->
+<section class="section">
+  <div style="text-align:center;max-width:700px;margin:0 auto 3rem;">
+    <div class="section-label">DIY опция</div>
+    <h2 class="section-title">Направи си сам —<br>ние те учим как</h2>
+    <p class="section-body" style="margin:0 auto;">Не е задължително да купуваш готов пакет. CareHab предлага ръководства, компоненти и обучение за тези, които искат да изградят системата сами.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:0 auto;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">📦</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:0.7rem;">Компоненти</h3>
+      <p style="font-size:0.85rem;color:var(--muted);">Препоръчваме точните компоненти за твоя дом и бюджет.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">📋</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:0.7rem;">Ръководство</h3>
+      <p style="font-size:0.85rem;color:var(--muted);">Стъпка по стъпка инструкции за инсталация и настройка на Home Assistant.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">🎓</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:0.7rem;">Обучение</h3>
+      <p style="font-size:0.85rem;color:var(--muted);">Онлайн или на живо обучение за работа с Home Assistant.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TARGETS -->
+<section class="section targets" id="targets">
+  <div class="section-label">За кого</div>
+  <h2 class="section-title">Две семейства,<br>едно решение</h2>
+
+  <div class="targets-grid">
+    <div class="target-card elderly">
+      <span class="target-tag tag-green">Възрастни 65+</span>
+      <h3>CareHab<br>за пенсионери</h3>
+      <ul>
+        <li>Пасивно наблюдение без навлизане в личното пространство</li>
+        <li>Бутон за спешност при падане или здравословен проблем</li>
+        <li>Гласови напомняния за лекарства и прегледи</li>
+        <li>Автоматично осветление и климатизация</li>
+        <li>Дневни известия до семейството</li>
+        <li>Минимална техническа грамотност необходима</li>
+      </ul>
+    </div>
+
+    <div class="target-card children">
+      <span class="target-tag tag-blue">Деца 8–15 г.</span>
+      <h3>SmartWorld<br>за деца</h3>
+      <ul>
+        <li>Дистанционно наблюдение от родителите</li>
+        <li>Умни известия при напускане на дома</li>
+        <li>Ограничения за екранно време и интернет</li>
+        <li>Напомняния за домашни и рутини</li>
+        <li>Автоматично заключване на уреди</li>
+        <li>Двупосочна комуникация с родителите</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div style="text-align:center; max-width:600px; margin:0 auto 1rem;">
+    <div class="section-label">Цени</div>
+    <h2 class="section-title">Достъпно<br>за всяко семейство</h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;">
+    <div class="price-card">
+      <div class="price-name">Базов</div>
+      <div class="price-amount">550 <span>лв</span></div>
+      <div class="price-desc">Еднократна покупка + монтаж</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> IoT Hub</li>
+        <li><span class="check">✓</span> 1 камера</li>
+        <li><span class="check">✓</span> Бутон за спешност</li>
+        <li><span class="check">✓</span> Сензор за движение</li>
+        <li><span class="check">✓</span> Мобилно приложение</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Поръчай</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-name">Пълен</div>
+      <div class="price-amount">650 <span>лв</span></div>
+      <div class="price-desc">Еднократна покупка + монтаж</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Всичко от Базов</li>
+        <li><span class="check">✓</span> 2 камери</li>
+        <li><span class="check">✓</span> Гласов асистент</li>
+        <li><span class="check">✓</span> 3 смарт контакта</li>
+        <li><span class="check">✓</span> Детски филтри</li>
+        <li><span class="check">✓</span> Напомняния за лекарства</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Поръчай</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Абонамент</div>
+      <div class="price-amount">25 <span>лв/мес</span></div>
+      <div class="price-desc">Облачен достъп и поддръжка</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Облачно съхранение</li>
+        <li><span class="check">✓</span> Приоритетна поддръжка</li>
+        <li><span class="check">✓</span> Автоматични обновления</li>
+        <li><span class="check">✓</span> История на известията</li>
+        <li><span class="check">✓</span> Достъп за 5 члена</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Поръчай</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Обучение</div>
+      <div class="price-amount">30 <span>евро</span></div>
+      <div class="price-desc">Онлайн или на живо · DIY пакет</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Въведение в Home Assistant</li>
+        <li><span class="check">✓</span> Настройка на устройства</li>
+        <li><span class="check">✓</span> Създаване на автоматизации</li>
+        <li><span class="check">✓</span> Списък с препоръчани компоненти</li>
+        <li><span class="check">✓</span> 30 дни поддръжка след обучението</li>
+      </ul>
+      <a href="#contact" class="btn-outline">Запиши се</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="background:var(--surface); border-top:1px solid var(--border);">
+  <div style="max-width:560px; margin:0 auto; text-align:center;">
+    <div class="section-label">Контакт</div>
+    <h2 class="section-title">Готови сте да<br>защитите близките си?</h2>
+    <p class="section-body" style="margin: 0 auto 2.5rem;">Свържете се с нас и ще ви помогнем да изберете правилния пакет за вашето семейство.</p>
+
+    <!-- Contact persons -->
+    <div style="display:flex;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap;justify-content:center;">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;flex:1;min-width:200px;">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem;">👨‍💼</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;">Йордан Йорданов</div>
+        <div style="color:var(--accent1);font-size:0.9rem;margin-top:0.3rem;">📞 0877 557 661</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;flex:1;min-width:200px;">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem;">👩‍💼</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;">Василена Петрова</div>
+        <div style="color:var(--accent1);font-size:0.9rem;margin-top:0.3rem;">📧 info@carehab.eu</div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <input type="text" placeholder="Вашето име" style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;">
+      <input type="email" placeholder="Имейл адрес" style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;">
+      <input type="tel" placeholder="Телефон (по желание)" style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;">
+      <textarea rows="3" placeholder="Съобщение..." style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:1rem;outline:none;resize:vertical;"></textarea>
+      <button class="btn-primary" style="width:100%;font-family:'Syne',sans-serif;">Изпрати запитване</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="logo">Care<span>Hab</span></span>
+    <p>Смарт дом системи за грижа за възрастни и деца. Достъпно, модулно, надеждно.</p>
+  </div>
+  <div>
+    <h4>Продукт</h4>
+    <ul>
+      <li><a href="#solution">Функции</a></li>
+      <li><a href="#targets">За кого</a></li>
+      <li><a href="#pricing">Цени</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Компания</h4>
+    <ul>
+      <li><a href="#">За нас</a></li>
+      <li><a href="#">Партньори</a></li>
+      <li><a href="#">ESG мисия</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Поддръжка</h4>
+    <ul>
+      <li><a href="#">Документация</a></li>
+      <li><a href="#contact">Контакт</a></li>
+      <li><a href="#">Политика</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span>© 2025 CareHab. Всички права запазени.</span>
+  <span>Правен · Поверителност · Cookies</span>
+</div>
+
+</body>
+</html>
