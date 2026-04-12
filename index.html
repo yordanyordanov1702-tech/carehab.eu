@@ -217,6 +217,18 @@ footer ul a:hover { color: #90ee90; }
 .btn-cookie-accept:hover { background: var(--green-light); }
 .btn-cookie-decline:hover { color: white; }
 
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); transition: all 0.3s; border-radius: 2px; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 2px solid var(--green); z-index: 99; padding: 1rem 5%; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.mobile-nav a { color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.9rem 0; border-bottom: 1px solid var(--border); display: block; transition: color 0.2s; }
+.mobile-nav a:last-child { border-bottom: none; color: var(--green); font-weight: 700; }
+.mobile-nav a:hover { color: var(--green); }
+.mobile-nav.open { display: flex; }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero, .problem-grid, .ha-grid, .contact-grid, .who-grid { grid-template-columns: 1fr; }
@@ -226,6 +238,7 @@ footer ul a:hover { color: #90ee90; }
   .stats-section { grid-template-columns: 1fr 1fr; }
   footer { grid-template-columns: 1fr 1fr; }
   nav ul { display: none; }
+  .hamburger { display: flex; }
   .hero-float-2 { display: none; }
   .problem-img-small { display: none; }
 }
@@ -248,12 +261,26 @@ footer ul a:hover { color: #90ee90; }
     <li><a href="#contact" data-i18n="nav.contact">Контакт</a></li>
     <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Запитване</a></li>
   </ul>
-  <div class="lang-switcher">
-    <button class="lang-btn active" id="btn-bg" onclick="setLang('bg')">BG</button>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btn-bg" onclick="setLang('bg')">BG</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#who" onclick="closeMenu()" data-i18n="nav.who">За кого</a>
+  <a href="#solution" onclick="closeMenu()" data-i18n="nav.solution">Решение</a>
+  <a href="#pricing" onclick="closeMenu()" data-i18n="nav.pricing">Пакети</a>
+  <a href="#contact" onclick="closeMenu()" data-i18n="nav.contact">Контакт</a>
+  <a href="#contact" onclick="closeMenu()" data-i18n="nav.cta">Запитване</a>
+</div>
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/359883584139" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
@@ -700,6 +727,16 @@ footer ul a:hover { color: #90ee90; }
   // Restore language on load
   const savedLang = localStorage.getItem('carehab_lang');
   if (savedLang && savedLang !== 'bg') setLang(savedLang);
+
+  // Hamburger menu
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-nav').classList.remove('open');
+  }
 
   // Cookie banner
   if (localStorage.getItem('carehab_cookieConsent')) {
