@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CareHab – Смарт Грижа за Дома</title>
+<meta name="description" content="CareHab — Смарт система за грижа за възрастни и деца. Изградена върху Home Assistant. Достъпна, надеждна и лесна за употреба.">
+<meta name="keywords" content="смарт грижа, Home Assistant, IoT, грижа за възрастни, грижа за деца, умен дом, България">
+<meta name="author" content="CareHab">
+<meta property="og:title" content="CareHab — Смарт Грижа за Дома">
+<meta property="og:description" content="Модулна смарт система за грижа за възрастни и деца. Изградена върху Home Assistant — достъпна, надеждна и лесна за употреба.">
+<meta property="og:url" content="https://carehab.eu/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CareHab — Смарт Грижа за Дома">
+<meta name="twitter:description" content="Модулна смарт система за грижа за възрастни и деца.">
+<link rel="canonical" href="https://carehab.eu/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f1a0f'/><text x='50%25' y='54%25' font-family='Georgia,serif' font-size='24' font-weight='bold' fill='%231a5c2a' text-anchor='middle' dominant-baseline='middle'>CH</text></svg>">
+<title>CareHab — Смарт Грижа за Дома</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TTTLSPYZEF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TTTLSPYZEF');</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -195,6 +210,17 @@ footer ul a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0
 footer ul a:hover { color: #90ee90; }
 .footer-bottom { background: var(--dark); padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.25); border-top: 1px solid rgba(255,255,255,0.05); }
 
+/* SITE SWITCHER */
+.site-switcher { display: flex; gap: 0; border: 1px solid var(--border); overflow: hidden; border-radius: 8px; }
+.site-btn { background: none; border: none; color: var(--muted); padding: 0.3rem 0.75rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; text-decoration: none; display: flex; align-items: center; }
+.site-btn.active { background: var(--green); color: white; }
+.site-btn:hover:not(.active) { background: var(--accent); color: var(--green); }
+
+/* FORM FEEDBACK */
+.form-success { display:none; background:#e8f5e9; border:1px solid #a5d6a7; color:#1a5c2a; padding:1rem 1.5rem; font-size:0.9rem; margin-top:1rem; border-radius:8px; }
+.form-error { display:none; background:#ffebee; border:1px solid #ef9a9a; color:#c62828; padding:1rem 1.5rem; font-size:0.9rem; margin-top:1rem; border-radius:8px; }
+.btn-submit:disabled { opacity:0.6; cursor:not-allowed; }
+
 /* LANG SWITCHER */
 .lang-switcher { display: flex; gap: 0.3rem; }
 .lang-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 0.3rem 0.65rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; border-radius: 6px; }
@@ -262,6 +288,10 @@ footer ul a:hover { color: #90ee90; }
     <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Запитване</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="site-switcher">
+      <a href="https://leanhab.eu" target="_blank" rel="noopener" class="site-btn">LEAN</a>
+      <button class="site-btn active" id="btn-care">CARE</button>
+    </div>
     <div class="lang-switcher">
       <button class="lang-btn active" id="btn-bg" onclick="setLang('bg')">BG</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
@@ -605,6 +635,8 @@ footer ul a:hover { color: #90ee90; }
         </select>
         <textarea name="message" placeholder="Разкажете ни за вашите нужди..." data-i18n-placeholder="form.message"></textarea>
         <button type="submit" class="btn-submit" data-i18n="form.submit">Изпрати запитване →</button>
+        <div class="form-success" id="form-success" data-i18n="form.success">Благодарим! Ще се свържем с вас скоро.</div>
+        <div class="form-error" id="form-error" data-i18n="form.error">Грешка при изпращане. Моля опитайте отново.</div>
       </form>
     </div>
   </div>
@@ -665,7 +697,8 @@ footer ul a:hover { color: #90ee90; }
       'footer.copy':'© 2025 CareHab. Всички права запазени.','footer.privacy':'Поверителност · Условия',
       'cookie.text':'Този сайт използва бисквитки за подобряване на потребителското изживяване. С продължаването на използването приемате нашата политика за поверителност.',
       'cookie.accept':'Приемам','cookie.decline':'Отказ',
-      'whatsapp.tooltip':'Пишете ни в WhatsApp'
+      'whatsapp.tooltip':'Пишете ни в WhatsApp',
+      'form.success':'Благодарим! Ще се свържем с вас скоро.','form.error':'Грешка при изпращане. Моля опитайте отново.'
     },
     en: {
       'nav.who':'Who it\'s for','nav.solution':'Solution','nav.pricing':'Packages','nav.contact':'Contact','nav.cta':'Get in touch',
@@ -685,7 +718,8 @@ footer ul a:hover { color: #90ee90; }
       'footer.copy':'© 2025 CareHab. All rights reserved.','footer.privacy':'Privacy · Terms',
       'cookie.text':'This website uses cookies to improve user experience. By continuing to use it, you accept our privacy policy.',
       'cookie.accept':'Accept','cookie.decline':'Decline',
-      'whatsapp.tooltip':'Message us on WhatsApp'
+      'whatsapp.tooltip':'Message us on WhatsApp',
+      'form.success':'Thank you! We will be in touch soon.','form.error':'Sending failed. Please try again.'
     },
     de: {
       'nav.who':'Für wen','nav.solution':'Lösung','nav.pricing':'Pakete','nav.contact':'Kontakt','nav.cta':'Anfrage',
@@ -705,7 +739,8 @@ footer ul a:hover { color: #90ee90; }
       'footer.copy':'© 2025 CareHab. Alle Rechte vorbehalten.','footer.privacy':'Datenschutz · Nutzungsbedingungen',
       'cookie.text':'Diese Website verwendet Cookies zur Verbesserung der Benutzererfahrung. Mit der weiteren Nutzung akzeptieren Sie unsere Datenschutzrichtlinie.',
       'cookie.accept':'Akzeptieren','cookie.decline':'Ablehnen',
-      'whatsapp.tooltip':'Schreiben Sie uns auf WhatsApp'
+      'whatsapp.tooltip':'Schreiben Sie uns auf WhatsApp',
+      'form.success':'Vielen Dank! Wir melden uns bald.','form.error':'Fehler beim Senden. Bitte versuchen Sie es erneut.'
     }
   };
 
@@ -727,6 +762,28 @@ footer ul a:hover { color: #90ee90; }
   // Restore language on load
   const savedLang = localStorage.getItem('carehab_lang');
   if (savedLang && savedLang !== 'bg') setLang(savedLang);
+
+  // Form submit
+  const form = document.querySelector('form[name="contact"]');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.btn-submit');
+      btn.disabled = true;
+      try {
+        const res = await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(new FormData(form)).toString() });
+        if (res.ok) {
+          document.getElementById('form-success').style.display = 'block';
+          document.getElementById('form-error').style.display = 'none';
+          form.reset();
+        } else { throw new Error(); }
+      } catch {
+        document.getElementById('form-error').style.display = 'block';
+        document.getElementById('form-success').style.display = 'none';
+        btn.disabled = false;
+      }
+    });
+  }
 
   // Hamburger menu
   function toggleMenu() {
