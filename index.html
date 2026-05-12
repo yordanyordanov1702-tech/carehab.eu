@@ -284,7 +284,6 @@ footer ul a:hover { color: #90ee90; }
   <ul>
     <li><a href="#who" data-i18n="nav.who">За кого</a></li>
     <li><a href="#solution" data-i18n="nav.solution">Решение</a></li>
-    <li><a href="#pricing" data-i18n="nav.pricing">Пакети</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Контакт</a></li>
     <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Запитване</a></li>
   </ul>
@@ -308,7 +307,6 @@ footer ul a:hover { color: #90ee90; }
 <div class="mobile-nav" id="mobile-nav">
   <a href="#who" onclick="closeMenu()" data-i18n="nav.who">За кого</a>
   <a href="#solution" onclick="closeMenu()" data-i18n="nav.solution">Решение</a>
-  <a href="#pricing" onclick="closeMenu()" data-i18n="nav.pricing">Пакети</a>
   <a href="#contact" onclick="closeMenu()" data-i18n="nav.contact">Контакт</a>
   <a href="#contact" onclick="closeMenu()" data-i18n="nav.cta">Запитване</a>
   <div style="display:flex;gap:0.4rem;margin-top:0.5rem;">
@@ -542,70 +540,6 @@ footer ul a:hover { color: #90ee90; }
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing-section" id="pricing">
-  <div style="max-width:580px;">
-    <div class="section-tag" data-i18n="pricing.tag">Пакети</div>
-    <h2 class="section-h" data-i18n="pricing.h">Намерете правилния пакет</h2>
-    <p class="section-p" data-i18n="pricing.p">Цената зависи от вашия дом и нуждите ви. Свържете се с нас за безплатна консултация и индивидуална оферта.</p>
-  </div>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <div class="price-name" data-i18n="price1.name">Базов</div>
-      <div class="price-inquiry" data-i18n="price.inquiry">При запитване</div>
-      <div class="price-desc" data-i18n="price.hw">Еднократна покупка + монтаж</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> IoT Hub</li>
-        <li><span class="ck">✓</span> <span data-i18n="price1.li1">1 камера</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price1.li2">Бутон за спешност</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price1.li3">Сензор за движение</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price1.li4">Мобилно приложение</span></li>
-      </ul>
-      <a href="#contact" class="btn-price" data-i18n="price.ask">Запитай се</a>
-    </div>
-    <div class="price-card featured">
-      <div class="price-name" data-i18n="price2.name">Пълен</div>
-      <div class="price-inquiry" data-i18n="price.inquiry">При запитване</div>
-      <div class="price-desc" data-i18n="price.hw">Еднократна покупка + монтаж</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> <span data-i18n="price2.li1">Всичко от Базов</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price2.li2">2 камери</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price2.li3">Гласов асистент</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price2.li4">3 смарт контакта</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price2.li5">Детски филтри</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price2.li6">Напомняния за лекарства</span></li>
-      </ul>
-      <a href="#contact" class="btn-price" data-i18n="price.ask">Запитай се</a>
-    </div>
-    <div class="price-card">
-      <div class="price-name" data-i18n="price3.name">Абонамент</div>
-      <div class="price-amount">25 <span>лв/мес</span></div>
-      <div class="price-desc" data-i18n="price3.desc">Облачен достъп и поддръжка</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> <span data-i18n="price3.li1">Облачно съхранение</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price3.li2">Приоритетна поддръжка</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price3.li3">Автоматични обновления</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price3.li4">История на известията</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price3.li5">Достъп за 5 члена</span></li>
-      </ul>
-      <a href="#contact" class="btn-price" data-i18n="price3.btn">Поръчай</a>
-    </div>
-    <div class="price-card">
-      <div class="price-name" data-i18n="price4.name">Обучение DIY</div>
-      <div class="price-amount">30 <span>евро</span></div>
-      <div class="price-desc" data-i18n="price4.desc">Онлайн или на живо</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> <span data-i18n="price4.li1">Въведение в Home Assistant</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price4.li2">Настройка на устройства</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price4.li3">Създаване на автоматизации</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price4.li4">Списък с компоненти</span></li>
-        <li><span class="ck">✓</span> <span data-i18n="price4.li5">30 дни поддръжка</span></li>
-      </ul>
-      <a href="#contact" class="btn-price" data-i18n="price4.btn">Запиши се</a>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="section-tag" data-i18n="contact.tag">Контакт</div>
@@ -658,7 +592,6 @@ footer ul a:hover { color: #90ee90; }
     <ul>
       <li><a href="#solution">Функции</a></li>
       <li><a href="#who">За кого</a></li>
-      <li><a href="#pricing">Пакети</a></li>
     </ul>
   </div>
   <div>
