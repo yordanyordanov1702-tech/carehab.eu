@@ -310,6 +310,11 @@ footer ul a:hover { color: #90ee90; }
   <a href="#pricing" onclick="closeMenu()" data-i18n="nav.pricing">Пакети</a>
   <a href="#contact" onclick="closeMenu()" data-i18n="nav.contact">Контакт</a>
   <a href="#contact" onclick="closeMenu()" data-i18n="nav.cta">Запитване</a>
+  <div style="display:flex;gap:0.4rem;margin-top:0.5rem;">
+    <button class="lang-btn active" id="mob-btn-bg" onclick="setLang('bg');closeMenu()">BG</button>
+    <button class="lang-btn" id="mob-btn-en" onclick="setLang('en');closeMenu()">EN</button>
+    <button class="lang-btn" id="mob-btn-de" onclick="setLang('de');closeMenu()">DE</button>
+  </div>
 </div>
 
 <!-- WHATSAPP BUTTON -->
@@ -753,15 +758,16 @@ footer ul a:hover { color: #90ee90; }
       const key = el.getAttribute('data-i18n-placeholder');
       if (t[lang] && t[lang][key]) el.placeholder = t[lang][key];
     });
-    ['bg','en','de'].forEach(l => document.getElementById('btn-'+l).classList.remove('active'));
+    ['bg','en','de'].forEach(l => {
+      document.getElementById('btn-'+l).classList.remove('active');
+      const mob = document.getElementById('mob-btn-'+l);
+      if (mob) mob.classList.remove('active');
+    });
     document.getElementById('btn-'+lang).classList.add('active');
+    const mobBtn = document.getElementById('mob-btn-'+lang);
+    if (mobBtn) mobBtn.classList.add('active');
     document.documentElement.lang = lang;
-    localStorage.setItem('carehab_lang', lang);
   }
-
-  // Restore language on load
-  const savedLang = localStorage.getItem('carehab_lang');
-  if (savedLang && savedLang !== 'bg') setLang(savedLang);
 
   // Form submit
   const form = document.querySelector('form[name="contact"]');
