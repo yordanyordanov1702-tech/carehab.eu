@@ -824,13 +824,16 @@ footer ul a:hover { color: #90ee90; }
       btn.disabled = true;
       try {
         const res = await fetch('https://formspree.io/f/mdabjrly', { method: 'POST', headers: {'Accept': 'application/json'}, body: new FormData(form) });
+        const data = await res.json();
         if (res.ok) {
           document.getElementById('form-success').style.display = 'block';
           document.getElementById('form-error').style.display = 'none';
           form.reset();
-        } else { throw new Error(); }
-      } catch {
-        document.getElementById('form-error').style.display = 'block';
+        } else { throw new Error(data.error || JSON.stringify(data.errors)); }
+      } catch(err) {
+        const errEl = document.getElementById('form-error');
+        errEl.textContent = err.message || 'Грешка при изпращане. Моля опитайте отново.';
+        errEl.style.display = 'block';
         document.getElementById('form-success').style.display = 'none';
         btn.disabled = false;
       }
