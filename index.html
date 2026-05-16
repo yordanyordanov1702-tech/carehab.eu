@@ -17,6 +17,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/shared.css">
 <style>
+/* HERO 2-COL OVERRIDE */
+.page-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 9rem 5% 5rem; }
+.page-hero-content { max-width: none; }
+.page-hero-visual { position: relative; z-index: 1; }
+.phv-card { border-radius: 24px; overflow: hidden; position: relative; box-shadow: 0 24px 60px rgba(0,0,0,0.35); }
+.phv-card img { width: 100%; height: 380px; object-fit: cover; display: block; }
+.phv-card::after { content:''; position:absolute; inset:0; background: linear-gradient(to top, rgba(10,20,10,.7) 0%, transparent 55%); }
+.phv-badge { position: absolute; background: white; border-radius: 16px; padding: .85rem 1.15rem; display: flex; align-items: center; gap: .75rem; box-shadow: 0 10px 30px rgba(0,0,0,.18); z-index: 2; min-width: 190px; animation: float-in .6s ease both; }
+.phv-badge-icon { font-size: 1.5rem; flex-shrink: 0; }
+.phv-badge-name { font-size: .82rem; font-weight: 700; color: #1a1a1a; margin-bottom: .1rem; }
+.phv-badge-status { font-size: .72rem; color: #1a5c2a; font-weight: 600; display: flex; align-items: center; gap: .3rem; }
+.phv-badge-status::before { content:''; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; display: inline-block; }
+.phv-b1 { bottom: 90px; left: -28px; animation-delay: .1s; }
+.phv-b2 { top: 18px; right: -24px; animation-delay: .25s; }
+.phv-b3 { bottom: 20px; right: 20px; background: var(--dark); animation-delay: .4s; }
+.phv-b3 .phv-badge-name { color: white; }
+.phv-b3 .phv-badge-status { color: #6ee87e; }
+.phv-b3 .phv-badge-status::before { background: #6ee87e; }
+@keyframes float-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+.phv-hub { position: absolute; bottom: 95px; right: -24px; width: 52px; height: 52px; background: var(--green); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 8px 20px rgba(26,92,42,.5); z-index: 2; animation: float-in .5s .15s ease both; }
+@media (max-width: 860px) {
+  .page-hero { grid-template-columns: 1fr; }
+  .page-hero-visual { display: none; }
+}
+
 /* VIDEO */
 .video-section { background: var(--dark); }
 .video-section .section-tag { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
@@ -103,9 +128,44 @@
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="section-tag">Умна система за грижа и безопасност</div>
-  <h1>Бъдете спокойни за<br><em>децата и родителите си</em></h1>
-  <p>CareHab следи и пази близките ви вкъщи — сензори, камери, известия в реално време. Вие сте на работа, те са в безопасност.</p>
+  <div class="page-hero-content">
+    <div class="section-tag">Умна система за грижа и безопасност</div>
+    <h1>Бъдете спокойни за<br><em>децата и родителите си</em></h1>
+    <p>CareHab следи и пази близките ви вкъщи — сензори, камери, известия в реално време. Вие сте на работа, те са в безопасност.</p>
+  </div>
+
+  <div class="page-hero-visual">
+    <div class="phv-card">
+      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=900&q=85" alt="Умен дом CareHab">
+    </div>
+
+    <!-- Elder badge -->
+    <div class="phv-badge phv-b1">
+      <div class="phv-badge-icon">👴</div>
+      <div>
+        <div class="phv-badge-name">Дядо Петър</div>
+        <div class="phv-badge-status">Активен преди 8 мин.</div>
+      </div>
+    </div>
+
+    <!-- Child badge -->
+    <div class="phv-badge phv-b2">
+      <div class="phv-badge-icon">👧</div>
+      <div>
+        <div class="phv-badge-name">Мартина се прибра</div>
+        <div class="phv-badge-status">Вкъщи от 14:32</div>
+      </div>
+    </div>
+
+    <!-- System status -->
+    <div class="phv-badge phv-b3">
+      <div class="phv-badge-icon">🛡️</div>
+      <div>
+        <div class="phv-badge-name">Системата е активна</div>
+        <div class="phv-badge-status">Всичко е наред</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- КАК РАБОТИ — ДЕТАЙЛНО -->
