@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta name="description" content="Историята на CareHab — как една пандемия, едно семейство и много безсънни нощи доведоха до умна система за грижа за близките.">
+<meta property="og:title" content="Нашата история — CareHab">
+<meta property="og:url" content="https://carehab.eu/za-nas.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://carehab.eu/za-nas.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f1a0f'/><text x='50%25' y='54%25' font-family='Georgia,serif' font-size='24' font-weight='bold' fill='%231a5c2a' text-anchor='middle' dominant-baseline='middle'>CH</text></svg>">
+<title>Нашата история — CareHab</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q569DS673V"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q569DS673V');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+
+/* STORY SECTION */
+.story-section { background: var(--cream); }
+.story-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; align-items: start; }
+@media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+.story-text p { font-size: 1.05rem; color: var(--text); line-height: 1.9; margin-bottom: 1.6rem; }
+.story-text p:last-child { margin-bottom: 0; }
+.story-text strong { color: var(--green); font-weight: 600; }
+.story-pullquote { border-left: 4px solid var(--green); padding: 1.2rem 1.8rem; margin: 2.5rem 0; background: var(--accent); border-radius: 0 16px 16px 0; }
+.story-pullquote p { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; color: var(--dark); line-height: 1.6; margin: 0; }
+
+/* VISUAL SIDE */
+.story-visual { position: sticky; top: 8rem; }
+.story-photo { border-radius: 24px; overflow: hidden; box-shadow: 0 20px 50px rgba(15,26,15,.12); margin-bottom: 1.5rem; }
+.story-photo img { width: 100%; height: 340px; object-fit: cover; display: block; }
+.story-photo-2 { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 30px rgba(15,26,15,.1); }
+.story-photo-2 img { width: 100%; height: 220px; object-fit: cover; display: block; }
+
+/* TIMELINE */
+.timeline-section { background: white; }
+.timeline { position: relative; max-width: 700px; margin: 3rem auto 0; }
+.timeline::before { content:''; position: absolute; left: 26px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.tl-item { display: flex; gap: 2rem; margin-bottom: 3rem; position: relative; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot { width: 54px; height: 54px; border-radius: 50%; background: var(--accent); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; position: relative; z-index: 1; }
+.tl-content { padding-top: .6rem; }
+.tl-year { font-size: .78rem; font-weight: 700; color: var(--green); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; }
+.tl-content h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+.tl-content p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+
+/* VALUES */
+.values-section { background: var(--dark); color: white; }
+.values-section .section-tag { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
+.values-section .section-h { color: white; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.value-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 2rem; }
+.value-icon { font-size: 2rem; margin-bottom: 1rem; }
+.value-card h3 { font-size: 1.1rem; color: white; margin-bottom: .6rem; }
+.value-card p { font-size: .88rem; color: rgba(255,255,255,.6); line-height: 1.7; }
+@media (max-width: 760px) { .values-grid { grid-template-columns: 1fr; } }
+
+/* FOUNDERS */
+.founders-section { background: var(--cream); }
+.founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+.founder-card { background: white; border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); text-align: center; }
+.founder-avatar { width: 90px; height: 90px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; margin: 0 auto 1.2rem; border: 3px solid var(--green); }
+.founder-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+.founder-role { font-size: .82rem; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1rem; }
+.founder-bio { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+@media (max-width: 620px) { .founders-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Care<span>Hab</span></a>
+  <ul>
+    <li><a href="index.html">Решение</a></li>
+    <li><a href="paketi.html">Пакети</a></li>
+    <li><a href="za-nas.html">За нас</a></li>
+    <li><a href="kontakt.html">Контакт</a></li>
+    <li><a href="kontakt.html" class="nav-cta">Запитване</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="site-switcher">
+      <a href="https://leanhab.eu" target="_blank" rel="noopener" class="site-btn">LEAN</a>
+      <span class="site-btn active">CARE</span>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" onclick="closeMenu()">Решение</a>
+  <a href="paketi.html" onclick="closeMenu()">Пакети</a>
+  <a href="za-nas.html" onclick="closeMenu()">За нас</a>
+  <a href="kontakt.html" onclick="closeMenu()">Контакт</a>
+  <a href="kontakt.html" onclick="closeMenu()">Запитване →</a>
+</div>
+
+<a href="https://wa.me/359883584139" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
+  <span class="whatsapp-tooltip">Пишете ни в WhatsApp</span>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>Този сайт използва бисквитки за подобряване на потребителското изживяване.</p>
+  <div class="cookie-actions">
+    <button class="btn-cookie-decline" onclick="cookieDecline()">Отказ</button>
+    <button class="btn-cookie-accept" onclick="cookieAccept()">Приемам</button>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="section-tag">Нашата история</div>
+    <h1>Родени от нуждата<br>да <em>пазим близките си</em></h1>
+    <p>CareHab не е просто продукт. Той е отговорът на въпрос, който нашето семейство си зададе в един от най-трудните периоди — и не намери добър отговор никъде другаде.</p>
+  </div>
+</div>
+
+<!-- ИСТОРИЯТА -->
+<section class="section story-section" id="story">
+  <div class="story-grid">
+    <div class="story-text">
+      <p>Беше 2020 година. Светът се затвори за броени дни. Училищата спряха, детските градини спряха, всичко спря — освен работата. Ние трябваше да продължим да ходим.</p>
+
+      <p>Децата останаха вкъщи. Сами. В другия апартамент. А ние бяхме на работа с телефоните в ръце и сърцата в гърлото. <strong>Добре ли са? Какво правят? Случило ли се е нещо?</strong> Тези въпроси не спираха.</p>
+
+      <div class="story-pullquote">
+        <p>„Седях на работното си място и гледах децата си на малкия екран на телефона. Тогава разбрах — трябва нещо повече от камера. Трябва система, която мисли вместо нас."</p>
+      </div>
+
+      <p>Започнахме да търсим. Пробвахме готови решения — скъпи, сложни, с месечни такси, с данни в чужди облаци. Нищо не отговаряше на нуждите ни. Тогава стъпка по стъпка открихме <strong>Home Assistant</strong> и света на локалния умен дом.</p>
+
+      <p>По същото време нашата баба се бореше с болест. Живееше сама. Обаждахме се по няколко пъти на ден — но обаждането не те казва дали е паднала, дали е взела лекарствата, дали е станала сутринта. <strong>Тревогата беше постоянна.</strong></p>
+
+      <p>Така се роди CareHab. Не в офис, не в инкубатор — а в нашия дом, от наша собствена нужда. Изградихме системата първо за себе си. После приятели попитаха. После техни приятели. И ето ни тук.</p>
+
+      <p>Днес CareHab пази семейства като нашето — хора, които обичат близките си и искат да знаят, че са добре, дори когато не могат да бъдат до тях.</p>
+    </div>
+
+    <div class="story-visual">
+      <div class="story-photo">
+        <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=85" alt="Семейство вкъщи">
+      </div>
+      <div class="story-photo-2">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=85" alt="Умен дом грижа">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section timeline-section" id="timeline">
+  <div style="text-align:center; max-width:560px; margin:0 auto;">
+    <div class="section-tag">Как стигнахме дотук</div>
+    <h2 class="section-h">Стъпка по стъпка</h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">🔒</div>
+      <div class="tl-content">
+        <div class="tl-year">2020 — Ковид локдаун</div>
+        <h3>Проблемът стана личен</h3>
+        <p>Децата вкъщи сами, баба болна и сама — и ние на работа. Търсим решение, не намираме нищо достъпно и надеждно.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🔧</div>
+      <div class="tl-content">
+        <div class="tl-year">2021 — Изграждане</div>
+        <h3>Първата система за себе си</h3>
+        <p>Инсталираме Home Assistant, Zigbee сензори, камери. За първи път спим спокойно — системата следи вместо нас.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">👥</div>
+      <div class="tl-content">
+        <div class="tl-year">2022 — Разпространение</div>
+        <h3>Приятели попитаха</h3>
+        <p>Разказваме на приятели. Те искат същото. Помагаме им. Разбираме, че нуждата е масова — не само наша.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🚀</div>
+      <div class="tl-content">
+        <div class="tl-year">2023 — CareHab</div>
+        <h3>Официалният старт</h3>
+        <p>Оформяме решението като продукт. Пакети, инсталация, поддръжка. CareHab вече пази семейства из цялата страна.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">💚</div>
+      <div class="tl-content">
+        <div class="tl-year">Днес</div>
+        <h3>Продължаваме да растем</h3>
+        <p>Всяка инсталация е ново семейство, което спи по-спокойно. Това е нашата мотивация всеки ден.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЦЕННОСТИ -->
+<section class="section values-section" id="values">
+  <div class="section-tag">Нашите ценности</div>
+  <h2 class="section-h">Защо правим това</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">🏠</div>
+      <h3>Домът е свещен</h3>
+      <p>Данните ви не напускат дома. Никакъв облак, никакви трети страни. Вашето семейство е ваше.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">💚</div>
+      <h3>Грижата е лична</h3>
+      <p>Всяка инсталация е различна. Слушаме, разбираме нуждите ви и изграждаме решение специално за вас.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🤝</div>
+      <h3>Прозрачност</h3>
+      <p>Без скрити такси, без абонаменти за платформата. Знаете точно какво плащате и за какво.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ОСНОВАТЕЛИ -->
+<section class="section founders-section" id="founders">
+  <div style="text-align:center; max-width:520px; margin:0 auto;">
+    <div class="section-tag">Зад CareHab</div>
+    <h2 class="section-h">Ние сме семейство,<br>точно като вас</h2>
+    <p class="section-p">Не сме корпорация. Сме двама родители, които разбират проблема отвътре — защото го живяхме.</p>
+  </div>
+  <div class="founders-grid">
+    <div class="founder-card">
+      <div class="founder-avatar">👨</div>
+      <div class="founder-name">Съосновател</div>
+      <div class="founder-role">Технология & Инсталации</div>
+      <p class="founder-bio">Изгради първата система за собственото си семейство по време на ковид. Отговаря за техническата архитектура, инсталациите и конфигурацията на Home Assistant.</p>
+    </div>
+    <div class="founder-card">
+      <div class="founder-avatar">👩</div>
+      <div class="founder-name">Съоснователка</div>
+      <div class="founder-role">Грижа & Клиентски опит</div>
+      <p class="founder-bio">Гласът на семейството в CareHab. Следи всяка инсталация да е наистина полезна — не само технически правилна, а и удобна за ежедневна употреба.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Запознахте се с нас.<br><em>Нека се запознаем и с вас.</em></h2>
+  <div class="cta-banner-btns">
+    <a href="kontakt.html" class="btn-white">Свържете се с нас →</a>
+    <a href="index.html" class="btn-white-ghost">Виж решението</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="logo">Care<span>Hab</span></a>
+    <p>Смарт дом системи за грижа за възрастни и деца. Достъпно, модулно, надеждно.</p>
+  </div>
+  <div>
+    <h4>Продукт</h4>
+    <ul>
+      <li><a href="index.html">Решение</a></li>
+      <li><a href="index.html#features">Функции</a></li>
+      <li><a href="paketi.html">Пакети</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Компания</h4>
+    <ul>
+      <li><a href="za-nas.html">За нас</a></li>
+      <li><a href="index.html#ha">Home Assistant</a></li>
+      <li><a href="kontakt.html">Контакт</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Контакт</h4>
+    <ul>
+      <li><a href="mailto:info@carehab.eu">info@carehab.eu</a></li>
+      <li><a href="tel:+359877557661">0877 557 661</a></li>
+      <li><a href="https://wa.me/359883584139">WhatsApp</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 CareHab. Всички права запазени.</span>
+  <span>Поверителност · Условия</span>
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>
