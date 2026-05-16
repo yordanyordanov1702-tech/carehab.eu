@@ -17,6 +17,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/shared.css">
 <style>
+/* VIDEO */
+.video-section { background: var(--dark); }
+.video-section .section-tag { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
+.video-section .section-h { color: white; }
+.video-section .section-p { color: rgba(255,255,255,.65); }
+.video-wrap { margin-top: 2.5rem; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.5); position: relative; background: #000; }
+.video-wrap video { width: 100%; display: block; max-height: 70vh; object-fit: contain; }
+
 /* FEATURES GRID */
 .features-section { background: var(--cream); }
 .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
@@ -155,6 +163,21 @@
       <h3>Мониторинг</h3>
       <p>Следите всичко в реално време от мобилното приложение. При нужда — едно докосване за помощ или сигнал.</p>
     </div>
+  </div>
+</section>
+
+<!-- ВИДЕО -->
+<section class="section video-section" id="video">
+  <div style="max-width:640px;">
+    <div class="section-tag">Вижте на живо</div>
+    <h2 class="section-h">CareHab в действие</h2>
+    <p class="section-p">Вижте как изглежда и работи системата на практика — от инсталацията до ежедневното използване.</p>
+  </div>
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata" poster="">
+      <source src="video/carehab.mp4" type="video/mp4">
+      Вашият браузър не поддържа видео.
+    </video>
   </div>
 </section>
 
