@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta name="description" content="CareHab Решение — Как работи нашата смарт система за грижа. Home Assistant, Zigbee, камери, сензори, известия.">
+<meta property="og:title" content="Решението — CareHab">
+<meta property="og:url" content="https://carehab.eu/resenie.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://carehab.eu/resenie.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f1a0f'/><text x='50%25' y='54%25' font-family='Georgia,serif' font-size='24' font-weight='bold' fill='%231a5c2a' text-anchor='middle' dominant-baseline='middle'>CH</text></svg>">
+<title>Решението — CareHab</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q569DS673V"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q569DS673V');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* FEATURES GRID */
+.features-section { background: var(--cream); }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.feature-card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); transition: box-shadow .25s, transform .25s; }
+.feature-card:hover { box-shadow: 0 16px 40px rgba(15,26,15,.1); transform: translateY(-4px); }
+.feature-card-icon { width: 56px; height: 56px; background: var(--accent); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem; }
+.feature-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: .6rem; color: var(--dark); }
+.feature-card p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+@media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+
+/* HA SECTION */
+.ha-section { background: var(--dark); color: white; }
+.ha-section .section-tag { background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
+.ha-section .section-h { color: white; }
+.ha-section .section-p { color: rgba(255,255,255,.7); }
+.ha-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+.ha-img { border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
+.ha-img img { width: 100%; height: 400px; object-fit: cover; display: block; }
+.ha-points { display: flex; flex-direction: column; gap: 1.6rem; }
+.ha-point { display: flex; gap: 1rem; align-items: flex-start; }
+.ha-point-num { width: 36px; height: 36px; background: var(--green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .88rem; flex-shrink: 0; }
+.ha-point-text h4 { font-size: 1rem; font-weight: 600; color: white; margin-bottom: .3rem; }
+.ha-point-text p { font-size: .88rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+@media (max-width: 800px) { .ha-grid { grid-template-columns: 1fr; } }
+
+/* HOW DETAIL */
+.how-detail-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.how-step { text-align: center; }
+.how-step-num { width: 52px; height: 52px; background: var(--green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; margin: 0 auto 1.2rem; }
+.how-step h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+.how-step p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+@media (max-width: 700px) { .how-detail-steps { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Care<span>Hab</span></a>
+  <ul>
+    <li><a href="resenie.html">Решение</a></li>
+    <li><a href="paketi.html">Пакети</a></li>
+    <li><a href="kontakt.html">Контакт</a></li>
+    <li><a href="kontakt.html" class="nav-cta">Запитване</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="site-switcher">
+      <a href="https://leanhab.eu" target="_blank" rel="noopener" class="site-btn">LEAN</a>
+      <span class="site-btn active">CARE</span>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" onclick="closeMenu()">Начало</a>
+  <a href="resenie.html" onclick="closeMenu()">Решение</a>
+  <a href="paketi.html" onclick="closeMenu()">Пакети</a>
+  <a href="kontakt.html" onclick="closeMenu()">Контакт</a>
+  <a href="kontakt.html" onclick="closeMenu()">Запитване →</a>
+</div>
+
+<a href="https://wa.me/359883584139" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
+  <span class="whatsapp-tooltip">Пишете ни в WhatsApp</span>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>Този сайт използва бисквитки за подобряване на потребителското изживяване. С продължаването на използването приемате нашата политика за поверителност.</p>
+  <div class="cookie-actions">
+    <button class="btn-cookie-decline" onclick="cookieDecline()">Отказ</button>
+    <button class="btn-cookie-accept" onclick="cookieAccept()">Приемам</button>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="section-tag">Как работи</div>
+  <h1>Умният дом, <em>обяснен просто</em></h1>
+  <p>Един централен хъб. Безжична Zigbee мрежа. Пълен контрол от телефона ви — денонощно.</p>
+</div>
+
+<!-- КАК РАБОТИ — ДЕТАЙЛНО -->
+<section class="section howitworks-section" id="howitworks">
+  <div style="max-width:640px;">
+    <div class="section-tag">Архитектура</div>
+    <h2 class="section-h">Едната къща,<br>всичко свързано</h2>
+    <p class="section-p">В дома инсталираме един малък компютър — сърцето на системата. Той комуникира безжично по <strong>Zigbee</strong> с всички сензори и устройства, и има постоянна връзка с интернет, за да праща известия до телефоните на семейството в реално време.</p>
+  </div>
+  <div class="hiw-layout">
+    <div class="hiw-photo-wrap">
+      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=85" alt="Умна къща CareHab" class="hiw-photo">
+      <div class="hiw-photo-badge"><span class="hiw-badge-dot"></span> Системата е активна</div>
+    </div>
+    <div class="hiw-diagram">
+      <div class="hiw-hub">
+        <div class="hiw-hub-icon">🖥️</div>
+        <div class="hiw-hub-label">Централен<br>компютър</div>
+        <div class="hiw-hub-sub">Zigbee · Wi-Fi</div>
+        <div class="hiw-pulse-ring"></div>
+        <div class="hiw-pulse-ring hiw-pulse-ring-2"></div>
+      </div>
+      <div class="hiw-nodes">
+        <div class="hiw-node"><div class="hiw-node-icon">🔥</div><div class="hiw-node-label">Противо-<br>пожарна</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">📱</div><div class="hiw-node-label">Телефони<br>на семейство</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🌐</div><div class="hiw-node-label">Интернет<br>известия</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🚪</div><div class="hiw-node-label">Отваряне<br>на врата</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">❤️</div><div class="hiw-node-label">Следене<br>на пулс</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">📷</div><div class="hiw-node-label">Камери в<br>помещенията</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🌡️</div><div class="hiw-node-label">Сензори<br>за движение</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🔔</div><div class="hiw-node-label">Известия<br>и аларми</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hiw-legend">
+    <div class="hiw-legend-item"><div class="hiw-legend-line hiw-line-zigbee"></div><span>Zigbee (локален безжичен)</span></div>
+    <div class="hiw-legend-item"><div class="hiw-legend-line hiw-line-wifi"></div><span>Wi-Fi / Интернет</span></div>
+    <div class="hiw-legend-item"><div class="hiw-legend-dot" style="background:#e53935;"></div><span>100% данните остават в дома</span></div>
+  </div>
+
+  <!-- Стъпки -->
+  <div class="how-detail-steps" style="margin-top:4rem;">
+    <div class="how-step">
+      <div class="how-step-num">1</div>
+      <h3>Инсталация</h3>
+      <p>Нашият техник монтира хъба и всички сензори. Не се прекъсва интернетът, не се пробиват стени — само безжична Zigbee мрежа.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">2</div>
+      <h3>Конфигурация</h3>
+      <p>Настройваме автоматизациите по вашите нужди — кои известия, в кой час, до кой телефон. Всичко персонализирано.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">3</div>
+      <h3>Мониторинг</h3>
+      <p>Следите всичко в реално време от мобилното приложение. При нужда — едно докосване за помощ или сигнал.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ФУНКЦИИ -->
+<section class="section features-section" id="features">
+  <div style="max-width:600px;">
+    <div class="section-tag">Функции</div>
+    <h2 class="section-h">Всичко, от което<br>се нуждаете</h2>
+    <p class="section-p">CareHab обединява най-важните функции за безопасност и грижа в едно интегрирано решение.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-card-icon">🔥</div>
+      <h3>Пожароизвестяване</h3>
+      <p>Zigbee пожарни детектори в кухнята, дневната и спалнята. При дим — незабавен сигнал до телефоните на семейството и включване на сирена.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">❤️</div>
+      <h3>Следене на пулс</h3>
+      <p>Носима гривна или нашийник измерва пулса в реално време. При отклонение — автоматично известие до зададени контакти.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">📷</div>
+      <h3>Камери в помещенията</h3>
+      <p>IP камери в дневна, коридор и двор. Видеозапис само при движение. Достъп от приложението навсякъде по света.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">🚪</div>
+      <h3>Умна врата</h3>
+      <p>Отваряне на входна врата от телефон. Ако детето се прибере — родителят получава известие в реално време.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">📱</div>
+      <h3>Push известия</h3>
+      <p>Всяко важно събитие в дома — падане, дим, отворена врата — стига до телефона ви за секунди, независимо де се намирате.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon">🌡️</div>
+      <h3>Сензори за среда</h3>
+      <p>Движение, температура, влажност и CO₂. Автоматично управление на отоплението и климатика за оптимален комфорт.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOME ASSISTANT -->
+<section class="section ha-section" id="ha">
+  <div class="section-tag">Технология</div>
+  <h2 class="section-h">Изградено върху<br>Home Assistant</h2>
+  <p class="section-p">Избрахме Home Assistant — най-популярната и надеждна платформа за умен дом с над 700 000 активни инсталации по света.</p>
+  <div class="ha-grid">
+    <div class="ha-img">
+      <img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=85" alt="Home Assistant dashboard">
+    </div>
+    <div class="ha-points">
+      <div class="ha-point">
+        <div class="ha-point-num">1</div>
+        <div class="ha-point-text">
+          <h4>100% локален контрол</h4>
+          <p>Данните остават в дома. Никакъв облак, никаква абонаментна такса за платформата. Работи дори без интернет.</p>
+        </div>
+      </div>
+      <div class="ha-point">
+        <div class="ha-point-num">2</div>
+        <div class="ha-point-text">
+          <h4>3000+ съвместими устройства</h4>
+          <p>Philips Hue, IKEA, Tuya, Sonoff, Google Home, Amazon Alexa — интегрираме всичко в едно.</p>
+        </div>
+      </div>
+      <div class="ha-point">
+        <div class="ha-point-num">3</div>
+        <div class="ha-point-text">
+          <h4>Гъвкави автоматизации</h4>
+          <p>Задайте правила: "Ако не е открито движение 2 часа, изпрати известие." Без ограничения, без код.</p>
+        </div>
+      </div>
+      <div class="ha-point">
+        <div class="ha-point-num">4</div>
+        <div class="ha-point-text">
+          <h4>Мобилно приложение</h4>
+          <p>Официалното Home Assistant приложение за iOS и Android — безплатно, бързо, интуитивно.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Готови да започнете?<br><em>Изберете своя пакет.</em></h2>
+  <div class="cta-banner-btns">
+    <a href="paketi.html" class="btn-white">Виж пакетите →</a>
+    <a href="kontakt.html" class="btn-white-ghost">Безплатна консултация</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="logo">Care<span>Hab</span></a>
+    <p>Смарт дом системи за грижа за възрастни и деца. Достъпно, модулно, надеждно.</p>
+  </div>
+  <div>
+    <h4>Продукт</h4>
+    <ul>
+      <li><a href="resenie.html">Решение</a></li>
+      <li><a href="resenie.html#features">Функции</a></li>
+      <li><a href="paketi.html">Пакети</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Компания</h4>
+    <ul>
+      <li><a href="index.html#who">За кого</a></li>
+      <li><a href="resenie.html#ha">Home Assistant</a></li>
+      <li><a href="kontakt.html">Контакт</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Контакт</h4>
+    <ul>
+      <li><a href="mailto:info@carehab.eu">info@carehab.eu</a></li>
+      <li><a href="tel:+359877557661">0877 557 661</a></li>
+      <li><a href="https://wa.me/359883584139">WhatsApp</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 CareHab. Всички права запазени.</span>
+  <span>Поверителност · Условия</span>
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta name="description" content="Свържете се с CareHab за безплатна консултация. Изградете умна система за грижа за вашите близки.">
+<meta property="og:title" content="Контакт — CareHab">
+<meta property="og:url" content="https://carehab.eu/kontakt.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://carehab.eu/kontakt.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f1a0f'/><text x='50%25' y='54%25' font-family='Georgia,serif' font-size='24' font-weight='bold' fill='%231a5c2a' text-anchor='middle' dominant-baseline='middle'>CH</text></svg>">
+<title>Контакт — CareHab</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q569DS673V"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q569DS673V');</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* CONTACT LAYOUT */
+.contact-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start; }
+@media (max-width: 860px) { .contact-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+/* LEFT SIDE */
+.contact-info-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-info-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 1.6rem 1.8rem; display: flex; align-items: flex-start; gap: 1.2rem; transition: box-shadow .2s; }
+.contact-info-card:hover { box-shadow: 0 12px 30px rgba(15,26,15,.08); }
+.contact-info-icon { width: 48px; height: 48px; background: var(--accent); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.contact-info-text h4 { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: .3rem; }
+.contact-info-text a, .contact-info-text p { font-size: .9rem; color: var(--muted); text-decoration: none; line-height: 1.6; }
+.contact-info-text a:hover { color: var(--green); }
+
+/* WHY US */
+.why-us { background: var(--dark); border-radius: 24px; padding: 2.5rem; margin-top: 2rem; }
+.why-us h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: white; margin-bottom: 1.4rem; }
+.why-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+.why-list li { display: flex; align-items: flex-start; gap: .8rem; font-size: .88rem; color: rgba(255,255,255,.75); line-height: 1.5; }
+.why-list li::before { content: '✓'; color: #6ee87e; font-weight: 700; flex-shrink: 0; }
+
+/* CONTACT FORM */
+.contact-form-wrap { background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 20px 60px rgba(15,26,15,.08); border: 1px solid var(--border); }
+.contact-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: .5rem; color: var(--dark); }
+.contact-form-wrap > p { font-size: .9rem; color: var(--muted); margin-bottom: 2rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.2rem; }
+.form-group label { font-size: .82rem; font-weight: 600; color: var(--dark); letter-spacing: .03em; text-transform: uppercase; }
+.form-group input,
+.form-group select,
+.form-group textarea { border: 1.5px solid var(--border); border-radius: 10px; padding: .75rem 1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: .92rem; color: var(--dark); background: var(--cream); transition: border-color .2s, box-shadow .2s; width: 100%; box-sizing: border-box; }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(26,92,42,.1); }
+.form-group textarea { resize: vertical; min-height: 130px; }
+.form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+.form-check { display: flex; gap: .7rem; align-items: flex-start; margin-bottom: 1.5rem; }
+.form-check input[type="checkbox"] { margin-top: .2rem; accent-color: var(--green); width: 16px; height: 16px; flex-shrink: 0; }
+.form-check label { font-size: .82rem; color: var(--muted); line-height: 1.5; }
+.form-check label a { color: var(--green); }
+.btn-submit { width: 100%; padding: 1rem; background: var(--green); color: white; border: none; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background .2s, transform .15s; }
+.btn-submit:hover { background: #1a7a32; transform: translateY(-1px); }
+.btn-submit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+#form-success { display: none; background: #e8f5e2; border: 1px solid #a8d8a8; border-radius: 12px; padding: 1.2rem 1.5rem; color: #1a5c2a; font-size: .92rem; margin-top: 1rem; }
+#form-error { display: none; background: #fde8e8; border: 1px solid #f5a5a5; border-radius: 12px; padding: 1.2rem 1.5rem; color: #b71c1c; font-size: .92rem; margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Care<span>Hab</span></a>
+  <ul>
+    <li><a href="resenie.html">Решение</a></li>
+    <li><a href="paketi.html">Пакети</a></li>
+    <li><a href="kontakt.html">Контакт</a></li>
+    <li><a href="kontakt.html" class="nav-cta">Запитване</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="site-switcher">
+      <a href="https://leanhab.eu" target="_blank" rel="noopener" class="site-btn">LEAN</a>
+      <span class="site-btn active">CARE</span>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <a href="index.html" onclick="closeMenu()">Начало</a>
+  <a href="resenie.html" onclick="closeMenu()">Решение</a>
+  <a href="paketi.html" onclick="closeMenu()">Пакети</a>
+  <a href="kontakt.html" onclick="closeMenu()">Контакт</a>
+  <a href="kontakt.html" onclick="closeMenu()">Запитване →</a>
+</div>
+
+<a href="https://wa.me/359883584139" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
+  <span class="whatsapp-tooltip">Пишете ни в WhatsApp</span>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>Този сайт използва бисквитки за подобряване на потребителското изживяване.</p>
+  <div class="cookie-actions">
+    <button class="btn-cookie-decline" onclick="cookieDecline()">Отказ</button>
+    <button class="btn-cookie-accept" onclick="cookieAccept()">Приемам</button>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="section-tag">Контакт</div>
+  <h1>Нека поговорим за<br><em>вашето семейство</em></h1>
+  <p>Безплатна консултация без ангажимент. Ще оценим нуждите ви и ще предложим най-подходящото решение.</p>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="section" style="background:var(--cream);" id="contact">
+  <div class="contact-layout">
+
+    <!-- LEFT: Info + Why us -->
+    <div>
+      <div class="contact-info-stack">
+        <a href="tel:+359877557661" class="contact-info-card" style="text-decoration:none;">
+          <div class="contact-info-icon">📞</div>
+          <div class="contact-info-text">
+            <h4>Телефон</h4>
+            <p>0877 557 661<br><span style="font-size:.8rem;">Пон – Пет, 09:00 – 18:00</span></p>
+          </div>
+        </a>
+        <a href="mailto:info@carehab.eu" class="contact-info-card" style="text-decoration:none;">
+          <div class="contact-info-icon">✉️</div>
+          <div class="contact-info-text">
+            <h4>Имейл</h4>
+            <p>info@carehab.eu<br><span style="font-size:.8rem;">Отговаряме до 24 часа</span></p>
+          </div>
+        </a>
+        <a href="https://wa.me/359883584139" target="_blank" rel="noopener" class="contact-info-card" style="text-decoration:none;">
+          <div class="contact-info-icon">💬</div>
+          <div class="contact-info-text">
+            <h4>WhatsApp</h4>
+            <p>+359 883 584 139<br><span style="font-size:.8rem;">Бърз отговор в WhatsApp</span></p>
+          </div>
+        </a>
+      </div>
+
+      <div class="why-us">
+        <h3>Защо да изберете нас?</h3>
+        <ul class="why-list">
+          <li>Специализирано решение само за грижа и безопасност — не продаваме общи смарт устройства</li>
+          <li>100% локален контрол — вашите данни не напускат дома</li>
+          <li>Изградено върху Home Assistant — проверена платформа с глобална общност</li>
+          <li>Персонализирана инсталация и обучение за всяко домакинство</li>
+          <li>Реална поддръжка на български език след инсталацията</li>
+          <li>Гъвкава и модулна система — стартирате малко, разширявате когато пожелаете</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-wrap">
+      <h3>Изпратете запитване</h3>
+      <p>Попълнете формата и ще се свържем с вас до 24 часа с безплатна оценка.</p>
+
+      <form id="contact-form" action="https://formspree.io/f/mdabjrly" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Вашето име</label>
+            <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+359 8XX XXX XXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Имейл адрес</label>
+          <input type="email" id="email" name="email" placeholder="ivan@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="package">Интересуващ пакет</label>
+          <select id="package" name="package">
+            <option value="">— Изберете —</option>
+            <option value="starter">🌱 Стартов</option>
+            <option value="family">🏡 Семеен</option>
+            <option value="premium">👑 Премиум</option>
+            <option value="custom">Не знам — нужна е консултация</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Разкажете ни повече</label>
+          <textarea id="message" name="message" placeholder="Напр.: имаме възрастна майка, живее сама, търсим мониторинг и противопожарна система..."></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="privacy" name="privacy" required>
+          <label for="privacy">Съгласен/а съм личните ми данни да бъдат обработени от CareHab за целите на запитването. Прочетете нашата <a href="#">политика за поверителност</a>.</label>
+        </div>
+        <button type="submit" class="btn-submit">Изпрати запитване →</button>
+        <div id="form-success">✓ Успешно изпратено! Ще се свържем с вас до 24 часа.</div>
+        <div id="form-error">⚠ Нещо се обърка. Моля, опитайте отново или ни пишете директно на info@carehab.eu</div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="logo">Care<span>Hab</span></a>
+    <p>Смарт дом системи за грижа за възрастни и деца. Достъпно, модулно, надеждно.</p>
+  </div>
+  <div>
+    <h4>Продукт</h4>
+    <ul>
+      <li><a href="resenie.html">Решение</a></li>
+      <li><a href="resenie.html#features">Функции</a></li>
+      <li><a href="paketi.html">Пакети</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Компания</h4>
+    <ul>
+      <li><a href="index.html#who">За кого</a></li>
+      <li><a href="resenie.html#ha">Home Assistant</a></li>
+      <li><a href="kontakt.html">Контакт</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Контакт</h4>
+    <ul>
+      <li><a href="mailto:info@carehab.eu">info@carehab.eu</a></li>
+      <li><a href="tel:+359877557661">0877 557 661</a></li>
+      <li><a href="https://wa.me/359883584139">WhatsApp</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 CareHab. Всички права запазени.</span>
+  <span>Поверителност · Условия</span>
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

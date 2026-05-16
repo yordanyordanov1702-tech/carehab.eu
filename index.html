@@ -5,70 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <meta name="description" content="CareHab — Смарт система за грижа за възрастни и деца. Изградена върху Home Assistant. Достъпна, надеждна и лесна за употреба.">
-<meta name="keywords" content="смарт грижа, Home Assistant, IoT, грижа за възрастни, грижа за деца, умен дом, България">
-<meta name="author" content="CareHab">
 <meta property="og:title" content="CareHab — Смарт Грижа за Дома">
-<meta property="og:description" content="Модулна смарт система за грижа за възрастни и деца. Изградена върху Home Assistant — достъпна, надеждна и лесна за употреба.">
+<meta property="og:description" content="Модулна смарт система за грижа за възрастни и деца. Изградена върху Home Assistant.">
 <meta property="og:url" content="https://carehab.eu/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CareHab — Смарт Грижа за Дома">
-<meta name="twitter:description" content="Модулна смарт система за грижа за възрастни и деца.">
 <link rel="canonical" href="https://carehab.eu/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230f1a0f'/><text x='50%25' y='54%25' font-family='Georgia,serif' font-size='24' font-weight='bold' fill='%231a5c2a' text-anchor='middle' dominant-baseline='middle'>CH</text></svg>">
 <title>CareHab — Смарт Грижа за Дома</title>
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q569DS673V"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q569DS673V');</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
 <style>
-:root {
-  --bg: #f8f5f0;
-  --dark: #0f1a0f;
-  --green: #1a5c2a;
-  --green-light: #2d8b3f;
-  --accent: #e8f5e2;
-  --warm: #f0ebe3;
-  --text: #1a2416;
-  --muted: #6b7a64;
-  --border: rgba(26,92,42,0.12);
-  --white: #ffffff;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; line-height: 1.7; overflow-x: hidden; }
-h1,h2,h3 { font-family: 'Playfair Display', serif; font-weight: 800; }
-
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: rgba(248,245,240,0.93); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-.logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.6rem; color: var(--dark); letter-spacing: -0.02em; }
-.logo span { color: var(--green); }
-nav ul { display: flex; gap: 2.5rem; list-style: none; }
-nav a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
-nav a:hover { color: var(--green); }
-.nav-cta { background: var(--green) !important; color: white !important; padding: 0.6rem 1.5rem; border-radius: 100px; font-weight: 600 !important; }
-
 /* HERO */
 .hero { min-height: 100vh; padding: 7rem 5% 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; top: 0; right: 0; width: 55%; height: 100%; background: linear-gradient(135deg, #e8f5e2, #c8e8b8); border-radius: 0 0 0 80px; z-index: 0; }
 .hero-content { position: relative; z-index: 1; }
 .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green); color: white; padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.8rem; }
 .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #90ee90; animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .hero h1 { font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--dark); margin-bottom: 1.5rem; }
 .hero h1 em { font-style: italic; color: var(--green); }
 .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8; }
 .hero-btns { display: flex; gap: 1rem; align-items: center; margin-bottom: 3rem; flex-wrap: wrap; }
-.btn-green { background: var(--green); color: white; padding: 0.9rem 2rem; border-radius: 100px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: transform 0.2s, background 0.2s; display: inline-block; }
-.btn-green:hover { background: var(--green-light); transform: translateY(-2px); }
-.btn-ghost { color: var(--green); font-size: 0.95rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: gap 0.2s; }
-.btn-ghost:hover { gap: 0.7rem; }
 .hero-trust { display: flex; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
 .trust-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--green); line-height: 1; }
 .trust-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.4; }
-
 .hero-visual { position: relative; z-index: 1; }
-.hero-main-img { border-radius: 24px; overflow: hidden; box-shadow: 0 30px 60px rgba(15,26,15,0.15); position: relative; }
+.hero-main-img { border-radius: 24px; overflow: hidden; box-shadow: 0 30px 60px rgba(15,26,15,0.15); }
 .hero-main-img img { width: 100%; height: 480px; object-fit: cover; display: block; }
 .hero-float-1 { position: absolute; bottom: -24px; left: -28px; background: white; border-radius: 20px; padding: 1.2rem 1.5rem; box-shadow: 0 16px 40px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 1rem; min-width: 220px; }
 .float-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
@@ -77,266 +40,28 @@ nav a:hover { color: var(--green); }
 .hero-float-2 { position: absolute; top: 20px; right: -20px; background: var(--green); border-radius: 16px; padding: 1rem 1.2rem; box-shadow: 0 16px 40px rgba(26,92,42,0.3); color: white; text-align: center; min-width: 110px; }
 .float2-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1; }
 .float2-label { font-size: 0.7rem; opacity: 0.85; margin-top: 0.2rem; }
-
-/* SOCIAL BAR */
-.social-bar { background: var(--dark); padding: 1.3rem 5%; display: flex; align-items: center; gap: 3rem; overflow: hidden; }
-.social-bar-label { font-size: 0.75rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; flex-shrink: 0; }
-.social-logos { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; }
-.social-logo { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
-
-/* SECTION */
-.section { padding: 6rem 5%; }
-.section-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--green); font-weight: 600; margin-bottom: 0.8rem; }
-.section-h { font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em; line-height: 1.1; color: var(--dark); margin-bottom: 1.2rem; }
-.section-p { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 560px; }
-
-/* WHO */
-.who-section { background: white; }
-.who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 4rem; }
-.who-card { border-radius: 24px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
-.who-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.1); }
-.who-card-img { position: relative; }
-.who-card-img img { width: 100%; height: 280px; object-fit: cover; display: block; }
-.who-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,26,15,0.88), transparent); padding: 2rem 1.5rem 1.5rem; color: white; }
-.who-card-tag { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
-.tag-elder { background: rgba(144,238,144,0.2); color: #90ee90; }
-.tag-child { background: rgba(135,206,250,0.2); color: #87cefa; }
-.who-card-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; line-height: 1.2; }
-.who-card-body { padding: 1.8rem; background: white; }
-.who-card-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-.who-card-body li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
-.who-card-body li::before { content: '→'; color: var(--green); font-size: 0.82rem; flex-shrink: 0; margin-top: 0.1rem; }
-
-/* PROBLEM */
-.problem-section { background: var(--warm); }
-.problem-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; margin-top: 4rem; }
-.problem-img-stack { position: relative; }
-.problem-img-main { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-.problem-img-main img { width: 100%; height: 360px; object-fit: cover; display: block; }
-.problem-img-small { position: absolute; bottom: -20px; right: -20px; width: 170px; height: 170px; border-radius: 16px; overflow: hidden; border: 4px solid white; box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
-.problem-img-small img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.problem-cards { display: flex; flex-direction: column; gap: 1rem; }
-.problem-card { background: white; border-radius: 16px; padding: 1.3rem; display: flex; gap: 1rem; align-items: flex-start; border: 1px solid var(--border); transition: box-shadow 0.2s; }
-.problem-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-.problem-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-.problem-card h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--dark); margin-bottom: 0.2rem; }
-.problem-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-/* STATS */
-.stats-section { background: var(--green); padding: 5rem 5%; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; text-align: center; }
-.stat-item .num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: white; line-height: 1; }
-.stat-item .lbl { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 0.5rem; line-height: 1.4; }
-
-/* SOLUTION */
-.solution-section { background: white; }
-.features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
-.feature-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
-.feature-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
-.feature-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
-.feature-card-body { padding: 1.4rem; }
-.feature-icon { font-size: 1.4rem; margin-bottom: 0.6rem; display: block; }
-.feature-card-body h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.4rem; }
-.feature-card-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-/* HOME ASSISTANT */
-.ha-section { background: var(--dark); padding: 6rem 5%; }
-.ha-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
-.ha-img { border-radius: 20px; overflow: hidden; position: relative; }
-.ha-img img { width: 100%; height: 400px; object-fit: cover; display: block; opacity: 0.8; }
-.ha-img-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,92,42,0.35), transparent); border-radius: 20px; }
-.ha-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
-.ha-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
-.ha-list li::before { content: '✓'; color: #90ee90; flex-shrink: 0; font-weight: 700; }
-.ha-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.ha-stat { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.2rem; }
-.ha-stat .n { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: #90ee90; line-height: 1; }
-.ha-stat .l { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.3rem; }
-
-/* PRICING */
-.pricing-section { background: var(--bg); padding: 6rem 5%; }
-.pricing-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 4rem; }
-.price-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
-.price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.07); }
-.price-card.featured { background: var(--green); border-color: var(--green); position: relative; }
-.price-card.featured::before { content: 'Популярен'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #90ee90; color: var(--dark); font-size: 0.68rem; font-weight: 800; padding: 0.3rem 1rem; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
-.price-name { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.8rem; }
-.price-card.featured .price-name { color: rgba(255,255,255,0.55); }
-.price-amount { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1; color: var(--dark); margin-bottom: 0.3rem; }
-.price-card.featured .price-amount { color: white; }
-.price-amount span { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; font-weight: 400; color: var(--muted); }
-.price-card.featured .price-amount span { color: rgba(255,255,255,0.6); }
-.price-inquiry { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--green); margin-bottom: 0.3rem; line-height: 1.2; }
-.price-card.featured .price-inquiry { color: #90ee90; }
-.price-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
-.price-card.featured .price-desc { color: rgba(255,255,255,0.55); }
-.price-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
-.price-features li { font-size: 0.82rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.4; }
-.price-card.featured .price-features li { color: rgba(255,255,255,0.75); }
-.price-features li .ck { color: var(--green); font-size: 0.82rem; flex-shrink: 0; font-weight: 700; }
-.price-card.featured .price-features li .ck { color: #90ee90; }
-.btn-price { display: block; text-align: center; padding: 0.8rem; border: 1.5px solid var(--border); border-radius: 12px; color: var(--dark); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; }
-.btn-price:hover { border-color: var(--green); background: var(--accent); }
-.price-card.featured .btn-price { background: white; color: var(--green); border-color: white; }
-
-/* CONTACT */
-.contact-section { background: var(--warm); padding: 6rem 5%; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 4rem; }
-.contact-people { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-.contact-person { background: white; border-radius: 16px; padding: 1.3rem 1.5rem; display: flex; align-items: center; gap: 1.2rem; border: 1px solid var(--border); }
-.person-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-.person-name { font-weight: 700; font-size: 0.95rem; color: var(--dark); }
-.person-contact { font-size: 0.82rem; color: var(--green); font-weight: 500; margin-top: 0.2rem; }
-.why-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
-.why-list li { display: flex; align-items: center; gap: 0.7rem; font-size: 0.88rem; color: var(--muted); }
-.why-list li::before { content: '✓'; color: var(--green); font-size: 1rem; flex-shrink: 0; font-weight: 700; }
-
-.contact-form-wrap { background: white; border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); }
-.contact-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: 0.4rem; }
-.contact-form-wrap > p { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-input, textarea, select { width: 100%; background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.85rem 1rem; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s; margin-bottom: 1rem; }
-input:focus, textarea:focus, select:focus { border-color: var(--green); }
-textarea { resize: vertical; min-height: 90px; }
-.btn-submit { width: 100%; background: var(--green); color: white; border: none; padding: 1rem; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: background 0.2s; }
-.btn-submit:hover { background: var(--green-light); }
-
-/* FOOTER */
-footer { background: var(--dark); padding: 5rem 5% 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-.footer-brand .logo { color: white; display: block; margin-bottom: 1rem; }
-.footer-brand .logo span { color: #90ee90; }
-.footer-brand p { font-size: 0.83rem; color: rgba(255,255,255,0.38); max-width: 260px; line-height: 1.7; }
-footer h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 1.2rem; }
-footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-footer ul a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-footer ul a:hover { color: #90ee90; }
-.footer-bottom { background: var(--dark); padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.25); border-top: 1px solid rgba(255,255,255,0.05); }
-
-/* SITE SWITCHER */
-.site-switcher { display: flex; gap: 0; border: 1px solid var(--border); overflow: hidden; border-radius: 8px; }
-.site-btn { background: none; border: none; color: var(--muted); padding: 0.3rem 0.75rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; text-decoration: none; display: flex; align-items: center; }
-.site-btn.active { background: var(--green); color: white; }
-.site-btn:hover:not(.active) { background: var(--accent); color: var(--green); }
-
-/* FORM FEEDBACK */
-.form-success { display:none; background:#e8f5e9; border:1px solid #a5d6a7; color:#1a5c2a; padding:1rem 1.5rem; font-size:0.9rem; margin-top:1rem; border-radius:8px; }
-.form-error { display:none; background:#ffebee; border:1px solid #ef9a9a; color:#c62828; padding:1rem 1.5rem; font-size:0.9rem; margin-top:1rem; border-radius:8px; }
-.btn-submit:disabled { opacity:0.6; cursor:not-allowed; }
-
-/* LANG SWITCHER */
-.lang-switcher { display: flex; gap: 0.3rem; }
-.lang-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 0.3rem 0.65rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; border-radius: 6px; }
-.lang-btn.active { background: var(--green); color: white; border-color: var(--green); }
-.lang-btn:hover:not(.active) { border-color: var(--green); color: var(--green); }
-
-/* WHATSAPP BUTTON */
-.whatsapp-btn { position: fixed; bottom: 2rem; right: 2rem; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(37,211,102,0.4); z-index: 998; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
-.whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
-.whatsapp-btn svg { width: 32px; height: 32px; fill: white; }
-.whatsapp-tooltip { position: absolute; right: 68px; background: var(--dark); color: white; padding: 0.4rem 0.9rem; font-size: 0.8rem; white-space: nowrap; border-radius: 8px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-.whatsapp-btn:hover .whatsapp-tooltip { opacity: 1; }
-
-/* COOKIE BANNER */
-.cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); color: white; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; z-index: 999; flex-wrap: wrap; border-top: 3px solid var(--green); }
-.cookie-banner p { font-size: 0.88rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin: 0; flex: 1; min-width: 200px; }
-.cookie-actions { display: flex; gap: 0.8rem; flex-shrink: 0; }
-.btn-cookie-accept { background: var(--green); color: white; border: none; padding: 0.6rem 1.5rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; border-radius: 100px; }
-.btn-cookie-decline { background: none; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.3); padding: 0.6rem 1.5rem; font-size: 0.85rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; border-radius: 100px; }
-.btn-cookie-accept:hover { background: var(--green-light); }
-.btn-cookie-decline:hover { color: white; }
-
-/* HOW IT WORKS */
-.howitworks-section { background: var(--bg); }
-.hiw-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 3.5rem; margin-bottom: 2.5rem; }
-.hiw-photo-wrap { position: relative; border-radius: 24px; overflow: visible; }
-.hiw-photo { width: 100%; height: 380px; object-fit: cover; border-radius: 24px; box-shadow: 0 24px 60px rgba(15,26,15,0.15); display: block; }
-.hiw-photo-badge { position: absolute; bottom: -16px; left: 24px; background: white; border-radius: 14px; padding: 0.8rem 1.2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; font-weight: 700; color: var(--dark); white-space: nowrap; }
-.hiw-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: blink 2s infinite; flex-shrink: 0; }
-
-.hiw-diagram { background: var(--dark); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; min-height: 340px; justify-content: center; position: relative; overflow: hidden; }
-.hiw-diagram::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(26,92,42,0.25), transparent 70%); pointer-events: none; }
-
-.hiw-hub { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; position: relative; z-index: 1; }
-.hiw-hub-icon { font-size: 2.2rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(144,238,144,0.3); border-radius: 18px; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; }
-.hiw-hub-label { color: white; font-weight: 700; font-size: 0.82rem; text-align: center; margin-top: 0.3rem; }
-.hiw-hub-sub { color: #90ee90; font-size: 0.7rem; font-weight: 600; text-align: center; letter-spacing: 0.05em; }
-.hiw-pulse-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%); width: 90px; height: 90px; border-radius: 50%; border: 1.5px solid rgba(144,238,144,0.25); animation: pulse-expand 2.5s ease-out infinite; }
-.hiw-pulse-ring-2 { animation-delay: 1.25s; }
-@keyframes pulse-expand { 0%{transform:translate(-50%,-60%) scale(0.6);opacity:0.7} 100%{transform:translate(-50%,-60%) scale(1.8);opacity:0} }
-
-.hiw-nodes { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.7rem; width: 100%; position: relative; z-index: 1; }
-.hiw-node { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 0.8rem 0.4rem; transition: border-color 0.2s, background 0.2s; cursor: default; }
-.hiw-node:hover { background: rgba(144,238,144,0.1); border-color: rgba(144,238,144,0.3); }
-.hiw-node-icon { font-size: 1.4rem; }
-.hiw-node-label { font-size: 0.62rem; color: rgba(255,255,255,0.6); text-align: center; line-height: 1.3; }
-
-.hiw-legend { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; padding: 1.2rem 1.5rem; background: white; border-radius: 14px; border: 1px solid var(--border); }
-.hiw-legend-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: var(--muted); }
-.hiw-legend-line { width: 32px; height: 3px; border-radius: 2px; }
-.hiw-line-zigbee { background: #90ee90; }
-.hiw-line-wifi { background: #60a5fa; border-style: dashed; height: 2px; border-top: 2px dashed #60a5fa; background: none; }
-.hiw-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-
 @media (max-width: 900px) {
-  .hiw-layout { grid-template-columns: 1fr; }
-  .hiw-nodes { grid-template-columns: repeat(4,1fr); }
-}
-@media (max-width: 500px) {
-  .hiw-nodes { grid-template-columns: repeat(2,1fr); }
-  .hiw-legend { gap: 1rem; }
-}
-
-/* HAMBURGER */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); transition: all 0.3s; border-radius: 2px; }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 2px solid var(--green); z-index: 99; padding: 1rem 5%; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-.mobile-nav a { color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 500; padding: 0.9rem 0; border-bottom: 1px solid var(--border); display: block; transition: color 0.2s; }
-.mobile-nav a:last-child { border-bottom: none; color: var(--green); font-weight: 700; }
-.mobile-nav a:hover { color: var(--green); }
-.mobile-nav.open { display: flex; }
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .hero, .problem-grid, .ha-grid, .contact-grid, .who-grid { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; }
   .hero::before { width: 100%; height: 45%; top: auto; bottom: 0; border-radius: 40px 40px 0 0; }
-  .features-grid { grid-template-columns: 1fr 1fr; }
-  .pricing-grid { grid-template-columns: 1fr 1fr; }
-  .stats-section { grid-template-columns: 1fr 1fr; }
-  footer { grid-template-columns: 1fr 1fr; }
-  nav ul { display: none; }
-  .hamburger { display: flex; }
   .hero-float-2 { display: none; }
-  .problem-img-small { display: none; }
 }
-@media (max-width: 600px) {
-  .features-grid, .pricing-grid, .stats-section { grid-template-columns: 1fr; }
-  footer { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .hero-float-1 { display: none; }
-}
+@media (max-width: 600px) { .hero-float-1 { display: none; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Care<span>Hab</span></div>
+  <a href="index.html" class="logo">Care<span>Hab</span></a>
   <ul>
-    <li><a href="#who" data-i18n="nav.who">За кого</a></li>
-    <li><a href="#solution" data-i18n="nav.solution">Решение</a></li>
-    <li><a href="#contact" data-i18n="nav.contact">Контакт</a></li>
-    <li><a href="#contact" class="nav-cta" data-i18n="nav.cta">Запитване</a></li>
+    <li><a href="resenie.html">Решение</a></li>
+    <li><a href="paketi.html">Пакети</a></li>
+    <li><a href="kontakt.html">Контакт</a></li>
+    <li><a href="kontakt.html" class="nav-cta">Запитване</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem;">
     <div class="site-switcher">
       <a href="https://leanhab.eu" target="_blank" rel="noopener" class="site-btn">LEAN</a>
-      <button class="site-btn active" id="btn-care">CARE</button>
-    </div>
-    <div class="lang-switcher">
-      <button class="lang-btn active" id="btn-bg" onclick="setLang('bg')">BG</button>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
+      <span class="site-btn active">CARE</span>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -344,64 +69,55 @@ footer ul a:hover { color: #90ee90; }
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobile-nav">
-  <a href="#who" onclick="closeMenu()" data-i18n="nav.who">За кого</a>
-  <a href="#solution" onclick="closeMenu()" data-i18n="nav.solution">Решение</a>
-  <a href="#contact" onclick="closeMenu()" data-i18n="nav.contact">Контакт</a>
-  <a href="#contact" onclick="closeMenu()" data-i18n="nav.cta">Запитване</a>
-  <div style="display:flex;gap:0.4rem;margin-top:0.5rem;">
-    <button class="lang-btn active" id="mob-btn-bg" onclick="setLang('bg');closeMenu()">BG</button>
-    <button class="lang-btn" id="mob-btn-en" onclick="setLang('en');closeMenu()">EN</button>
-    <button class="lang-btn" id="mob-btn-de" onclick="setLang('de');closeMenu()">DE</button>
-  </div>
+  <a href="index.html" onclick="closeMenu()">Начало</a>
+  <a href="resenie.html" onclick="closeMenu()">Решение</a>
+  <a href="paketi.html" onclick="closeMenu()">Пакети</a>
+  <a href="kontakt.html" onclick="closeMenu()">Контакт</a>
+  <a href="kontakt.html" onclick="closeMenu()">Запитване →</a>
 </div>
 
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/359883584139" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
-  <span class="whatsapp-tooltip" data-i18n="whatsapp.tooltip">Пишете ни в WhatsApp</span>
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <span class="whatsapp-tooltip">Пишете ни в WhatsApp</span>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookie-banner">
-  <p data-i18n="cookie.text">Този сайт използва бисквитки за подобряване на потребителското изживяване. С продължаването на използването приемате нашата политика за поверителност.</p>
+  <p>Този сайт използва бисквитки за подобряване на потребителското изживяване. С продължаването на използването приемате нашата политика за поверителност.</p>
   <div class="cookie-actions">
-    <button class="btn-cookie-decline" onclick="cookieDecline()" data-i18n="cookie.decline">Отказ</button>
-    <button class="btn-cookie-accept" onclick="cookieAccept()" data-i18n="cookie.accept">Приемам</button>
+    <button class="btn-cookie-decline" onclick="cookieDecline()">Отказ</button>
+    <button class="btn-cookie-accept" onclick="cookieAccept()">Приемам</button>
   </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag"><span class="tag-dot"></span> <span data-i18n="hero.tag">Home Assistant · IoT · Smart Care</span></div>
-    <h1 data-i18n="hero.h1">Домът, който <em>се грижи</em> вместо теб</h1>
-    <p class="hero-sub" data-i18n="hero.sub">CareHab е модулна смарт система за грижа за възрастни и деца. Изградена върху Home Assistant — достъпна, надеждна и лесна за употреба.</p>
+    <div class="hero-tag"><span class="tag-dot"></span> Home Assistant · IoT · Smart Care</div>
+    <h1>Домът, който <em>се грижи</em> вместо теб</h1>
+    <p class="hero-sub">CareHab е модулна смарт система за грижа за възрастни и деца. Изградена върху Home Assistant — достъпна, надеждна и лесна за употреба.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-green" data-i18n="hero.btn1">Безплатна консултация</a>
-      <a href="#solution" class="btn-ghost" data-i18n="hero.btn2">Виж как работи →</a>
+      <a href="kontakt.html" class="btn-green">Безплатна консултация</a>
+      <a href="resenie.html" class="btn-ghost">Виж как работи →</a>
     </div>
     <div class="hero-trust">
       <div class="trust-item">
         <div class="trust-num">1.7M</div>
-        <div class="trust-label" data-i18n="hero.trust1">пенсионери<br>в България</div>
+        <div class="trust-label">пенсионери<br>в България</div>
       </div>
       <div class="trust-item">
         <div class="trust-num">3000+</div>
-        <div class="trust-label" data-i18n="hero.trust2">съвместими<br>устройства</div>
+        <div class="trust-label">съвместими<br>устройства</div>
       </div>
       <div class="trust-item">
         <div class="trust-num">100%</div>
-        <div class="trust-label" data-i18n="hero.trust3">локални<br>данни</div>
+        <div class="trust-label">локални<br>данни</div>
       </div>
     </div>
   </div>
   <div class="hero-visual">
     <div class="hero-main-img">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85" alt="Смарт дом">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85" alt="Умен дом CareHab">
     </div>
     <div class="hero-float-1">
       <div class="float-icon">🛡️</div>
@@ -417,8 +133,9 @@ footer ul a:hover { color: #90ee90; }
   </div>
 </section>
 
+<!-- SOCIAL BAR -->
 <div class="social-bar">
-  <span class="social-bar-label" data-i18n="social.label">Работи с</span>
+  <span class="social-bar-label">Работи с</span>
   <div class="social-logos">
     <span class="social-logo">Home Assistant</span>
     <span class="social-logo">Philips Hue</span>
@@ -430,29 +147,29 @@ footer ul a:hover { color: #90ee90; }
   </div>
 </div>
 
-<!-- WHO -->
+<!-- ЗА КОГО -->
 <section class="section who-section" id="who">
   <div style="max-width:600px;">
-    <div class="section-tag" data-i18n="who.tag">За кого</div>
-    <h2 class="section-h" data-i18n="who.h">Две уязвими групи,<br>едно умно решение</h2>
-    <p class="section-p" data-i18n="who.p">CareHab е проектирана за домакинства, в които възрастни или деца прекарват значително време сами вкъщи.</p>
+    <div class="section-tag">За кого</div>
+    <h2 class="section-h">Две уязвими групи,<br>едно умно решение</h2>
+    <p class="section-p">CareHab е проектирана за домакинства, в които възрастни или деца прекарват значително време сами вкъщи.</p>
   </div>
   <div class="who-grid">
     <div class="who-card">
       <div class="who-card-img">
         <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=85" alt="Възрастна жена вкъщи">
         <div class="who-card-overlay">
-          <span class="who-card-tag tag-elder" data-i18n="who.elder.tag">Възрастни 65+</span>
-          <div class="who-card-title" data-i18n="who.elder.title">CareHab за пенсионери</div>
+          <span class="who-card-tag tag-elder">Възрастни 65+</span>
+          <div class="who-card-title">CareHab за пенсионери</div>
         </div>
       </div>
       <div class="who-card-body">
         <ul>
-          <li data-i18n="who.elder.li1">Пасивно наблюдение без навлизане в личното пространство</li>
-          <li data-i18n="who.elder.li2">Бутон за спешност при падане или здравословен проблем</li>
-          <li data-i18n="who.elder.li3">Гласови напомняния за лекарства и прегледи</li>
-          <li data-i18n="who.elder.li4">Автоматично осветление и климатизация за комфорт</li>
-          <li data-i18n="who.elder.li5">Ежедневни известия до семейството</li>
+          <li>Пасивно наблюдение без навлизане в личното пространство</li>
+          <li>Бутон за спешност при падане или здравословен проблем</li>
+          <li>Гласови напомняния за лекарства и прегледи</li>
+          <li>Автоматично осветление и климатизация за комфорт</li>
+          <li>Ежедневни известия до семейството</li>
         </ul>
       </div>
     </div>
@@ -460,42 +177,35 @@ footer ul a:hover { color: #90ee90; }
       <div class="who-card-img">
         <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=85" alt="Дете у дома">
         <div class="who-card-overlay">
-          <span class="who-card-tag tag-child" data-i18n="who.child.tag">Деца 8–15 г.</span>
-          <div class="who-card-title" data-i18n="who.child.title">SmartWorld за деца</div>
+          <span class="who-card-tag tag-child">Деца 8–15 г.</span>
+          <div class="who-card-title">SmartWorld за деца</div>
         </div>
       </div>
       <div class="who-card-body">
         <ul>
-          <li data-i18n="who.child.li1">Дистанционно наблюдение от родителите в реално време</li>
-          <li data-i18n="who.child.li2">Умни известия при напускане на дома</li>
-          <li data-i18n="who.child.li3">Ограничения за екранно време и интернет достъп</li>
-          <li data-i18n="who.child.li4">Напомняния за домашни и дневни рутини</li>
-          <li data-i18n="who.child.li5">Двупосочна комуникация с родителите</li>
+          <li>Дистанционно наблюдение от родителите в реално време</li>
+          <li>Умни известия при напускане на дома</li>
+          <li>Ограничения за екранно време и интернет достъп</li>
+          <li>Напомняния за домашни и дневни рутини</li>
+          <li>Двупосочна комуникация с родителите</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- КАК РАБОТИ (кратко) -->
 <section class="section howitworks-section" id="howitworks">
   <div style="max-width:640px;">
     <div class="section-tag">Как работи</div>
     <h2 class="section-h">Едната къща,<br>всичко свързано</h2>
-    <p class="section-p">В дома има един малък компютър — сърцето на системата. Той комуникира безжично по <strong>Zigbee</strong> с всички сензори и устройства, и има постоянна връзка с интернет, за да пращa известия до телефоните на семейството в реално време.</p>
+    <p class="section-p">В дома има един малък компютър — сърцето на системата. Той комуникира безжично по <strong>Zigbee</strong> с всички сензори и устройства, и има постоянна връзка с интернет, за да праща известия до телефоните на семейството в реално време.</p>
   </div>
-
   <div class="hiw-layout">
-    <!-- Снимка -->
     <div class="hiw-photo-wrap">
       <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=85" alt="Умна къща CareHab" class="hiw-photo">
-      <div class="hiw-photo-badge">
-        <span class="hiw-badge-dot"></span>
-        Системата е активна
-      </div>
+      <div class="hiw-photo-badge"><span class="hiw-badge-dot"></span> Системата е активна</div>
     </div>
-
-    <!-- Диаграма -->
     <div class="hiw-diagram">
       <div class="hiw-hub">
         <div class="hiw-hub-icon">🖥️</div>
@@ -505,63 +215,28 @@ footer ul a:hover { color: #90ee90; }
         <div class="hiw-pulse-ring hiw-pulse-ring-2"></div>
       </div>
       <div class="hiw-nodes">
-        <div class="hiw-node">
-          <div class="hiw-node-icon">🔥</div>
-          <div class="hiw-node-label">Противо-<br>пожарна</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">📱</div>
-          <div class="hiw-node-label">Телефони<br>на семейство</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">🌐</div>
-          <div class="hiw-node-label">Интернет<br>известия</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">🚪</div>
-          <div class="hiw-node-label">Отваряне<br>на врата</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">❤️</div>
-          <div class="hiw-node-label">Следене<br>на пулс</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">📷</div>
-          <div class="hiw-node-label">Камери в<br>помещенията</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">🌡️</div>
-          <div class="hiw-node-label">Сензори<br>за движение</div>
-        </div>
-        <div class="hiw-node">
-          <div class="hiw-node-icon">🔔</div>
-          <div class="hiw-node-label">Известия<br>и аларми</div>
-        </div>
+        <div class="hiw-node"><div class="hiw-node-icon">🔥</div><div class="hiw-node-label">Противо-<br>пожарна</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">📱</div><div class="hiw-node-label">Телефони<br>на семейство</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🌐</div><div class="hiw-node-label">Интернет<br>известия</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🚪</div><div class="hiw-node-label">Отваряне<br>на врата</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">❤️</div><div class="hiw-node-label">Следене<br>на пулс</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">📷</div><div class="hiw-node-label">Камери в<br>помещенията</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🌡️</div><div class="hiw-node-label">Сензори<br>за движение</div></div>
+        <div class="hiw-node"><div class="hiw-node-icon">🔔</div><div class="hiw-node-label">Известия<br>и аларми</div></div>
       </div>
     </div>
   </div>
-
-  <!-- Легенда -->
   <div class="hiw-legend">
-    <div class="hiw-legend-item">
-      <div class="hiw-legend-line hiw-line-zigbee"></div>
-      <span>Zigbee (локален безжичен)</span>
-    </div>
-    <div class="hiw-legend-item">
-      <div class="hiw-legend-line hiw-line-wifi"></div>
-      <span>Wi-Fi / Интернет</span>
-    </div>
-    <div class="hiw-legend-item">
-      <div class="hiw-legend-dot" style="background:#e53935;"></div>
-      <span>100% данните остават в дома</span>
-    </div>
+    <div class="hiw-legend-item"><div class="hiw-legend-line hiw-line-zigbee"></div><span>Zigbee (локален безжичен)</span></div>
+    <div class="hiw-legend-item"><div class="hiw-legend-line hiw-line-wifi"></div><span>Wi-Fi / Интернет</span></div>
+    <div class="hiw-legend-item"><div class="hiw-legend-dot" style="background:#e53935;"></div><span>100% данните остават в дома</span></div>
   </div>
 </section>
 
-<!-- PROBLEM -->
+<!-- ПРОБЛЕМЪТ -->
 <section class="section problem-section" id="problem">
-  <div class="section-tag" data-i18n="problem.tag">Проблемът</div>
-  <h2 class="section-h" data-i18n="problem.h">Семействата са под<br>нарастващ натиск</h2>
+  <div class="section-tag">Проблемът</div>
+  <h2 class="section-h">Семействата са под<br>нарастващ натиск</h2>
   <div class="problem-grid">
     <div class="problem-img-stack">
       <div class="problem-img-main">
@@ -572,422 +247,67 @@ footer ul a:hover { color: #90ee90; }
       </div>
     </div>
     <div class="problem-cards">
-      <div class="problem-card">
-        <div class="problem-icon">👵</div>
-        <div><h4 data-i18n="prob.c1.h">Самотни възрастни</h4><p data-i18n="prob.c1.p">82.6% от хората над 65 г. в България имат хронично заболяване. Много прекарват деня сами, без надзор.</p></div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🧒</div>
-        <div><h4 data-i18n="prob.c2.h">Деца без надзор</h4><p data-i18n="prob.c2.p">Децата на 7–15 г. прекарват средно 5–6 часа сами след училище, изложени на рискове и дигитални опасности.</p></div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">💸</div>
-        <div><h4 data-i18n="prob.c3.h">Недостъпни алтернативи</h4><p data-i18n="prob.c3.p">Частен болногледач струва до 1500 лв/месец — почти цяла средна заплата в България.</p></div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">📈</div>
-        <div><h4 data-i18n="prob.c4.h">Демографска криза</h4><p data-i18n="prob.c4.p">18% от България е на възраст 65–79 г. Пенсионната възраст расте — семействата са под двоен натиск.</p></div>
-      </div>
+      <div class="problem-card"><div class="problem-icon">👵</div><div><h4>Самотни възрастни</h4><p>82.6% от хората над 65 г. в България имат хронично заболяване. Много прекарват деня сами, без надзор.</p></div></div>
+      <div class="problem-card"><div class="problem-icon">🧒</div><div><h4>Деца без надзор</h4><p>Децата на 7–15 г. прекарват средно 5–6 часа сами след училище, изложени на рискове и дигитални опасности.</p></div></div>
+      <div class="problem-card"><div class="problem-icon">💸</div><div><h4>Недостъпни алтернативи</h4><p>Частен болногледач струва до 1500 лв/месец — почти цяла средна заплата в България.</p></div></div>
+      <div class="problem-card"><div class="problem-icon">📈</div><div><h4>Демографска криза</h4><p>18% от България е на възраст 65–79 г. Пенсионната възраст расте — семействата са под двоен натиск.</p></div></div>
     </div>
   </div>
 </section>
 
+<!-- СТАТИСТИКИ -->
 <div class="stats-section">
-  <div class="stat-item"><div class="num">6.4M</div><div class="lbl" data-i18n="stats.lbl1">население на България</div></div>
-  <div class="stat-item"><div class="num">82.6%</div><div class="lbl" data-i18n="stats.lbl2">от 65+ с хронична болест</div></div>
-  <div class="stat-item"><div class="num">1.7M</div><div class="lbl" data-i18n="stats.lbl3">пенсионери в страната</div></div>
-  <div class="stat-item"><div class="num">1500лв</div><div class="lbl" data-i18n="stats.lbl4">месечна цена на болногледач</div></div>
+  <div class="stat-item"><div class="num">6.4M</div><div class="lbl">население на България</div></div>
+  <div class="stat-item"><div class="num">82.6%</div><div class="lbl">от 65+ с хронична болест</div></div>
+  <div class="stat-item"><div class="num">1.7M</div><div class="lbl">пенсионери в страната</div></div>
+  <div class="stat-item"><div class="num">1500лв</div><div class="lbl">месечна цена на болногледач</div></div>
 </div>
 
-<!-- SOLUTION -->
-<section class="section solution-section" id="solution">
-  <div style="max-width:580px;margin:0 auto;text-align:center;">
-    <div class="section-tag" data-i18n="sol.tag">Решението</div>
-    <h2 class="section-h" data-i18n="sol.h">Умен дом,<br>грижовен дом</h2>
-    <p class="section-p" style="margin:0 auto;" data-i18n="sol.p">CareHab комбинира достъпен хардуер, интелигентен софтуер и семейна интеграция в едно модулно IoT решение.</p>
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Готови ли сте да защитите<br><em>близките си?</em></h2>
+  <div class="cta-banner-btns">
+    <a href="paketi.html" class="btn-white">Виж пакетите →</a>
+    <a href="kontakt.html" class="btn-white-ghost">Безплатна консултация</a>
   </div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=500&q=80" alt="Камера">
-      <div class="feature-card-body"><span class="feature-icon">📷</span><h3 data-i18n="sol.f1.h">Камери и наблюдение</h3><p data-i18n="sol.f1.p">Следете близките си от телефона в реално време, с умни известия при необичайно движение.</p></div>
-    </div>
-    <div class="feature-card">
-      <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=500&q=80" alt="Спешност">
-      <div class="feature-card-body"><span class="feature-icon">🚨</span><h3 data-i18n="sol.f2.h">Бутон за спешност</h3><p data-i18n="sol.f2.p">При нужда — едно натискане изпраща незабавно известие до семейството и при нужда до 112.</p></div>
-    </div>
-    <div class="feature-card">
-      <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500&q=80" alt="Лекарства">
-      <div class="feature-card-body"><span class="feature-icon">💊</span><h3 data-i18n="sol.f3.h">Напомняния за лекарства</h3><p data-i18n="sol.f3.p">Гласови и визуални напомняния, за да не се пропуска нито едно лекарство или преглед.</p></div>
-    </div>
-    <div class="feature-card">
-      <img src="https://images.unsplash.com/photo-1586473219010-2ffc57b0d282?w=500&q=80" alt="Осветление">
-      <div class="feature-card-body"><span class="feature-icon">💡</span><h3 data-i18n="sol.f4.h">Смарт осветление</h3><p data-i18n="sol.f4.p">Автоматично управление на осветлението според времето на деня и присъствието в стаята.</p></div>
-    </div>
-    <div class="feature-card">
-      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" alt="Приложение">
-      <div class="feature-card-body"><span class="feature-icon">📱</span><h3 data-i18n="sol.f5.h">Приложение за родители</h3><p data-i18n="sol.f5.p">Дистанционен достъп, известия и контрол — всичко на едно място в смартфона ви.</p></div>
-    </div>
-    <div class="feature-card">
-      <img src="https://images.unsplash.com/photo-1558002038-1055e2dae1d7?w=500&q=80" alt="Автоматизация">
-      <div class="feature-card-body"><span class="feature-icon">🤖</span><h3 data-i18n="sol.f6.h">Автоматизации</h3><p data-i18n="sol.f6.p">Интелигентни сценарии и правила, които се задействат автоматично без никакво действие от ваша страна.</p></div>
-    </div>
-  </div>
-</section>
+</div>
 
-<!-- HOME ASSISTANT -->
-<section class="ha-section">
-  <div class="section-tag" style="color:#90ee90;" data-i18n="ha.tag">Технология</div>
-  <h2 class="section-h" style="color:white;max-width:500px;"><span data-i18n="ha.h">Изградена върху</span> <span style="color:#90ee90;">Home Assistant</span></h2>
-  <div class="ha-grid">
-    <div class="ha-img">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=85" alt="Смарт дом технология">
-      <div class="ha-img-overlay"></div>
-    </div>
-    <div>
-      <p style="color:rgba(255,255,255,0.65);font-size:0.95rem;line-height:1.8;margin-bottom:2rem;" data-i18n="ha.p">Home Assistant е най-популярната open-source платформа за смарт дом с над 700,000 активни инсталации по света. Данните остават при вас — никакъв облак на трети страни.</p>
-      <ul class="ha-list">
-        <li data-i18n="ha.li1">Работи с Philips Hue, IKEA, Tuya, Sonoff и 3000+ устройства</li>
-        <li data-i18n="ha.li2">Данните остават при теб — 100% локален контрол</li>
-        <li data-i18n="ha.li3">Управление от телефон, таблет или компютър</li>
-        <li data-i18n="ha.li4">Автоматизации без граници — правила, сценарии, известия</li>
-        <li data-i18n="ha.li5">Безплатна open-source платформа без месечен абонамент</li>
-      </ul>
-      <div class="ha-stats">
-        <div class="ha-stat"><div class="n">3000+</div><div class="l" data-i18n="ha.stat1">съвместими устройства</div></div>
-        <div class="ha-stat"><div class="n">100%</div><div class="l" data-i18n="ha.stat2">локални данни</div></div>
-        <div class="ha-stat"><div class="n">700K+</div><div class="l" data-i18n="ha.stat3">активни инсталации</div></div>
-        <div class="ha-stat"><div class="n">Free</div><div class="l" data-i18n="ha.stat4">open-source платформа</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-section" id="contact">
-  <div class="section-tag" data-i18n="contact.tag">Контакт</div>
-  <h2 class="section-h" data-i18n="contact.h">Свържете се с нас</h2>
-  <div class="contact-grid">
-    <div>
-      <p class="section-p" data-i18n="contact.p">Свържете се с нас за безплатна консултация. Ще ви помогнем да изберете правилното решение за вашето семейство.</p>
-      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;">
-        <a href="tel:+359883584139" style="display:flex;align-items:center;gap:0.6rem;color:var(--green);font-weight:600;text-decoration:none;font-size:1rem;">📞 0883 584 139</a>
-        <a href="tel:+359877557661" style="display:flex;align-items:center;gap:0.6rem;color:var(--green);font-weight:600;text-decoration:none;font-size:1rem;">📞 0877 557 661</a>
-        <a href="mailto:vasilenasofia@gmail.com" style="display:flex;align-items:center;gap:0.6rem;color:var(--green);font-weight:600;text-decoration:none;font-size:1rem;">✉️ vasilenasofia@gmail.com</a>
-        <a href="mailto:yordanyordanov1702@gmail.com" style="display:flex;align-items:center;gap:0.6rem;color:var(--green);font-weight:600;text-decoration:none;font-size:1rem;">✉️ yordanyordanov1702@gmail.com</a>
-      </div>
-      <ul class="why-list">
-        <li data-i18n="contact.why1">Безплатна консултация и оглед</li>
-        <li data-i18n="contact.why2">Индивидуална оферта според дома ви</li>
-        <li data-i18n="contact.why3">Професионален монтаж и настройка</li>
-        <li data-i18n="contact.why4">Обучение за всички членове на семейството</li>
-      </ul>
-    </div>
-    <div class="contact-form-wrap">
-      <h3 data-i18n="form.h">Изпратете запитване</h3>
-      <p data-i18n="form.sub">Ще се свържем с вас в рамките на 24 часа.</p>
-      <form id="contact-form" method="POST">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Вашето име" required data-i18n-placeholder="form.name">
-          <input type="tel" name="phone" placeholder="Телефон" data-i18n-placeholder="form.phone">
-        </div>
-        <input type="email" name="email" placeholder="Имейл адрес" required data-i18n-placeholder="form.email">
-
-        <textarea name="message" placeholder="Разкажете ни за вашите нужди..." data-i18n-placeholder="form.message"></textarea>
-        <button type="submit" class="btn-submit" data-i18n="form.submit">Изпрати запитване →</button>
-        <div class="form-success" id="form-success" data-i18n="form.success">Благодарим! Ще се свържем с вас скоро.</div>
-        <div class="form-error" id="form-error" data-i18n="form.error">Грешка при изпращане. Моля опитайте отново.</div>
-      </form>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <span class="logo">Care<span>Hab</span></span>
+    <a href="index.html" class="logo">Care<span>Hab</span></a>
     <p>Смарт дом системи за грижа за възрастни и деца. Достъпно, модулно, надеждно.</p>
   </div>
   <div>
     <h4>Продукт</h4>
     <ul>
-      <li><a href="#solution">Функции</a></li>
-      <li><a href="#who">За кого</a></li>
+      <li><a href="resenie.html">Решение</a></li>
+      <li><a href="resenie.html#features">Функции</a></li>
+      <li><a href="paketi.html">Пакети</a></li>
     </ul>
   </div>
   <div>
     <h4>Компания</h4>
     <ul>
-      <li><a href="#who">За кого е</a></li>
-      <li><a href="#solution">Решение</a></li>
-      <li><a href="#contact">Контакт</a></li>
+      <li><a href="index.html#who">За кого</a></li>
+      <li><a href="resenie.html#ha">Home Assistant</a></li>
+      <li><a href="kontakt.html">Контакт</a></li>
     </ul>
   </div>
   <div>
     <h4>Контакт</h4>
     <ul>
-      <li><a href="mailto:vasilenasofia@gmail.com">vasilenasofia@gmail.com</a></li>
-      <li><a href="mailto:yordanyordanov1702@gmail.com">yordanyordanov1702@gmail.com</a></li>
-      <li><a href="tel:+359883584139">0883 584 139</a></li>
+      <li><a href="mailto:info@carehab.eu">info@carehab.eu</a></li>
       <li><a href="tel:+359877557661">0877 557 661</a></li>
-      <li><a href="https://carehab.eu">carehab.eu</a></li>
+      <li><a href="https://wa.me/359883584139">WhatsApp</a></li>
     </ul>
   </div>
 </footer>
 <div class="footer-bottom">
-  <span data-i18n="footer.copy">© 2026 CareHab. Всички права запазени.</span>
-  <span data-i18n="footer.privacy">Поверителност · Условия</span>
+  <span>© 2025 CareHab. Всички права запазени.</span>
+  <span>Поверителност · Условия</span>
 </div>
 
-<script>
-  const t = {
-    bg: {
-      'nav.who':'За кого','nav.solution':'Решение','nav.pricing':'Пакети','nav.contact':'Контакт','nav.cta':'Запитване',
-      'hero.tag':'Home Assistant · IoT · Smart Care',
-      'hero.h1':'Домът, който <em>се грижи</em> вместо теб',
-      'hero.sub':'CareHab е модулна смарт система за грижа за възрастни и деца. Изградена върху Home Assistant — достъпна, надеждна и лесна за употреба.',
-      'hero.btn1':'Безплатна консултация','hero.btn2':'Виж как работи →',
-      'hero.trust1':'пенсионери<br>в България','hero.trust2':'съвместими<br>устройства','hero.trust3':'локални<br>данни',
-      'social.label':'Работи с',
-      'who.tag':'За кого','who.h':'Две уязвими групи,<br>едно умно решение','who.p':'CareHab е проектирана за домакинства, в които възрастни или деца прекарват значително време сами вкъщи.',
-      'who.elder.tag':'Възрастни 65+','who.elder.title':'CareHab за пенсионери',
-      'who.elder.li1':'Пасивно наблюдение без навлизане в личното пространство',
-      'who.elder.li2':'Бутон за спешност при падане или здравословен проблем',
-      'who.elder.li3':'Гласови напомняния за лекарства и прегледи',
-      'who.elder.li4':'Автоматично осветление и климатизация за комфорт',
-      'who.elder.li5':'Ежедневни известия до семейството',
-      'who.child.tag':'Деца 8–15 г.','who.child.title':'SmartWorld за деца',
-      'who.child.li1':'Дистанционно наблюдение от родителите в реално време',
-      'who.child.li2':'Умни известия при напускане на дома',
-      'who.child.li3':'Ограничения за екранно време и интернет достъп',
-      'who.child.li4':'Напомняния за домашни и дневни рутини',
-      'who.child.li5':'Двупосочна комуникация с родителите',
-      'problem.tag':'Проблемът','problem.h':'Семействата са под<br>нарастващ натиск',
-      'prob.c1.h':'Самотни възрастни','prob.c1.p':'82.6% от хората над 65 г. в България имат хронично заболяване. Много прекарват деня сами, без надзор.',
-      'prob.c2.h':'Деца без надзор','prob.c2.p':'Децата на 7–15 г. прекарват средно 5–6 часа сами след училище, изложени на рискове и дигитални опасности.',
-      'prob.c3.h':'Недостъпни алтернативи','prob.c3.p':'Частен болногледач струва до 1500 лв/месец — почти цяла средна заплата в България.',
-      'prob.c4.h':'Демографска криза','prob.c4.p':'18% от България е на възраст 65–79 г. Пенсионната възраст расте — семействата са под двоен натиск.',
-      'stats.lbl1':'население на България','stats.lbl2':'от 65+ с хронична болест','stats.lbl3':'пенсионери в страната','stats.lbl4':'месечна цена на болногледач',
-      'sol.tag':'Решението','sol.h':'Умен дом,<br>грижовен дом','sol.p':'CareHab комбинира достъпен хардуер, интелигентен софтуер и семейна интеграция в едно модулно IoT решение.',
-      'sol.f1.h':'Камери и наблюдение','sol.f1.p':'Следете близките си от телефона в реално време, с умни известия при необичайно движение.',
-      'sol.f2.h':'Бутон за спешност','sol.f2.p':'При нужда — едно натискане изпраща незабавно известие до семейството и при нужда до 112.',
-      'sol.f3.h':'Напомняния за лекарства','sol.f3.p':'Гласови и визуални напомняния, за да не се пропуска нито едно лекарство или преглед.',
-      'sol.f4.h':'Смарт осветление','sol.f4.p':'Автоматично управление на осветлението според времето на деня и присъствието в стаята.',
-      'sol.f5.h':'Приложение за родители','sol.f5.p':'Дистанционен достъп, известия и контрол — всичко на едно място в смартфона ви.',
-      'sol.f6.h':'Автоматизации','sol.f6.p':'Интелигентни сценарии и правила, които се задействат автоматично без никакво действие от ваша страна.',
-      'ha.tag':'Технология','ha.h':'Изградена върху',
-      'ha.p':'Home Assistant е най-популярната open-source платформа за смарт дом с над 700,000 активни инсталации по света. Данните остават при вас — никакъв облак на трети страни.',
-      'ha.li1':'Работи с Philips Hue, IKEA, Tuya, Sonoff и 3000+ устройства',
-      'ha.li2':'Данните остават при теб — 100% локален контрол',
-      'ha.li3':'Управление от телефон, таблет или компютър',
-      'ha.li4':'Автоматизации без граници — правила, сценарии, известия',
-      'ha.li5':'Безплатна open-source платформа без месечен абонамент',
-      'ha.stat1':'съвместими устройства','ha.stat2':'локални данни','ha.stat3':'активни инсталации','ha.stat4':'open-source платформа',
-      'pricing.tag':'Пакети','pricing.h':'Намерете правилния пакет','pricing.p':'Цената зависи от вашия дом и нуждите ви. Свържете се с нас за безплатна консултация и индивидуална оферта.',
-      'price.inquiry':'При запитване','price.hw':'Еднократна покупка + монтаж','price.ask':'Запитай се',
-      'price1.name':'Базов','price1.li1':'1 камера','price1.li2':'Бутон за спешност','price1.li3':'Сензор за движение','price1.li4':'Мобилно приложение',
-      'price2.name':'Пълен','price2.li1':'Всичко от Базов','price2.li2':'2 камери','price2.li3':'Гласов асистент','price2.li4':'3 смарт контакта','price2.li5':'Детски филтри','price2.li6':'Напомняния за лекарства',
-      'price3.name':'Абонамент','price3.desc':'Облачен достъп и поддръжка','price3.li1':'Облачно съхранение','price3.li2':'Приоритетна поддръжка','price3.li3':'Автоматични обновления','price3.li4':'История на известията','price3.li5':'Достъп за 5 члена','price3.btn':'Поръчай',
-      'price4.name':'Обучение DIY','price4.desc':'Онлайн или на живо','price4.li1':'Въведение в Home Assistant','price4.li2':'Настройка на устройства','price4.li3':'Създаване на автоматизации','price4.li4':'Списък с компоненти','price4.li5':'30 дни поддръжка','price4.btn':'Запиши се',
-      'contact.tag':'Контакт','contact.h':'Свържете се с нас',
-      'contact.p':'Свържете се с нас за безплатна консултация. Ще ви помогнем да изберете правилното решение за вашето семейство.',
-      'contact.why1':'Безплатна консултация и оглед','contact.why2':'Индивидуална оферта според дома ви','contact.why3':'Професионален монтаж и настройка','contact.why4':'Обучение за всички членове на семейството',
-      'form.h':'Изпратете запитване','form.sub':'Ще се свържем с вас в рамките на 24 часа.',
-      'form.name':'Вашето име','form.phone':'Телефон','form.email':'Имейл адрес','form.package':'Интересувате се от...',
-      'form.message':'Разкажете ни за вашите нужди...','form.submit':'Изпрати запитване →',
-      'footer.copy':'© 2026 CareHab. Всички права запазени.','footer.privacy':'Поверителност · Условия',
-      'cookie.text':'Този сайт използва бисквитки за подобряване на потребителското изживяване. С продължаването на използването приемате нашата политика за поверителност.',
-      'cookie.accept':'Приемам','cookie.decline':'Отказ',
-      'whatsapp.tooltip':'Пишете ни в WhatsApp',
-      'form.success':'Благодарим! Ще се свържем с вас скоро.','form.error':'Грешка при изпращане. Моля опитайте отново.'
-    },
-    en: {
-      'nav.who':'Who it\'s for','nav.solution':'Solution','nav.pricing':'Packages','nav.contact':'Contact','nav.cta':'Get in touch',
-      'hero.tag':'Home Assistant · IoT · Smart Care',
-      'hero.h1':'The home that <em>cares</em> for you',
-      'hero.sub':'CareHab is a modular smart care system for the elderly and children. Built on Home Assistant — accessible, reliable and easy to use.',
-      'hero.btn1':'Free consultation','hero.btn2':'See how it works →',
-      'hero.trust1':'pensioners<br>in Bulgaria','hero.trust2':'compatible<br>devices','hero.trust3':'local<br>data',
-      'social.label':'Works with',
-      'who.tag':'Who it\'s for','who.h':'Two vulnerable groups,<br>one smart solution','who.p':'CareHab is designed for households where elderly people or children spend significant time alone at home.',
-      'who.elder.tag':'Adults 65+','who.elder.title':'CareHab for seniors',
-      'who.elder.li1':'Passive monitoring without invading personal space',
-      'who.elder.li2':'Emergency button for falls or health issues',
-      'who.elder.li3':'Voice reminders for medications and checkups',
-      'who.elder.li4':'Automatic lighting and climate control for comfort',
-      'who.elder.li5':'Daily notifications to the family',
-      'who.child.tag':'Children 8–15','who.child.title':'SmartWorld for children',
-      'who.child.li1':'Remote real-time monitoring by parents',
-      'who.child.li2':'Smart alerts when leaving home',
-      'who.child.li3':'Screen time and internet access restrictions',
-      'who.child.li4':'Reminders for homework and daily routines',
-      'who.child.li5':'Two-way communication with parents',
-      'problem.tag':'The Problem','problem.h':'Families are under<br>growing pressure',
-      'prob.c1.h':'Lonely elderly','prob.c1.p':'82.6% of people over 65 in Bulgaria have a chronic disease. Many spend the day alone, unsupervised.',
-      'prob.c2.h':'Unsupervised children','prob.c2.p':'Children aged 7–15 spend an average of 5–6 hours alone after school, exposed to risks and digital dangers.',
-      'prob.c3.h':'Unaffordable alternatives','prob.c3.p':'A private caregiver costs up to BGN 1500/month — nearly a full average salary in Bulgaria.',
-      'prob.c4.h':'Demographic crisis','prob.c4.p':'18% of Bulgaria is aged 65–79. Retirement age is rising — families are under double pressure.',
-      'stats.lbl1':'population of Bulgaria','stats.lbl2':'of 65+ with chronic illness','stats.lbl3':'pensioners in the country','stats.lbl4':'monthly cost of a caregiver',
-      'sol.tag':'The Solution','sol.h':'Smart home,<br>caring home','sol.p':'CareHab combines affordable hardware, intelligent software and family integration into one modular IoT solution.',
-      'sol.f1.h':'Cameras and monitoring','sol.f1.p':'Monitor your loved ones from your phone in real time, with smart alerts for unusual movement.',
-      'sol.f2.h':'Emergency button','sol.f2.p':'In an emergency — one press sends an instant notification to the family and if needed to emergency services.',
-      'sol.f3.h':'Medication reminders','sol.f3.p':'Voice and visual reminders so no medication or appointment is missed.',
-      'sol.f4.h':'Smart lighting','sol.f4.p':'Automatic lighting control based on the time of day and room occupancy.',
-      'sol.f5.h':'Parents app','sol.f5.p':'Remote access, notifications and control — everything in one place on your smartphone.',
-      'sol.f6.h':'Automations','sol.f6.p':'Intelligent scenarios and rules that trigger automatically without any action on your part.',
-      'ha.tag':'Technology','ha.h':'Built on',
-      'ha.p':'Home Assistant is the most popular open-source smart home platform with over 700,000 active installations worldwide. Your data stays with you — no third-party cloud.',
-      'ha.li1':'Works with Philips Hue, IKEA, Tuya, Sonoff and 3000+ devices',
-      'ha.li2':'Your data stays local — 100% local control',
-      'ha.li3':'Control from phone, tablet or computer',
-      'ha.li4':'Unlimited automations — rules, scenarios, notifications',
-      'ha.li5':'Free open-source platform with no monthly subscription',
-      'ha.stat1':'compatible devices','ha.stat2':'local data','ha.stat3':'active installations','ha.stat4':'open-source platform',
-      'pricing.tag':'Packages','pricing.h':'Find the right package','pricing.p':'The price depends on your home and needs. Contact us for a free consultation and individual quote.',
-      'price.inquiry':'On request','price.hw':'One-time purchase + installation','price.ask':'Inquire',
-      'price1.name':'Basic','price1.li1':'1 camera','price1.li2':'Emergency button','price1.li3':'Motion sensor','price1.li4':'Mobile app',
-      'price2.name':'Full','price2.li1':'Everything from Basic','price2.li2':'2 cameras','price2.li3':'Voice assistant','price2.li4':'3 smart plugs','price2.li5':'Child filters','price2.li6':'Medication reminders',
-      'price3.name':'Subscription','price3.desc':'Cloud access and support','price3.li1':'Cloud storage','price3.li2':'Priority support','price3.li3':'Automatic updates','price3.li4':'Notification history','price3.li5':'Access for 5 members','price3.btn':'Order',
-      'price4.name':'DIY Training','price4.desc':'Online or in person','price4.li1':'Introduction to Home Assistant','price4.li2':'Device setup','price4.li3':'Creating automations','price4.li4':'Component list','price4.li5':'30 days support','price4.btn':'Sign up',
-      'contact.tag':'Contact','contact.h':'Get in touch',
-      'contact.p':'Contact us for a free consultation. We will help you choose the right solution for your family.',
-      'contact.why1':'Free consultation and home visit','contact.why2':'Individual quote based on your home','contact.why3':'Professional installation and setup','contact.why4':'Training for all family members',
-      'form.h':'Send an inquiry','form.sub':'We will get back to you within 24 hours.',
-      'form.name':'Your name','form.phone':'Phone','form.email':'Email address','form.package':'I\'m interested in...',
-      'form.message':'Tell us about your needs...','form.submit':'Send inquiry →',
-      'footer.copy':'© 2026 CareHab. All rights reserved.','footer.privacy':'Privacy · Terms',
-      'cookie.text':'This website uses cookies to improve user experience. By continuing to use it, you accept our privacy policy.',
-      'cookie.accept':'Accept','cookie.decline':'Decline',
-      'whatsapp.tooltip':'Message us on WhatsApp',
-      'form.success':'Thank you! We will be in touch soon.','form.error':'Sending failed. Please try again.'
-    },
-    de: {
-      'nav.who':'Für wen','nav.solution':'Lösung','nav.pricing':'Pakete','nav.contact':'Kontakt','nav.cta':'Anfrage',
-      'hero.tag':'Home Assistant · IoT · Smart Care',
-      'hero.h1':'Das Zuhause, das <em>für Sie sorgt</em>',
-      'hero.sub':'CareHab ist ein modulares Smart-Care-System für Senioren und Kinder. Aufgebaut auf Home Assistant — zugänglich, zuverlässig und einfach zu bedienen.',
-      'hero.btn1':'Kostenlose Beratung','hero.btn2':'So funktioniert es →',
-      'hero.trust1':'Rentner<br>in Bulgarien','hero.trust2':'kompatible<br>Geräte','hero.trust3':'lokale<br>Daten',
-      'social.label':'Funktioniert mit',
-      'who.tag':'Für wen','who.h':'Zwei vulnerable Gruppen,<br>eine smarte Lösung','who.p':'CareHab wurde für Haushalte entwickelt, in denen ältere Menschen oder Kinder viel Zeit allein zu Hause verbringen.',
-      'who.elder.tag':'Senioren 65+','who.elder.title':'CareHab für Senioren',
-      'who.elder.li1':'Passive Überwachung ohne Eingriff in die Privatsphäre',
-      'who.elder.li2':'Notfallknopf bei Stürzen oder gesundheitlichen Problemen',
-      'who.elder.li3':'Spracherinnerungen für Medikamente und Arzttermine',
-      'who.elder.li4':'Automatische Beleuchtung und Klimatisierung für Komfort',
-      'who.elder.li5':'Tägliche Benachrichtigungen an die Familie',
-      'who.child.tag':'Kinder 8–15 J.','who.child.title':'SmartWorld für Kinder',
-      'who.child.li1':'Fernüberwachung durch Eltern in Echtzeit',
-      'who.child.li2':'Intelligente Benachrichtigungen beim Verlassen des Hauses',
-      'who.child.li3':'Bildschirmzeit- und Internetzugangsbeschränkungen',
-      'who.child.li4':'Erinnerungen für Hausaufgaben und Tagesroutinen',
-      'who.child.li5':'Zweiwegkommunikation mit den Eltern',
-      'problem.tag':'Das Problem','problem.h':'Familien stehen unter<br>wachsendem Druck',
-      'prob.c1.h':'Einsame Senioren','prob.c1.p':'82,6% der Menschen über 65 in Bulgarien haben eine chronische Krankheit. Viele verbringen den Tag allein und unbeaufsichtigt.',
-      'prob.c2.h':'Unbeaufsichtigte Kinder','prob.c2.p':'Kinder im Alter von 7–15 Jahren verbringen durchschnittlich 5–6 Stunden nach der Schule allein und sind Risiken und digitalen Gefahren ausgesetzt.',
-      'prob.c3.h':'Unerschwingliche Alternativen','prob.c3.p':'Eine Pflegeperson kostet bis zu 1500 BGN/Monat — fast ein gesamtes Durchschnittsgehalt in Bulgarien.',
-      'prob.c4.h':'Demografische Krise','prob.c4.p':'18% Bulgariens sind 65–79 Jahre alt. Das Rentenalter steigt — Familien stehen unter doppeltem Druck.',
-      'stats.lbl1':'Einwohner Bulgariens','stats.lbl2':'der 65+ mit chronischer Krankheit','stats.lbl3':'Rentner im Land','stats.lbl4':'monatliche Kosten einer Pflegeperson',
-      'sol.tag':'Die Lösung','sol.h':'Smartes Zuhause,<br>fürsorgliches Zuhause','sol.p':'CareHab kombiniert erschwingliche Hardware, intelligente Software und Familienintegration in einer modularen IoT-Lösung.',
-      'sol.f1.h':'Kameras und Überwachung','sol.f1.p':'Überwachen Sie Ihre Angehörigen in Echtzeit vom Telefon aus, mit intelligenten Benachrichtigungen bei ungewöhnlichen Bewegungen.',
-      'sol.f2.h':'Notfallknopf','sol.f2.p':'Im Notfall — ein Druck sendet eine sofortige Benachrichtigung an die Familie und bei Bedarf an den Notruf.',
-      'sol.f3.h':'Medikamentenerinnerungen','sol.f3.p':'Sprach- und visuelle Erinnerungen, damit kein Medikament oder Arzttermin vergessen wird.',
-      'sol.f4.h':'Intelligente Beleuchtung','sol.f4.p':'Automatische Lichtsteuerung basierend auf der Tageszeit und der Raumbelegung.',
-      'sol.f5.h':'Eltern-App','sol.f5.p':'Fernzugriff, Benachrichtigungen und Kontrolle — alles an einem Ort auf Ihrem Smartphone.',
-      'sol.f6.h':'Automatisierungen','sol.f6.p':'Intelligente Szenarien und Regeln, die automatisch ausgelöst werden, ohne dass Sie etwas tun müssen.',
-      'ha.tag':'Technologie','ha.h':'Aufgebaut auf',
-      'ha.p':'Home Assistant ist die beliebteste Open-Source-Smart-Home-Plattform mit über 700.000 aktiven Installationen weltweit. Ihre Daten bleiben bei Ihnen — keine Drittanbieter-Cloud.',
-      'ha.li1':'Funktioniert mit Philips Hue, IKEA, Tuya, Sonoff und 3000+ Geräten',
-      'ha.li2':'Ihre Daten bleiben lokal — 100% lokale Kontrolle',
-      'ha.li3':'Steuerung vom Telefon, Tablet oder Computer',
-      'ha.li4':'Unbegrenzte Automatisierungen — Regeln, Szenarien, Benachrichtigungen',
-      'ha.li5':'Kostenlose Open-Source-Plattform ohne monatliches Abonnement',
-      'ha.stat1':'kompatible Geräte','ha.stat2':'lokale Daten','ha.stat3':'aktive Installationen','ha.stat4':'Open-Source-Plattform',
-      'pricing.tag':'Pakete','pricing.h':'Finden Sie das richtige Paket','pricing.p':'Der Preis hängt von Ihrem Zuhause und Ihren Bedürfnissen ab. Kontaktieren Sie uns für eine kostenlose Beratung und ein individuelles Angebot.',
-      'price.inquiry':'Auf Anfrage','price.hw':'Einmaliger Kauf + Installation','price.ask':'Anfragen',
-      'price1.name':'Basis','price1.li1':'1 Kamera','price1.li2':'Notfallknopf','price1.li3':'Bewegungssensor','price1.li4':'Mobile App',
-      'price2.name':'Voll','price2.li1':'Alles aus Basis','price2.li2':'2 Kameras','price2.li3':'Sprachassistent','price2.li4':'3 Smart-Stecker','price2.li5':'Kindersicherung','price2.li6':'Medikamentenerinnerungen',
-      'price3.name':'Abonnement','price3.desc':'Cloud-Zugang und Support','price3.li1':'Cloud-Speicher','price3.li2':'Prioritäts-Support','price3.li3':'Automatische Updates','price3.li4':'Benachrichtigungsverlauf','price3.li5':'Zugang für 5 Mitglieder','price3.btn':'Bestellen',
-      'price4.name':'DIY-Schulung','price4.desc':'Online oder vor Ort','price4.li1':'Einführung in Home Assistant','price4.li2':'Geräteeinrichtung','price4.li3':'Erstellen von Automatisierungen','price4.li4':'Komponentenliste','price4.li5':'30 Tage Support','price4.btn':'Anmelden',
-      'contact.tag':'Kontakt','contact.h':'Kontaktieren Sie uns',
-      'contact.p':'Kontaktieren Sie uns für eine kostenlose Beratung. Wir helfen Ihnen, die richtige Lösung für Ihre Familie zu finden.',
-      'contact.why1':'Kostenlose Beratung und Hausbesuch','contact.why2':'Individuelles Angebot basierend auf Ihrem Zuhause','contact.why3':'Professionelle Installation und Einrichtung','contact.why4':'Schulung für alle Familienmitglieder',
-      'form.h':'Anfrage senden','form.sub':'Wir melden uns innerhalb von 24 Stunden.',
-      'form.name':'Ihr Name','form.phone':'Telefon','form.email':'E-Mail-Adresse','form.package':'Ich interessiere mich für...',
-      'form.message':'Erzählen Sie uns von Ihren Bedürfnissen...','form.submit':'Anfrage senden →',
-      'footer.copy':'© 2026 CareHab. Alle Rechte vorbehalten.','footer.privacy':'Datenschutz · Nutzungsbedingungen',
-      'cookie.text':'Diese Website verwendet Cookies zur Verbesserung der Benutzererfahrung. Mit der weiteren Nutzung akzeptieren Sie unsere Datenschutzrichtlinie.',
-      'cookie.accept':'Akzeptieren','cookie.decline':'Ablehnen',
-      'whatsapp.tooltip':'Schreiben Sie uns auf WhatsApp',
-      'form.success':'Vielen Dank! Wir melden uns bald.','form.error':'Fehler beim Senden. Bitte versuchen Sie es erneut.'
-    }
-  };
-
-  function setLang(lang) {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (t[lang] && t[lang][key]) el.innerHTML = t[lang][key];
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      if (t[lang] && t[lang][key]) el.placeholder = t[lang][key];
-    });
-    ['bg','en','de'].forEach(l => {
-      document.getElementById('btn-'+l).classList.remove('active');
-      const mob = document.getElementById('mob-btn-'+l);
-      if (mob) mob.classList.remove('active');
-    });
-    document.getElementById('btn-'+lang).classList.add('active');
-    const mobBtn = document.getElementById('mob-btn-'+lang);
-    if (mobBtn) mobBtn.classList.add('active');
-    document.documentElement.lang = lang;
-  }
-
-  // Form submit
-  const form = document.querySelector('form#contact-form');
-  if (form) {
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = form.querySelector('.btn-submit');
-      btn.disabled = true;
-      try {
-        const res = await fetch('https://formspree.io/f/mdabjrly', { method: 'POST', headers: {'Accept': 'application/json'}, body: new FormData(form) });
-        const data = await res.json();
-        if (res.ok) {
-          document.getElementById('form-success').style.display = 'block';
-          document.getElementById('form-error').style.display = 'none';
-          form.reset();
-        } else { throw new Error(data.error || JSON.stringify(data.errors)); }
-      } catch(err) {
-        const errEl = document.getElementById('form-error');
-        errEl.textContent = err.message || 'Грешка при изпращане. Моля опитайте отново.';
-        errEl.style.display = 'block';
-        document.getElementById('form-success').style.display = 'none';
-        btn.disabled = false;
-      }
-    });
-  }
-
-  // Hamburger menu
-  function toggleMenu() {
-    document.getElementById('hamburger').classList.toggle('open');
-    document.getElementById('mobile-nav').classList.toggle('open');
-  }
-  function closeMenu() {
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mobile-nav').classList.remove('open');
-  }
-
-  // Cookie banner
-  if (localStorage.getItem('carehab_cookieConsent')) {
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-  function cookieAccept() {
-    localStorage.setItem('carehab_cookieConsent', 'accepted');
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-  function cookieDecline() {
-    localStorage.setItem('carehab_cookieConsent', 'declined');
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
-</script>
+<script src="js/shared.js"></script>
 </body>
 </html>
