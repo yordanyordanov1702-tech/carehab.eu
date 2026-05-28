@@ -3,6 +3,7 @@ backend:
   repo: yordanyordanov1702-tech/carehab.eu
   branch: main
   base_url: https://sveltia-cms-auth.pages.dev
+  app_id: Ov23livsuyPJ1IcEtVi4
 
 media_folder: images/uploads
 public_folder: /images/uploads
