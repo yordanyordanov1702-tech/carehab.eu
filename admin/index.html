@@ -6,112 +6,118 @@
 <meta name="robots" content="noindex, nofollow">
 <title>CareHab — Администрация</title>
 <style>
-  :root { --green: #1a5c2a; --light: #e8f5e2; --dark: #0f1a0f; --muted: #6b7a64; --border: rgba(26,92,42,0.15); }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: system-ui, sans-serif; background: #f4f7f4; color: #1a2416; min-height: 100vh; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: system-ui, sans-serif; background:#0f1a0f; height:100vh; overflow:hidden; display:flex; flex-direction:column; }
 
-  /* LOGIN */
-  #screen-login { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:2rem; }
-  .login-box { background:white; border-radius:24px; padding:3rem; box-shadow:0 20px 60px rgba(15,26,15,.12); width:100%; max-width:420px; }
-  .login-logo { font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:2rem; text-align:center; }
-  .login-logo span { color:var(--green); }
-  .login-box h2 { font-size:1.4rem; margin-bottom:.4rem; text-align:center; }
-  .login-box p { color:var(--muted); font-size:.9rem; text-align:center; margin-bottom:2rem; }
-  .form-field { margin-bottom:1.2rem; }
-  .form-field label { display:block; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:.4rem; }
-  .form-field input { width:100%; padding:.85rem 1rem; border:1.5px solid var(--border); border-radius:10px; font-size:.95rem; background:#f8faf8; transition:border-color .2s; }
-  .form-field input:focus { outline:none; border-color:var(--green); }
-  .btn-login { width:100%; padding:1rem; background:var(--green); color:white; border:none; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:background .2s; margin-top:.5rem; }
-  .btn-login:hover { background:#1a7a32; }
-  .error-msg { background:#fde8e8; color:#b71c1c; border-radius:10px; padding:.8rem 1rem; font-size:.88rem; margin-top:1rem; display:none; }
-  .pat-help { margin-top:1.5rem; padding:1rem; background:var(--light); border-radius:12px; font-size:.82rem; color:var(--muted); line-height:1.6; }
-  .pat-help strong { color:var(--green); }
-  .pat-help a { color:var(--green); }
+/* LOGIN */
+#screen-login { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:#f4f7f4; z-index:100; }
+.login-box { background:white; border-radius:24px; padding:3rem; box-shadow:0 20px 60px rgba(15,26,15,.14); width:100%; max-width:420px; }
+.login-logo { font-size:2rem; font-weight:900; color:#0f1a0f; margin-bottom:2rem; text-align:center; }
+.login-logo span { color:#1a5c2a; }
+.login-box h2 { font-size:1.4rem; margin-bottom:.4rem; text-align:center; }
+.login-box > p { color:#6b7a64; font-size:.9rem; text-align:center; margin-bottom:2rem; }
+.form-field { margin-bottom:1.2rem; }
+.form-field label { display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#6b7a64; margin-bottom:.4rem; }
+.form-field input { width:100%; padding:.85rem 1rem; border:1.5px solid rgba(26,92,42,.15); border-radius:10px; font-size:.95rem; background:#f8faf8; transition:border-color .2s; }
+.form-field input:focus { outline:none; border-color:#1a5c2a; }
+.btn-login { width:100%; padding:1rem; background:#1a5c2a; color:white; border:none; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; margin-top:.5rem; }
+.btn-login:hover { background:#1a7a32; }
+.error-msg { background:#fde8e8; color:#b71c1c; border-radius:10px; padding:.8rem 1rem; font-size:.88rem; margin-top:1rem; display:none; }
+.token-help { margin-top:1.5rem; padding:1rem 1.2rem; background:#e8f5e2; border-radius:12px; font-size:.8rem; color:#6b7a64; line-height:1.7; }
+.token-help strong { color:#1a5c2a; }
 
-  /* EDITOR */
-  #screen-editor { display:none; }
-  .admin-nav { background:var(--dark); padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; }
-  .admin-nav .logo { font-size:1.3rem; font-weight:900; color:white; }
-  .admin-nav .logo span { color:#6ee87e; }
-  .admin-nav-right { display:flex; gap:1rem; align-items:center; }
-  .save-btn { background:var(--green); color:white; border:none; padding:.6rem 1.5rem; border-radius:8px; font-weight:600; cursor:pointer; font-size:.9rem; transition:background .2s; }
-  .save-btn:hover { background:#1a7a32; }
-  .save-btn:disabled { opacity:.5; cursor:not-allowed; }
-  .logout-btn { background:transparent; color:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.2); padding:.5rem 1rem; border-radius:8px; cursor:pointer; font-size:.85rem; transition:all .2s; }
-  .logout-btn:hover { color:white; border-color:rgba(255,255,255,.4); }
+/* EDITOR SHELL */
+#screen-editor { display:none; flex-direction:column; height:100vh; }
 
-  .tabs { background:white; border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:.5rem; overflow-x:auto; }
-  .tab { padding:.9rem 1.2rem; border:none; background:none; color:var(--muted); font-size:.9rem; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; transition:all .2s; white-space:nowrap; }
-  .tab.active { color:var(--green); border-bottom-color:var(--green); font-weight:700; }
-  .tab:hover { color:var(--green); }
+/* TOP BAR */
+.top-bar { background:#0f1a0f; padding:.55rem 1.2rem; display:flex; align-items:center; gap:.8rem; flex-shrink:0; min-height:50px; }
+.top-logo { font-size:1.05rem; font-weight:900; color:white; white-space:nowrap; flex-shrink:0; }
+.top-logo span { color:#6ee87e; }
+.page-tabs { display:flex; gap:.25rem; flex:1; overflow-x:auto; scrollbar-width:none; }
+.page-tabs::-webkit-scrollbar { display:none; }
+.ptab { background:rgba(255,255,255,.07); color:rgba(255,255,255,.55); border:none; padding:.45rem .95rem; border-radius:7px; font-size:.82rem; font-weight:500; cursor:pointer; white-space:nowrap; transition:all .18s; }
+.ptab.active { background:#1a5c2a; color:white; font-weight:700; }
+.ptab:hover:not(.active) { background:rgba(255,255,255,.14); color:white; }
+.top-right { display:flex; gap:.5rem; align-items:center; flex-shrink:0; }
+.btn-save { background:#1a5c2a; color:white; border:none; padding:.55rem 1.3rem; border-radius:8px; font-weight:700; cursor:pointer; font-size:.88rem; white-space:nowrap; transition:background .2s; }
+.btn-save:hover { background:#1a7a32; }
+.btn-save:disabled { opacity:.5; cursor:not-allowed; }
+.btn-logout { background:transparent; color:rgba(255,255,255,.45); border:1px solid rgba(255,255,255,.18); padding:.45rem .85rem; border-radius:7px; cursor:pointer; font-size:.78rem; white-space:nowrap; transition:all .18s; }
+.btn-logout:hover { color:white; border-color:rgba(255,255,255,.4); }
 
-  .editor-content { max-width:860px; margin:0 auto; padding:2rem; }
-  .section-block { background:white; border-radius:16px; padding:2rem; margin-bottom:1.5rem; border:1px solid var(--border); }
-  .section-block h3 { font-size:1rem; font-weight:700; margin-bottom:1.5rem; color:var(--dark); padding-bottom:.8rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:.5rem; }
-  .field-row { margin-bottom:1.2rem; }
-  .field-row:last-child { margin-bottom:0; }
-  .field-row label { display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:.4rem; }
-  .field-row input, .field-row textarea { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border); border-radius:10px; font-size:.92rem; font-family:inherit; background:#f8faf8; transition:border-color .2s; }
-  .field-row input:focus, .field-row textarea:focus { outline:none; border-color:var(--green); background:white; }
-  .field-row textarea { resize:vertical; min-height:90px; }
-  .field-row textarea.block-editor { font-family: 'Courier New', monospace; font-size:.82rem; background:#f0f4f0; min-height:160px; }
-  .block-hint { font-size:.75rem; color:var(--muted); margin-top:.4rem; background:var(--light); border-radius:8px; padding:.6rem .8rem; line-height:1.5; }
-  .block-hint strong { color:var(--green); }
-  .btn-insert-template { margin-top:.4rem; background:var(--light); border:1px solid var(--border); color:var(--green); font-size:.78rem; font-weight:600; padding:.35rem .8rem; border-radius:6px; cursor:pointer; transition:background .2s; }
-  .btn-insert-template:hover { background:#d4edda; }
+/* HINT BAR */
+.hint-bar { background:#e8f5e2; border-bottom:1px solid rgba(26,92,42,.15); padding:.45rem 1.2rem; font-size:.8rem; color:#1a5c2a; display:flex; align-items:center; gap:.5rem; flex-shrink:0; flex-wrap:wrap; }
+.hint-bar strong { font-weight:700; }
+.hint-sep { color:rgba(26,92,42,.3); }
+#status-msg { color:#6b7a64; }
 
-  .toast { position:fixed; bottom:2rem; right:2rem; padding:1rem 1.5rem; border-radius:12px; font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.15); transform:translateY(100px); opacity:0; transition:all .3s; z-index:100; }
-  .toast.show { transform:none; opacity:1; }
-  .toast.success { background:#1a5c2a; color:white; }
-  .toast.error { background:#b71c1c; color:white; }
+/* FRAME AREA */
+.frame-wrap { flex:1; position:relative; }
+.frame-loader { position:absolute; inset:0; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; color:#6b7a64; font-size:.9rem; z-index:5; transition:opacity .25s; }
+.frame-loader.gone { opacity:0; pointer-events:none; }
+.spinner { width:38px; height:38px; border:3px solid #e8f5e2; border-top-color:#1a5c2a; border-radius:50%; animation:spin 1s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+#editor-frame { width:100%; height:100%; border:none; display:block; }
 
-  .loading { text-align:center; padding:3rem; color:var(--muted); }
-  .loading-spinner { width:40px; height:40px; border:3px solid var(--light); border-top-color:var(--green); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 1rem; }
-  @keyframes spin { to { transform:rotate(360deg); } }
+/* TOAST */
+.toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(120px); background:#1a5c2a; color:white; padding:.9rem 2rem; border-radius:12px; font-weight:600; font-size:.9rem; box-shadow:0 8px 28px rgba(0,0,0,.22); transition:transform .3s; z-index:9999; white-space:nowrap; pointer-events:none; }
+.toast.err { background:#b71c1c; }
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+/* STATUS DOT */
+.sdot { display:inline-block; width:7px; height:7px; border-radius:50%; background:#6ee87e; margin-right:.35rem; vertical-align:middle; }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ═══ LOGIN ═══ -->
 <div id="screen-login">
   <div class="login-box">
     <div class="login-logo">Care<span>Hab</span></div>
     <h2>Администрация</h2>
-    <p>Влезте за да редактирате съдържанието на сайта</p>
+    <p>Влезте за да редактирате сайта визуално</p>
     <form id="login-form">
       <div class="form-field">
         <label>Парола</label>
         <input type="password" id="admin-pass" placeholder="••••••••" autocomplete="current-password">
       </div>
       <div class="form-field" id="pat-field">
-        <label>GitHub токен <span style="font-weight:400;color:#aaa;">(само при първо влизане)</span></label>
-        <input type="password" id="github-pat" placeholder="ghp_... или github_pat_...">
+        <label>GitHub токен <span style="font-weight:400;color:#bbb">(само при първо влизане)</span></label>
+        <input type="password" id="github-pat" placeholder="ghp_...">
       </div>
-      <button type="submit" class="btn-login">Вход →</button>
-      <div class="error-msg" id="login-error">Грешна парола</div>
+      <button type="submit" class="btn-login">Влез →</button>
+      <div class="error-msg" id="login-error"></div>
     </form>
-    <div class="pat-help" id="pat-help">
-      <strong>Как да получите GitHub токен (само веднъж):</strong><br>
-      1. Отидете на <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a><br>
-      2. Изберете "Classic token"<br>
-      3. Отметнете <strong>repo</strong><br>
-      4. Кликнете "Generate token" и поставете тук
+    <div class="token-help">
+      <strong>Нямате токен?</strong><br>
+      GitHub.com → профил → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate → слагате тик на <strong>repo</strong>
     </div>
   </div>
 </div>
 
-<!-- EDITOR -->
+<!-- ═══ EDITOR ═══ -->
 <div id="screen-editor">
-  <nav class="admin-nav">
-    <div class="logo">Care<span>Hab</span> Admin</div>
-    <div class="admin-nav-right">
-      <button class="save-btn" id="save-btn" onclick="saveCurrentPage()">💾 Запази</button>
-      <button class="logout-btn" onclick="logout()">Изход</button>
+  <div class="top-bar">
+    <div class="top-logo">Care<span>Hab</span></div>
+    <div class="page-tabs" id="page-tabs"></div>
+    <div class="top-right">
+      <button class="btn-save" id="btn-save" onclick="savePage()">💾 Запази</button>
+      <button class="btn-logout" onclick="logout()">Изход</button>
     </div>
-  </nav>
-  <div class="tabs" id="tabs"></div>
-  <div class="editor-content" id="editor-content">
-    <div class="loading"><div class="loading-spinner"></div>Зарежда...</div>
+  </div>
+  <div class="hint-bar">
+    ✏️ <strong>Кликни на текст</strong> за да го редактираш директно
+    <span class="hint-sep">·</span>
+    📷 <strong>Кликни на снимка</strong> за да я смениш
+    <span class="hint-sep">·</span>
+    <span><span class="sdot"></span><span id="status-msg">Зарежда се...</span></span>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-loader" id="frame-loader">
+      <div class="spinner"></div>
+      <span>Зарежда се страницата...</span>
+    </div>
+    <iframe id="editor-frame"></iframe>
   </div>
 </div>
 
@@ -119,303 +125,261 @@
 
 <script>
 const ADMIN_PASS = 'CareHab2025!';
-const REPO = 'yordanyordanov1702-tech/carehab.eu';
-const API = 'https://api.github.com';
+const REPO      = 'yordanyordanov1702-tech/carehab.eu';
+const API       = 'https://api.github.com';
+const SITE      = 'https://carehab.eu';
 
-let token = localStorage.getItem('ch_token');
+let token = localStorage.getItem('ch_token') || '';
 let currentPage = null;
-let fileCache = {};
+let cache = {};
 
-// If token exists, show simpler login
-if (token) {
-  document.getElementById('pat-field').style.display = 'none';
-  document.getElementById('pat-help').style.display = 'none';
-}
+const PAGES = [
+  { id:'index',   label:'🏠 Начало',  file:'index.html'   },
+  { id:'paketi',  label:'💰 Пакети',  file:'paketi.html'  },
+  { id:'kontakt', label:'📞 Контакт', file:'kontakt.html' },
+  { id:'za-nas',  label:'👥 За нас',  file:'za-nas.html'  },
+];
 
-// Login
-document.getElementById('login-form').addEventListener('submit', async e => {
+if (token) document.getElementById('pat-field').style.display = 'none';
+
+/* ── LOGIN ── */
+document.getElementById('login-form').addEventListener('submit', e => {
   e.preventDefault();
   const pass = document.getElementById('admin-pass').value;
-  const pat = document.getElementById('github-pat').value.trim();
-  const err = document.getElementById('login-error');
-
-  if (pass !== ADMIN_PASS) {
-    err.style.display = 'block';
-    err.textContent = 'Грешна парола';
-    return;
-  }
-  if (pat) { token = pat; localStorage.setItem('ch_token', pat); }
-  if (!token) {
-    err.style.display = 'block';
-    err.textContent = 'Моля въведете GitHub токен';
-    return;
-  }
+  const pat  = document.getElementById('github-pat').value.trim();
+  const err  = document.getElementById('login-error');
+  if (pass !== ADMIN_PASS) { err.style.display='block'; err.textContent='Грешна парола'; return; }
+  if (pat)  { token = pat; localStorage.setItem('ch_token', pat); }
+  if (!token) { err.style.display='block'; err.textContent='Моля въведете GitHub токен'; return; }
   err.style.display = 'none';
   showEditor();
 });
 
-function logout() {
-  localStorage.removeItem('ch_token');
-  token = null;
-  location.reload();
-}
+function logout() { localStorage.removeItem('ch_token'); location.reload(); }
 
-// Pages config
-const PAGES = [
-  {
-    id: 'index', label: '🏠 Начало', file: 'index.html',
-    sections: [
-      { title: '🎯 Главен банер (Hero)', fields: [
-        { key: 'hero_tag', label: 'Малкият етикет горе', type: 'input' },
-        { key: 'hero_title', label: 'Главното заглавие', type: 'textarea', rows: 3 },
-        { key: 'hero_sub', label: 'Описанието под заглавието', type: 'textarea' },
-      ]},
-      { title: '🔔 Плаващи карти (вдясно)', fields: [
-        { key: 'badge_elder_name', label: 'Карта 1 — Име', type: 'input' },
-        { key: 'badge_elder_status', label: 'Карта 1 — Статус', type: 'input' },
-        { key: 'badge_child_name', label: 'Карта 2 — Име', type: 'input' },
-        { key: 'badge_child_status', label: 'Карта 2 — Статус', type: 'input' },
-      ]},
-      { title: '⚙️ Как работи — текст', fields: [
-        { key: 'hiw_title', label: 'Заглавие', type: 'textarea', rows: 2 },
-        { key: 'hiw_text', label: 'Описание', type: 'textarea' },
-        { key: 'hiw_steps', label: 'Стъпки (HTML блок — копирай <div class="how-step">...</div> за нова стъпка)', type: 'block', rows: 12,
-          template: '<div class="how-step">\n  <div class="how-step-num">4</div>\n  <h3>Нова стъпка</h3>\n  <p>Описание на стъпката.</p>\n</div>' },
-      ]},
-      { title: '🖼️ Снимки (paste URL от интернет)', fields: [
-        { key: 'img_hero', label: '📸 Снимка в главния банер (Hero)', type: 'input' },
-        { key: 'img_hiw', label: '📸 Снимка в "Как работи"', type: 'input' },
-        { key: 'img_ha', label: '📸 Снимка в Home Assistant секцията', type: 'input' },
-      ]},
-      { title: '🎬 Видео секция', fields: [
-        { key: 'video_title', label: 'Заглавие', type: 'input' },
-        { key: 'video_text', label: 'Описание', type: 'textarea' },
-      ]},
-      { title: '✅ Функции — карти', fields: [
-        { key: 'features_title', label: 'Заглавие на секцията', type: 'textarea', rows: 2 },
-        { key: 'features_text', label: 'Описание под заглавието', type: 'textarea' },
-        { key: 'features_cards', label: 'Карти с функции (HTML блок — копирай <div class="feature-card">...</div> за нова карта)', type: 'block', rows: 16,
-          template: '<div class="feature-card">\n  <div class="feature-card-icon">🆕</div>\n  <h3>Нова функция</h3>\n  <p>Описание на функцията.</p>\n</div>' },
-      ]},
-      { title: '🏠 Home Assistant секция', fields: [
-        { key: 'ha_title', label: 'Заглавие', type: 'textarea', rows: 2 },
-        { key: 'ha_text', label: 'Описание', type: 'textarea' },
-        { key: 'ha_points', label: 'Точки (HTML блок — копирай <div class="ha-point">...</div> за нова точка)', type: 'block', rows: 12,
-          template: '<div class="ha-point">\n  <div class="ha-point-num">5</div>\n  <div class="ha-point-text">\n    <h4>Нова точка</h4>\n    <p>Описание.</p>\n  </div>\n</div>' },
-      ]},
-      { title: '📢 CTA Банер (в края)', fields: [
-        { key: 'cta_title', label: 'Заглавие', type: 'textarea', rows: 2 },
-      ]}
-    ]
-  },
-  {
-    id: 'paketi', label: '💰 Пакети', file: 'paketi.html',
-    sections: [
-      { title: '🌱 Стартов пакет', fields: [
-        { key: 'pkg1_name', label: 'Име', type: 'input' },
-        { key: 'pkg1_sub', label: 'Подзаглавие', type: 'input' },
-        { key: 'pkg1_price', label: 'Цена', type: 'input' },
-        { key: 'pkg1_features', label: 'Включва (HTML блок — всеки ред е <li>текст</li>)', type: 'block', rows: 10,
-          template: '<li>Нова функция</li>' },
-      ]},
-      { title: '🏡 Семеен пакет', fields: [
-        { key: 'pkg2_name', label: 'Име', type: 'input' },
-        { key: 'pkg2_sub', label: 'Подзаглавие', type: 'input' },
-        { key: 'pkg2_price', label: 'Цена', type: 'input' },
-        { key: 'pkg2_features', label: 'Включва (HTML блок)', type: 'block', rows: 10,
-          template: '<li>Нова функция</li>' },
-      ]},
-      { title: '👑 Премиум пакет', fields: [
-        { key: 'pkg3_name', label: 'Име', type: 'input' },
-        { key: 'pkg3_sub', label: 'Подзаглавие', type: 'input' },
-        { key: 'pkg3_price', label: 'Цена', type: 'input' },
-        { key: 'pkg3_features', label: 'Включва (HTML блок)', type: 'block', rows: 10,
-          template: '<li>Нова функция</li>' },
-      ]},
-      { title: '❓ Въпроси и отговори (FAQ)', fields: [
-        { key: 'faq_items', label: 'Въпроси (HTML блок — копирай <div class="faq-item">...</div> за нов въпрос)', type: 'block', rows: 14,
-          template: '<div class="faq-item">\n  <button class="faq-q">Нов въпрос?</button>\n  <div class="faq-a">Отговорът на въпроса.</div>\n</div>' },
-      ]}
-    ]
-  },
-  {
-    id: 'kontakt', label: '📞 Контакт', file: 'kontakt.html',
-    sections: [
-      { title: '📋 Контактна информация', fields: [
-        { key: 'contact_phone', label: 'Телефон', type: 'input' },
-        { key: 'contact_email', label: 'Имейл', type: 'input' },
-        { key: 'contact_hours', label: 'Работно време', type: 'input' },
-        { key: 'contact_whatsapp_text', label: 'WhatsApp текст', type: 'input' },
-      ]}
-    ]
-  },
-  {
-    id: 'za-nas', label: '👥 За нас', file: 'za-nas.html',
-    sections: [
-      { title: '🖼️ Снимки (paste URL от интернет)', fields: [
-        { key: 'img_story1', label: '📸 Главна снимка (горна)', type: 'input' },
-        { key: 'img_story2', label: '📸 Втора снимка (долна)', type: 'input' },
-      ]},
-      { title: '📖 История', fields: [
-        { key: 'story_p1', label: 'Параграф 1', type: 'textarea' },
-        { key: 'story_p2', label: 'Параграф 2', type: 'textarea' },
-        { key: 'story_quote', label: 'Цитат (в зелената кутия)', type: 'textarea' },
-        { key: 'story_p3', label: 'Параграф 3', type: 'textarea' },
-        { key: 'story_p4', label: 'Параграф 4', type: 'textarea' },
-        { key: 'story_p5', label: 'Параграф 5', type: 'textarea' },
-        { key: 'story_p6', label: 'Параграф 6', type: 'textarea' },
-      ]}
-    ]
-  }
-];
-
-// GitHub API
+/* ── GITHUB API ── */
 async function getFile(path) {
-  if (fileCache[path]) return fileCache[path];
-  const headers = { Accept: 'application/vnd.github.v3+json' };
+  if (cache[path]) return cache[path];
+  const headers = { Accept:'application/vnd.github.v3+json' };
   if (token) headers.Authorization = `token ${token}`;
   const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, { headers });
-  if (r.status === 401) {
-    localStorage.removeItem('ch_token');
-    token = null;
-    throw new Error('Невалиден GitHub токен. Кликни "Изход" и влез отново с нов токен.');
-  }
-  if (!r.ok) throw new Error(`Грешка при зареждане на ${path}: ${r.status}`);
+  if (r.status === 401) { localStorage.removeItem('ch_token'); token=''; throw new Error('Невалиден токен — излез и влез отново с нов токен'); }
+  if (!r.ok) throw new Error(`Грешка при зареждане: ${r.status}`);
   const d = await r.json();
   const content = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
-  fileCache[path] = { content, sha: d.sha };
-  return fileCache[path];
+  cache[path] = { content, sha: d.sha };
+  return cache[path];
 }
 
 async function saveFile(path, content, sha) {
   const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, {
     method: 'PUT',
-    headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+    headers: { Authorization:`token ${token}`, 'Content-Type':'application/json' },
     body: JSON.stringify({
       message: `Admin: обновяване на ${path}`,
       content: btoa(unescape(encodeURIComponent(content))),
       sha
     })
   });
-  if (!r.ok) {
-    const err = await r.json();
-    throw new Error(err.message || 'Грешка при запис');
-  }
-  delete fileCache[path];
+  if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Грешка при запис'); }
+  delete cache[path];
 }
 
+/* ── EDIT MARKERS ── */
 function extract(html, key) {
   const re = new RegExp(`<!-- EDIT:${key} -->(.*?)<!-- /EDIT:${key} -->`, 's');
   const m = html.match(re);
-  return m ? m[1] : '(не е намерено)';
+  return m ? m[1] : '';
 }
-
 function inject(html, key, value) {
   const re = new RegExp(`(<!-- EDIT:${key} -->)(.*?)(<!-- /EDIT:${key} -->)`, 's');
-  if (!re.test(html)) return html;
   return html.replace(re, `$1${value}$3`);
 }
 
-async function showEditor() {
-  document.getElementById('screen-login').style.display = 'none';
-  document.getElementById('screen-editor').style.display = 'block';
+/* ── BUILD SRCDOC ── */
+function buildSrcdoc(rawHtml) {
+  // 1. Base tag so relative paths resolve to carehab.eu
+  let html = rawHtml.replace(/<head>/i, `<head>\n<base href="${SITE}/">`);
 
-  // Build tabs
-  const tabsEl = document.getElementById('tabs');
+  // 2. Replace <!-- EDIT:key -->content<!-- /EDIT:key --> with editable spans
+  html = html.replace(
+    /<!-- EDIT:([\w]+) -->([\s\S]*?)<!-- \/EDIT:\1 -->/g,
+    (_, key, content) => `<span data-edit="${key}">${content}</span>`
+  );
+
+  // 3. Inject editor CSS + JS before </body>
+  const editorInject = `
+<style id="ch-editor-css">
+/* Editable text regions */
+[data-edit] {
+  outline: 2px dashed rgba(26,92,42,.55) !important;
+  cursor: text !important;
+  border-radius: 4px !important;
+  transition: background .15s, outline-color .15s !important;
+  position: relative !important;
+}
+[data-edit]:empty::before { content: '(празно — кликни за редакция)'; color: #aaa; font-style: italic; }
+[data-edit]:hover { background: rgba(26,92,42,.07) !important; outline-color: #1a5c2a !important; }
+[data-edit]:focus { background: rgba(255,255,210,.5) !important; outline: 2px solid #1a5c2a !important; box-shadow: 0 0 0 4px rgba(26,92,42,.12) !important; }
+
+/* Editable image regions */
+[data-img] {
+  outline: 3px dashed rgba(26,92,42,.6) !important;
+  cursor: pointer !important;
+  transition: opacity .2s, outline-color .2s !important;
+  display: block !important;
+}
+[data-img]:hover { opacity: .75 !important; outline-color: #1a5c2a !important; }
+
+/* Image click overlay label */
+.ch-img-wrap { position: relative !important; display: block !important; }
+.ch-img-label {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  background: rgba(26,92,42,.85); color: white;
+  font-size: 12px; font-weight: 700; font-family: system-ui, sans-serif;
+  padding: 5px 14px; border-radius: 20px; white-space: nowrap;
+  pointer-events: none; opacity: 0; transition: opacity .2s;
+}
+.ch-img-wrap:hover .ch-img-label { opacity: 1; }
+</style>
+<script id="ch-editor-js">
+(function(){
+  // Make text regions editable
+  document.querySelectorAll('[data-edit]').forEach(function(el){
+    el.contentEditable = 'true';
+    el.spellcheck = false;
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ el.blur(); }
+    });
+  });
+
+  // Make images clickable for URL change
+  document.querySelectorAll('[data-img]').forEach(function(img){
+    // Wrap image to show overlay label
+    if(!img.parentNode.classList.contains('ch-img-wrap')){
+      var wrap = document.createElement('div');
+      wrap.className = 'ch-img-wrap';
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+      var lbl = document.createElement('span');
+      lbl.className = 'ch-img-label';
+      lbl.textContent = '📷 Кликни за смяна';
+      wrap.appendChild(lbl);
+    }
+    img.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var url = window.prompt(
+        '📷 Постави URL на новата снимка\\n\\nНамери снимка в Google → десен бутон → „Копирай адреса на изображението"\\nили ползвай unsplash.com',
+        img.src || ''
+      );
+      if(url && url.trim()){
+        img.src = url.trim();
+        img.dataset.newSrc = url.trim();
+      }
+    });
+  });
+})();
+<\/script>`;
+
+  return html.replace(/<\/body>/i, editorInject + '\n</body>');
+}
+
+/* ── SHOW EDITOR ── */
+function showEditor() {
+  document.getElementById('screen-login').style.display = 'none';
+  document.getElementById('screen-editor').style.display = 'flex';
+
+  const tabsEl = document.getElementById('page-tabs');
   PAGES.forEach((p, i) => {
     const btn = document.createElement('button');
-    btn.className = 'tab' + (i === 0 ? ' active' : '');
+    btn.className = 'ptab' + (i === 0 ? ' active' : '');
     btn.textContent = p.label;
     btn.onclick = () => loadPage(p, btn);
     tabsEl.appendChild(btn);
   });
 
-  loadPage(PAGES[0], tabsEl.querySelector('.tab'));
+  loadPage(PAGES[0], tabsEl.querySelector('.ptab'));
 }
 
+/* ── LOAD PAGE INTO IFRAME ── */
 async function loadPage(page, tabBtn) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
   tabBtn.classList.add('active');
   currentPage = page;
 
-  const el = document.getElementById('editor-content');
-  el.innerHTML = '<div class="loading"><div class="loading-spinner"></div>Зарежда се ' + page.file + '...</div>';
+  const loader = document.getElementById('frame-loader');
+  const iframe = document.getElementById('editor-frame');
+
+  loader.classList.remove('gone');
+  setStatus('Зарежда се ' + page.file + '...');
 
   try {
     const { content } = await getFile(page.file);
-    let html = '';
-    page.sections.forEach(sec => {
-      html += `<div class="section-block"><h3>${sec.title}</h3>`;
-      sec.fields.forEach(f => {
-        const val = extract(content, f.key).replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        const rows = f.rows || (f.type === 'textarea' ? 3 : undefined);
-      if (f.type === 'block') {
-        html += `<div class="field-row">
-          <label>${f.label}</label>
-          <textarea id="field_${f.key}" rows="${rows}" class="block-editor">${val}</textarea>
-          ${f.template ? `<button class="btn-insert-template" onclick="insertTemplate('field_${f.key}', \`${f.template.replace(/`/g,'\\`')}\`)">+ Добави нов елемент</button>` : ''}
-          <div class="block-hint">✏️ Редактирай директно в полето. <strong>Натисни "+ Добави нов елемент"</strong> за да добавиш нов ред/карта/въпрос в края.</div>
-        </div>`;
-      } else {
-        html += `<div class="field-row">
-          <label>${f.label}</label>
-          ${f.type === 'textarea'
-            ? `<textarea id="field_${f.key}" rows="${rows}">${val}</textarea>`
-            : `<input type="text" id="field_${f.key}" value="${val.replace(/"/g,'&quot;')}">`
-          }
-        </div>`;
-      }
-      });
-      html += '</div>';
-    });
-    el.innerHTML = html;
+    const srcdoc = buildSrcdoc(content);
+
+    iframe.onload = () => {
+      loader.classList.add('gone');
+      setStatus('Готово — кликни на текст или снимка за редакция');
+    };
+    iframe.srcdoc = srcdoc;
   } catch(e) {
-    el.innerHTML = `<div class="section-block"><p style="color:#b71c1c">⚠️ Грешка: ${e.message}</p></div>`;
+    loader.classList.add('gone');
+    toast('⚠️ ' + e.message, true);
+    setStatus('Грешка при зареждане');
   }
 }
 
-async function saveCurrentPage() {
+/* ── SAVE ── */
+async function savePage() {
   if (!currentPage) return;
-  const btn = document.getElementById('save-btn');
+  const btn = document.getElementById('btn-save');
   btn.disabled = true;
   btn.textContent = 'Запазва...';
+  setStatus('Запазва промените...');
 
   try {
-    const { content, sha } = await getFile(currentPage.file);
-    let updated = content;
-    currentPage.sections.forEach(sec => {
-      sec.fields.forEach(f => {
-        const el = document.getElementById('field_' + f.key);
-        if (el) {
-          const val = el.value.replace(/&lt;/g,'<').replace(/&gt;/g,'>');
-          updated = inject(updated, f.key, val);
-        }
-      });
+    const iDoc = document.getElementById('editor-frame').contentDocument;
+    const { content: rawHtml, sha } = await getFile(currentPage.file);
+    let updated = rawHtml;
+
+    // Extract all text edits
+    iDoc.querySelectorAll('[data-edit]').forEach(el => {
+      updated = inject(updated, el.dataset.edit, el.innerHTML);
     });
+
+    // Extract image URL changes
+    iDoc.querySelectorAll('[data-img]').forEach(img => {
+      if (img.dataset.newSrc) {
+        updated = inject(updated, 'img_' + img.dataset.img, img.dataset.newSrc);
+      }
+    });
+
     await saveFile(currentPage.file, updated, sha);
-    showToast('✓ Запазено успешно! Сайтът ще се обнови за минута.', 'success');
+    toast('✅ Запазено! Сайтът ще се обнови след ~1 минута.', false);
+    setStatus('Запазено успешно ✓');
+
+    // Reload the page in iframe to reflect saved state
+    setTimeout(() => loadPage(currentPage, document.querySelector('.ptab.active')), 1500);
   } catch(e) {
-    showToast('⚠️ Грешка: ' + e.message, 'error');
+    toast('⚠️ ' + e.message, true);
+    setStatus('Грешка при запис');
   } finally {
     btn.disabled = false;
     btn.textContent = '💾 Запази';
   }
 }
 
-function insertTemplate(fieldId, template) {
-  const el = document.getElementById(fieldId);
-  if (!el) return;
-  const current = el.value.trimEnd();
-  el.value = current + (current ? '\n' : '') + template;
-  el.scrollTop = el.scrollHeight;
-  el.focus();
+/* ── HELPERS ── */
+function setStatus(msg) {
+  document.getElementById('status-msg').textContent = msg;
 }
 
-function showToast(msg, type) {
+function toast(msg, isErr) {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.className = `toast ${type} show`;
-  setTimeout(() => t.classList.remove('show'), 4000);
+  t.className = 'toast' + (isErr ? ' err' : '') + ' show';
+  setTimeout(() => t.classList.remove('show'), 5000);
 }
 </script>
 </body>
