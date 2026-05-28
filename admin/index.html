@@ -1,12 +1,351 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="bg">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex">
-  <title>CareHab — Администрация</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CareHab — Администрация</title>
+<style>
+  :root { --green: #1a5c2a; --light: #e8f5e2; --dark: #0f1a0f; --muted: #6b7a64; --border: rgba(26,92,42,0.15); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: system-ui, sans-serif; background: #f4f7f4; color: #1a2416; min-height: 100vh; }
+
+  /* LOGIN */
+  #screen-login { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:2rem; }
+  .login-box { background:white; border-radius:24px; padding:3rem; box-shadow:0 20px 60px rgba(15,26,15,.12); width:100%; max-width:420px; }
+  .login-logo { font-size:2rem; font-weight:900; color:var(--dark); margin-bottom:2rem; text-align:center; }
+  .login-logo span { color:var(--green); }
+  .login-box h2 { font-size:1.4rem; margin-bottom:.4rem; text-align:center; }
+  .login-box p { color:var(--muted); font-size:.9rem; text-align:center; margin-bottom:2rem; }
+  .form-field { margin-bottom:1.2rem; }
+  .form-field label { display:block; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:.4rem; }
+  .form-field input { width:100%; padding:.85rem 1rem; border:1.5px solid var(--border); border-radius:10px; font-size:.95rem; background:#f8faf8; transition:border-color .2s; }
+  .form-field input:focus { outline:none; border-color:var(--green); }
+  .btn-login { width:100%; padding:1rem; background:var(--green); color:white; border:none; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:background .2s; margin-top:.5rem; }
+  .btn-login:hover { background:#1a7a32; }
+  .error-msg { background:#fde8e8; color:#b71c1c; border-radius:10px; padding:.8rem 1rem; font-size:.88rem; margin-top:1rem; display:none; }
+  .pat-help { margin-top:1.5rem; padding:1rem; background:var(--light); border-radius:12px; font-size:.82rem; color:var(--muted); line-height:1.6; }
+  .pat-help strong { color:var(--green); }
+  .pat-help a { color:var(--green); }
+
+  /* EDITOR */
+  #screen-editor { display:none; }
+  .admin-nav { background:var(--dark); padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; }
+  .admin-nav .logo { font-size:1.3rem; font-weight:900; color:white; }
+  .admin-nav .logo span { color:#6ee87e; }
+  .admin-nav-right { display:flex; gap:1rem; align-items:center; }
+  .save-btn { background:var(--green); color:white; border:none; padding:.6rem 1.5rem; border-radius:8px; font-weight:600; cursor:pointer; font-size:.9rem; transition:background .2s; }
+  .save-btn:hover { background:#1a7a32; }
+  .save-btn:disabled { opacity:.5; cursor:not-allowed; }
+  .logout-btn { background:transparent; color:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.2); padding:.5rem 1rem; border-radius:8px; cursor:pointer; font-size:.85rem; transition:all .2s; }
+  .logout-btn:hover { color:white; border-color:rgba(255,255,255,.4); }
+
+  .tabs { background:white; border-bottom:1px solid var(--border); padding:0 2rem; display:flex; gap:.5rem; overflow-x:auto; }
+  .tab { padding:.9rem 1.2rem; border:none; background:none; color:var(--muted); font-size:.9rem; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; transition:all .2s; white-space:nowrap; }
+  .tab.active { color:var(--green); border-bottom-color:var(--green); font-weight:700; }
+  .tab:hover { color:var(--green); }
+
+  .editor-content { max-width:860px; margin:0 auto; padding:2rem; }
+  .section-block { background:white; border-radius:16px; padding:2rem; margin-bottom:1.5rem; border:1px solid var(--border); }
+  .section-block h3 { font-size:1rem; font-weight:700; margin-bottom:1.5rem; color:var(--dark); padding-bottom:.8rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:.5rem; }
+  .field-row { margin-bottom:1.2rem; }
+  .field-row:last-child { margin-bottom:0; }
+  .field-row label { display:block; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:.4rem; }
+  .field-row input, .field-row textarea { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border); border-radius:10px; font-size:.92rem; font-family:inherit; background:#f8faf8; transition:border-color .2s; }
+  .field-row input:focus, .field-row textarea:focus { outline:none; border-color:var(--green); background:white; }
+  .field-row textarea { resize:vertical; min-height:90px; }
+
+  .toast { position:fixed; bottom:2rem; right:2rem; padding:1rem 1.5rem; border-radius:12px; font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.15); transform:translateY(100px); opacity:0; transition:all .3s; z-index:100; }
+  .toast.show { transform:none; opacity:1; }
+  .toast.success { background:#1a5c2a; color:white; }
+  .toast.error { background:#b71c1c; color:white; }
+
+  .loading { text-align:center; padding:3rem; color:var(--muted); }
+  .loading-spinner { width:40px; height:40px; border:3px solid var(--light); border-top-color:var(--green); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 1rem; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+</style>
 </head>
 <body>
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+<!-- LOGIN -->
+<div id="screen-login">
+  <div class="login-box">
+    <div class="login-logo">Care<span>Hab</span></div>
+    <h2>Администрация</h2>
+    <p>Влезте за да редактирате съдържанието на сайта</p>
+    <form id="login-form">
+      <div class="form-field">
+        <label>Парола</label>
+        <input type="password" id="admin-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <div class="form-field" id="pat-field">
+        <label>GitHub токен <span style="font-weight:400;color:#aaa;">(само при първо влизане)</span></label>
+        <input type="password" id="github-pat" placeholder="ghp_... или github_pat_...">
+      </div>
+      <button type="submit" class="btn-login">Вход →</button>
+      <div class="error-msg" id="login-error">Грешна парола</div>
+    </form>
+    <div class="pat-help" id="pat-help">
+      <strong>Как да получите GitHub токен (само веднъж):</strong><br>
+      1. Отидете на <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a><br>
+      2. Изберете "Classic token"<br>
+      3. Отметнете <strong>repo</strong><br>
+      4. Кликнете "Generate token" и поставете тук
+    </div>
+  </div>
+</div>
+
+<!-- EDITOR -->
+<div id="screen-editor">
+  <nav class="admin-nav">
+    <div class="logo">Care<span>Hab</span> Admin</div>
+    <div class="admin-nav-right">
+      <button class="save-btn" id="save-btn" onclick="saveCurrentPage()">💾 Запази</button>
+      <button class="logout-btn" onclick="logout()">Изход</button>
+    </div>
+  </nav>
+  <div class="tabs" id="tabs"></div>
+  <div class="editor-content" id="editor-content">
+    <div class="loading"><div class="loading-spinner"></div>Зарежда...</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const ADMIN_PASS = 'CareHab2025!';
+const REPO = 'yordanyordanov1702-tech/carehab.eu';
+const API = 'https://api.github.com';
+
+let token = localStorage.getItem('ch_token');
+let currentPage = null;
+let fileCache = {};
+
+// If token exists, show simpler login
+if (token) {
+  document.getElementById('pat-field').style.display = 'none';
+  document.getElementById('pat-help').style.display = 'none';
+}
+
+// Login
+document.getElementById('login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const pass = document.getElementById('admin-pass').value;
+  const pat = document.getElementById('github-pat').value.trim();
+  const err = document.getElementById('login-error');
+
+  if (pass !== ADMIN_PASS) {
+    err.style.display = 'block';
+    err.textContent = 'Грешна парола';
+    return;
+  }
+  if (pat) { token = pat; localStorage.setItem('ch_token', pat); }
+  if (!token) {
+    err.style.display = 'block';
+    err.textContent = 'Моля въведете GitHub токен';
+    return;
+  }
+  err.style.display = 'none';
+  showEditor();
+});
+
+function logout() {
+  localStorage.removeItem('ch_token');
+  location.reload();
+}
+
+// Pages config
+const PAGES = [
+  {
+    id: 'index', label: '🏠 Начало', file: 'index.html',
+    sections: [
+      { title: '🎯 Главен банер (Hero)', fields: [
+        { key: 'hero_tag', label: 'Малкият етикет', type: 'input' },
+        { key: 'hero_title', label: 'Главното заглавие (може да съдържа HTML)', type: 'textarea' },
+        { key: 'hero_sub', label: 'Описанието под заглавието', type: 'textarea' },
+      ]},
+      { title: '🔔 Плаващи карти (вдясно)', fields: [
+        { key: 'badge_elder_name', label: 'Карта 1 — Име', type: 'input' },
+        { key: 'badge_elder_status', label: 'Карта 1 — Статус', type: 'input' },
+        { key: 'badge_child_name', label: 'Карта 2 — Име', type: 'input' },
+        { key: 'badge_child_status', label: 'Карта 2 — Статус', type: 'input' },
+      ]},
+      { title: '📢 CTA Банер (в края)', fields: [
+        { key: 'cta_title', label: 'Заглавие на CTA банера (HTML)', type: 'textarea' },
+      ]}
+    ]
+  },
+  {
+    id: 'paketi', label: '💰 Пакети', file: 'paketi.html',
+    sections: [
+      { title: '🌱 Стартов пакет', fields: [
+        { key: 'pkg1_name', label: 'Име', type: 'input' },
+        { key: 'pkg1_sub', label: 'Подзаглавие', type: 'input' },
+        { key: 'pkg1_price', label: 'Цена', type: 'input' },
+      ]},
+      { title: '🏡 Семеен пакет', fields: [
+        { key: 'pkg2_name', label: 'Ime', type: 'input' },
+        { key: 'pkg2_sub', label: 'Подзаглавие', type: 'input' },
+        { key: 'pkg2_price', label: 'Цена', type: 'input' },
+      ]},
+      { title: '👑 Премиум пакет', fields: [
+        { key: 'pkg3_name', label: 'Ime', type: 'input' },
+        { key: 'pkg3_sub', label: 'Подзаглавие', type: 'input' },
+        { key: 'pkg3_price', label: 'Цена', type: 'input' },
+      ]}
+    ]
+  },
+  {
+    id: 'kontakt', label: '📞 Контакт', file: 'kontakt.html',
+    sections: [
+      { title: '📋 Контактна информация', fields: [
+        { key: 'contact_phone', label: 'Телефон', type: 'input' },
+        { key: 'contact_email', label: 'Имейл', type: 'input' },
+        { key: 'contact_hours', label: 'Работно време', type: 'input' },
+        { key: 'contact_whatsapp_text', label: 'WhatsApp текст', type: 'input' },
+      ]}
+    ]
+  },
+  {
+    id: 'za-nas', label: '👥 За нас', file: 'za-nas.html',
+    sections: [
+      { title: '📖 История', fields: [
+        { key: 'story_p1', label: 'Параграф 1', type: 'textarea' },
+        { key: 'story_p2', label: 'Параграф 2', type: 'textarea' },
+        { key: 'story_quote', label: 'Цитат (в зелената кутия)', type: 'textarea' },
+        { key: 'story_p3', label: 'Параграф 3', type: 'textarea' },
+        { key: 'story_p4', label: 'Параграф 4', type: 'textarea' },
+        { key: 'story_p5', label: 'Параграф 5', type: 'textarea' },
+        { key: 'story_p6', label: 'Параграф 6', type: 'textarea' },
+      ]}
+    ]
+  }
+];
+
+// GitHub API
+async function getFile(path) {
+  if (fileCache[path]) return fileCache[path];
+  const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, {
+    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!r.ok) throw new Error(`Cannot load ${path}: ${r.status}`);
+  const d = await r.json();
+  const content = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+  fileCache[path] = { content, sha: d.sha };
+  return fileCache[path];
+}
+
+async function saveFile(path, content, sha) {
+  const r = await fetch(`${API}/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: `Admin: обновяване на ${path}`,
+      content: btoa(unescape(encodeURIComponent(content))),
+      sha
+    })
+  });
+  if (!r.ok) {
+    const err = await r.json();
+    throw new Error(err.message || 'Грешка при запис');
+  }
+  delete fileCache[path];
+}
+
+function extract(html, key) {
+  const re = new RegExp(`<!-- EDIT:${key} -->(.*?)<!-- /EDIT:${key} -->`, 's');
+  const m = html.match(re);
+  return m ? m[1] : '(не е намерено)';
+}
+
+function inject(html, key, value) {
+  const re = new RegExp(`(<!-- EDIT:${key} -->)(.*?)(<!-- /EDIT:${key} -->)`, 's');
+  if (!re.test(html)) return html;
+  return html.replace(re, `$1${value}$3`);
+}
+
+async function showEditor() {
+  document.getElementById('screen-login').style.display = 'none';
+  document.getElementById('screen-editor').style.display = 'block';
+
+  // Build tabs
+  const tabsEl = document.getElementById('tabs');
+  PAGES.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (i === 0 ? ' active' : '');
+    btn.textContent = p.label;
+    btn.onclick = () => loadPage(p, btn);
+    tabsEl.appendChild(btn);
+  });
+
+  loadPage(PAGES[0], tabsEl.querySelector('.tab'));
+}
+
+async function loadPage(page, tabBtn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tabBtn.classList.add('active');
+  currentPage = page;
+
+  const el = document.getElementById('editor-content');
+  el.innerHTML = '<div class="loading"><div class="loading-spinner"></div>Зарежда се ' + page.file + '...</div>';
+
+  try {
+    const { content } = await getFile(page.file);
+    let html = '';
+    page.sections.forEach(sec => {
+      html += `<div class="section-block"><h3>${sec.title}</h3>`;
+      sec.fields.forEach(f => {
+        const val = extract(content, f.key).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        html += `<div class="field-row">
+          <label>${f.label}</label>
+          ${f.type === 'textarea'
+            ? `<textarea id="field_${f.key}" rows="3">${val}</textarea>`
+            : `<input type="text" id="field_${f.key}" value="${val.replace(/"/g,'&quot;')}">`
+          }
+        </div>`;
+      });
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  } catch(e) {
+    el.innerHTML = `<div class="section-block"><p style="color:#b71c1c">⚠️ Грешка: ${e.message}</p></div>`;
+  }
+}
+
+async function saveCurrentPage() {
+  if (!currentPage) return;
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Запазва...';
+
+  try {
+    const { content, sha } = await getFile(currentPage.file);
+    let updated = content;
+    currentPage.sections.forEach(sec => {
+      sec.fields.forEach(f => {
+        const el = document.getElementById('field_' + f.key);
+        if (el) {
+          const val = el.value.replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+          updated = inject(updated, f.key, val);
+        }
+      });
+    });
+    await saveFile(currentPage.file, updated, sha);
+    showToast('✓ Запазено успешно! Сайтът ще се обнови за минута.', 'success');
+  } catch(e) {
+    showToast('⚠️ Грешка: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '💾 Запази';
+  }
+}
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+</script>
 </body>
 </html>
