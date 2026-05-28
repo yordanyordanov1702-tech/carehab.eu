@@ -54,6 +54,11 @@
   .field-row input, .field-row textarea { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border); border-radius:10px; font-size:.92rem; font-family:inherit; background:#f8faf8; transition:border-color .2s; }
   .field-row input:focus, .field-row textarea:focus { outline:none; border-color:var(--green); background:white; }
   .field-row textarea { resize:vertical; min-height:90px; }
+  .field-row textarea.block-editor { font-family: 'Courier New', monospace; font-size:.82rem; background:#f0f4f0; min-height:160px; }
+  .block-hint { font-size:.75rem; color:var(--muted); margin-top:.4rem; background:var(--light); border-radius:8px; padding:.6rem .8rem; line-height:1.5; }
+  .block-hint strong { color:var(--green); }
+  .btn-insert-template { margin-top:.4rem; background:var(--light); border:1px solid var(--border); color:var(--green); font-size:.78rem; font-weight:600; padding:.35rem .8rem; border-radius:6px; cursor:pointer; transition:background .2s; }
+  .btn-insert-template:hover { background:#d4edda; }
 
   .toast { position:fixed; bottom:2rem; right:2rem; padding:1rem 1.5rem; border-radius:12px; font-weight:600; font-size:.9rem; box-shadow:0 8px 24px rgba(0,0,0,.15); transform:translateY(100px); opacity:0; transition:all .3s; z-index:100; }
   .toast.show { transform:none; opacity:1; }
@@ -161,8 +166,8 @@ const PAGES = [
     id: 'index', label: '🏠 Начало', file: 'index.html',
     sections: [
       { title: '🎯 Главен банер (Hero)', fields: [
-        { key: 'hero_tag', label: 'Малкият етикет', type: 'input' },
-        { key: 'hero_title', label: 'Главното заглавие (може да съдържа HTML)', type: 'textarea' },
+        { key: 'hero_tag', label: 'Малкият етикет горе', type: 'input' },
+        { key: 'hero_title', label: 'Главното заглавие', type: 'textarea', rows: 3 },
         { key: 'hero_sub', label: 'Описанието под заглавието', type: 'textarea' },
       ]},
       { title: '🔔 Плаващи карти (вдясно)', fields: [
@@ -171,8 +176,30 @@ const PAGES = [
         { key: 'badge_child_name', label: 'Карта 2 — Име', type: 'input' },
         { key: 'badge_child_status', label: 'Карта 2 — Статус', type: 'input' },
       ]},
+      { title: '⚙️ Как работи — текст', fields: [
+        { key: 'hiw_title', label: 'Заглавие', type: 'textarea', rows: 2 },
+        { key: 'hiw_text', label: 'Описание', type: 'textarea' },
+        { key: 'hiw_steps', label: 'Стъпки (HTML блок — копирай <div class="how-step">...</div> за нова стъпка)', type: 'block', rows: 12,
+          template: '<div class="how-step">\n  <div class="how-step-num">4</div>\n  <h3>Нова стъпка</h3>\n  <p>Описание на стъпката.</p>\n</div>' },
+      ]},
+      { title: '🎬 Видео секция', fields: [
+        { key: 'video_title', label: 'Заглавие', type: 'input' },
+        { key: 'video_text', label: 'Описание', type: 'textarea' },
+      ]},
+      { title: '✅ Функции — карти', fields: [
+        { key: 'features_title', label: 'Заглавие на секцията', type: 'textarea', rows: 2 },
+        { key: 'features_text', label: 'Описание под заглавието', type: 'textarea' },
+        { key: 'features_cards', label: 'Карти с функции (HTML блок — копирай <div class="feature-card">...</div> за нова карта)', type: 'block', rows: 16,
+          template: '<div class="feature-card">\n  <div class="feature-card-icon">🆕</div>\n  <h3>Нова функция</h3>\n  <p>Описание на функцията.</p>\n</div>' },
+      ]},
+      { title: '🏠 Home Assistant секция', fields: [
+        { key: 'ha_title', label: 'Заглавие', type: 'textarea', rows: 2 },
+        { key: 'ha_text', label: 'Описание', type: 'textarea' },
+        { key: 'ha_points', label: 'Точки (HTML блок — копирай <div class="ha-point">...</div> за нова точка)', type: 'block', rows: 12,
+          template: '<div class="ha-point">\n  <div class="ha-point-num">5</div>\n  <div class="ha-point-text">\n    <h4>Нова точка</h4>\n    <p>Описание.</p>\n  </div>\n</div>' },
+      ]},
       { title: '📢 CTA Банер (в края)', fields: [
-        { key: 'cta_title', label: 'Заглавие на CTA банера (HTML)', type: 'textarea' },
+        { key: 'cta_title', label: 'Заглавие', type: 'textarea', rows: 2 },
       ]}
     ]
   },
@@ -183,16 +210,26 @@ const PAGES = [
         { key: 'pkg1_name', label: 'Име', type: 'input' },
         { key: 'pkg1_sub', label: 'Подзаглавие', type: 'input' },
         { key: 'pkg1_price', label: 'Цена', type: 'input' },
+        { key: 'pkg1_features', label: 'Включва (HTML блок — всеки ред е <li>текст</li>)', type: 'block', rows: 10,
+          template: '<li>Нова функция</li>' },
       ]},
       { title: '🏡 Семеен пакет', fields: [
-        { key: 'pkg2_name', label: 'Ime', type: 'input' },
+        { key: 'pkg2_name', label: 'Име', type: 'input' },
         { key: 'pkg2_sub', label: 'Подзаглавие', type: 'input' },
         { key: 'pkg2_price', label: 'Цена', type: 'input' },
+        { key: 'pkg2_features', label: 'Включва (HTML блок)', type: 'block', rows: 10,
+          template: '<li>Нова функция</li>' },
       ]},
       { title: '👑 Премиум пакет', fields: [
-        { key: 'pkg3_name', label: 'Ime', type: 'input' },
+        { key: 'pkg3_name', label: 'Име', type: 'input' },
         { key: 'pkg3_sub', label: 'Подзаглавие', type: 'input' },
         { key: 'pkg3_price', label: 'Цена', type: 'input' },
+        { key: 'pkg3_features', label: 'Включва (HTML блок)', type: 'block', rows: 10,
+          template: '<li>Нова функция</li>' },
+      ]},
+      { title: '❓ Въпроси и отговори (FAQ)', fields: [
+        { key: 'faq_items', label: 'Въпроси (HTML блок — копирай <div class="faq-item">...</div> за нов въпрос)', type: 'block', rows: 14,
+          template: '<div class="faq-item">\n  <button class="faq-q">Нов въпрос?</button>\n  <div class="faq-a">Отговорът на въпроса.</div>\n</div>' },
       ]}
     ]
   },
@@ -302,13 +339,23 @@ async function loadPage(page, tabBtn) {
       html += `<div class="section-block"><h3>${sec.title}</h3>`;
       sec.fields.forEach(f => {
         const val = extract(content, f.key).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const rows = f.rows || (f.type === 'textarea' ? 3 : undefined);
+      if (f.type === 'block') {
+        html += `<div class="field-row">
+          <label>${f.label}</label>
+          <textarea id="field_${f.key}" rows="${rows}" class="block-editor">${val}</textarea>
+          ${f.template ? `<button class="btn-insert-template" onclick="insertTemplate('field_${f.key}', \`${f.template.replace(/`/g,'\\`')}\`)">+ Добави нов елемент</button>` : ''}
+          <div class="block-hint">✏️ Редактирай директно в полето. <strong>Натисни "+ Добави нов елемент"</strong> за да добавиш нов ред/карта/въпрос в края.</div>
+        </div>`;
+      } else {
         html += `<div class="field-row">
           <label>${f.label}</label>
           ${f.type === 'textarea'
-            ? `<textarea id="field_${f.key}" rows="3">${val}</textarea>`
+            ? `<textarea id="field_${f.key}" rows="${rows}">${val}</textarea>`
             : `<input type="text" id="field_${f.key}" value="${val.replace(/"/g,'&quot;')}">`
           }
         </div>`;
+      }
       });
       html += '</div>';
     });
@@ -344,6 +391,15 @@ async function saveCurrentPage() {
     btn.disabled = false;
     btn.textContent = '💾 Запази';
   }
+}
+
+function insertTemplate(fieldId, template) {
+  const el = document.getElementById(fieldId);
+  if (!el) return;
+  const current = el.value.trimEnd();
+  el.value = current + (current ? '\n' : '') + template;
+  el.scrollTop = el.scrollHeight;
+  el.focus();
 }
 
 function showToast(msg, type) {
