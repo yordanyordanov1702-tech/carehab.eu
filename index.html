@@ -42,8 +42,14 @@
 @keyframes float-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 .phv-hub { position: absolute; bottom: 95px; right: -24px; width: 52px; height: 52px; background: var(--green); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 8px 20px rgba(26,92,42,.5); z-index: 2; animation: float-in .5s .15s ease both; }
 @media (max-width: 860px) {
-  .page-hero { grid-template-columns: 1fr; }
-  .page-hero-visual { display: none; }
+  .page-hero { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 5% 3rem; }
+  .page-hero-visual { display: block; }
+  .phv-card img { height: 240px; }
+  .phv-b1 { bottom: 60px; left: 8px; min-width: 160px; }
+  .phv-b2 { top: 12px; right: 8px; min-width: 160px; }
+  .phv-b3 { bottom: 12px; right: 8px; min-width: 150px; }
+  .phv-badge { padding: .65rem .9rem; }
+  .phv-badge-icon { font-size: 1.2rem; }
 }
 
 /* VIDEO */
