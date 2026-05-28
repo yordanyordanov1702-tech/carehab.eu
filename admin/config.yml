@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: yordanyordanov1702-tech/carehab.eu
+  branch: main
+  base_url: https://sveltia-cms-auth.pages.dev
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+locale: bg
+
+collections:
+  - name: pages
+    label: Страници
+    files:
+
+      - name: home
+        label: 🏠 Начална страница
+        file: index.html
+        fields:
+          - label: Съдържание на страницата
+            name: body
+            widget: code
+            default_language: html
+            output_code_only: true
+
+      - name: paketi
+        label: 💰 Пакети
+        file: paketi.html
+        fields:
+          - label: Съдържание на страницата
+            name: body
+            widget: code
+            default_language: html
+            output_code_only: true
+
+      - name: za_nas
+        label: 👥 За нас
+        file: za-nas.html
+        fields:
+          - label: Съдържание на страницата
+            name: body
+            widget: code
+            default_language: html
+            output_code_only: true
+
+      - name: kontakt
+        label: 📞 Контакт
+        file: kontakt.html
+        fields:
+          - label: Съдържание на страницата
+            name: body
+            widget: code
+            default_language: html
+            output_code_only: true
