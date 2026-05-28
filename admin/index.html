@@ -198,8 +198,10 @@ function inject(html, key, value) {
 
 /* ── BUILD SRCDOC ── */
 function buildSrcdoc(rawHtml) {
-  // 1. Base tag so relative paths resolve to carehab.eu
-  let html = rawHtml.replace(/<head>/i, `<head>\n<base href="${SITE}/">`);
+  // 1. Base tag + disable Chrome auto-translate
+  let html = rawHtml
+    .replace(/<html([^>]*)>/i, '<html$1 translate="no">')
+    .replace(/<head>/i, `<head>\n<base href="${SITE}/">\n<meta name="google" content="notranslate">`);
 
   // 2. Replace <!-- EDIT:key -->content<!-- /EDIT:key --> with editable spans
   html = html.replace(
