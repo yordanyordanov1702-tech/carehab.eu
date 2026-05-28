@@ -16,14 +16,10 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q569DS673V');</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/shared.css">
-<script>/* СНИМКИ — редактируеми от admin панела */
-var CH_IMGS={
-  hero:'<!-- EDIT:img_hero -->https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=900&q=85<!-- /EDIT:img_hero -->',
-  hiw:'<!-- EDIT:img_hiw -->https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=85<!-- /EDIT:img_hiw -->',
-  ha:'<!-- EDIT:img_ha -->https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=85<!-- /EDIT:img_ha -->'
-};
-document.addEventListener('DOMContentLoaded',function(){Object.keys(CH_IMGS).forEach(function(k){var el=document.querySelector('[data-img="'+k+'"]');if(el)el.src=CH_IMGS[k];});});
-</script>
+<span id="ch-img-hero" style="display:none"><!-- EDIT:img_hero -->https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=900&q=85<!-- /EDIT:img_hero --></span>
+<span id="ch-img-hiw" style="display:none"><!-- EDIT:img_hiw -->https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=85<!-- /EDIT:img_hiw --></span>
+<span id="ch-img-ha" style="display:none"><!-- EDIT:img_ha -->https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=85<!-- /EDIT:img_ha --></span>
+<script>document.addEventListener('DOMContentLoaded',function(){['hero','hiw','ha'].forEach(function(k){var s=document.getElementById('ch-img-'+k);var img=document.querySelector('[data-img="'+k+'"]');if(s&&img)img.src=s.textContent.trim();});});</script>
 <style>
 /* HERO 2-COL OVERRIDE */
 .page-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 9rem 5% 5rem; }

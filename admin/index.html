@@ -244,8 +244,9 @@ function buildSrcdoc(rawHtml) {
 </style>
 <script id="ch-editor-js">
 (function(){
-  // Make text regions editable
+  // Make text regions editable (skip hidden elements)
   document.querySelectorAll('[data-edit]').forEach(function(el){
+    if(el.closest('[style*="display:none"]') || el.style.display==='none') return;
     el.contentEditable = 'true';
     el.spellcheck = false;
     el.addEventListener('keydown', function(e){
