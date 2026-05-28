@@ -15,6 +15,12 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Q569DS673V');</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/shared.css">
+<script>var CH_IMGS={
+  story1:'<!-- EDIT:img_story1 -->https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=85<!-- /EDIT:img_story1 -->',
+  story2:'<!-- EDIT:img_story2 -->https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=85<!-- /EDIT:img_story2 -->'
+};
+document.addEventListener('DOMContentLoaded',function(){Object.keys(CH_IMGS).forEach(function(k){var el=document.querySelector('[data-img="'+k+'"]');if(el)el.src=CH_IMGS[k];});});
+</script>
 <style>
 
 /* STORY SECTION */
@@ -144,10 +150,10 @@
 
     <div class="story-visual">
       <div class="story-photo">
-        <img src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=85" alt="Семейство вкъщи">
+        <img data-img="story1" src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=85" alt="Семейство вкъщи">
       </div>
       <div class="story-photo-2">
-        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=85" alt="Умен дом грижа">
+        <img data-img="story2" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=85" alt="Умен дом грижа">
       </div>
     </div>
   </div>

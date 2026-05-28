@@ -182,6 +182,11 @@ const PAGES = [
         { key: 'hiw_steps', label: 'Стъпки (HTML блок — копирай <div class="how-step">...</div> за нова стъпка)', type: 'block', rows: 12,
           template: '<div class="how-step">\n  <div class="how-step-num">4</div>\n  <h3>Нова стъпка</h3>\n  <p>Описание на стъпката.</p>\n</div>' },
       ]},
+      { title: '🖼️ Снимки (paste URL от интернет)', fields: [
+        { key: 'img_hero', label: '📸 Снимка в главния банер (Hero)', type: 'input' },
+        { key: 'img_hiw', label: '📸 Снимка в "Как работи"', type: 'input' },
+        { key: 'img_ha', label: '📸 Снимка в Home Assistant секцията', type: 'input' },
+      ]},
       { title: '🎬 Видео секция', fields: [
         { key: 'video_title', label: 'Заглавие', type: 'input' },
         { key: 'video_text', label: 'Описание', type: 'textarea' },
@@ -247,6 +252,10 @@ const PAGES = [
   {
     id: 'za-nas', label: '👥 За нас', file: 'za-nas.html',
     sections: [
+      { title: '🖼️ Снимки (paste URL от интернет)', fields: [
+        { key: 'img_story1', label: '📸 Главна снимка (горна)', type: 'input' },
+        { key: 'img_story2', label: '📸 Втора снимка (долна)', type: 'input' },
+      ]},
       { title: '📖 История', fields: [
         { key: 'story_p1', label: 'Параграф 1', type: 'textarea' },
         { key: 'story_p2', label: 'Параграф 2', type: 'textarea' },
