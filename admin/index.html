@@ -247,9 +247,11 @@ function buildSrcdoc(rawHtml) {
 </style>
 <script id="ch-editor-js">
 (function(){
-  // Block all link navigation in the editor (prevents <a> tags from navigating)
-  document.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(e){ e.preventDefault(); });
+  // Disable link navigation in editor by removing href (keeps visual style, allows clicking inside)
+  document.querySelectorAll('a[href]').forEach(function(a){
+    a.dataset.href = a.getAttribute('href');
+    a.removeAttribute('href');
+    a.style.cursor = 'default';
   });
 
   // Make text regions editable (skip hidden elements)
