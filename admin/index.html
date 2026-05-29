@@ -247,11 +247,21 @@ function buildSrcdoc(rawHtml) {
 </style>
 <script id="ch-editor-js">
 (function(){
-  // Disable link navigation in editor by removing href (keeps visual style, allows clicking inside)
+  // Disable link navigation — store original href, remove it, handle nav clicks via postMessage
   document.querySelectorAll('a[href]').forEach(function(a){
-    a.dataset.href = a.getAttribute('href');
+    var orig = a.getAttribute('href');
+    a.dataset.href = orig;
     a.removeAttribute('href');
-    a.style.cursor = 'default';
+    // If it's a same-site page link, tell the admin shell to switch tabs
+    if(orig && !orig.startsWith('http') && !orig.startsWith('mailto') && !orig.startsWith('tel') && !orig.startsWith('#')){
+      a.style.cursor = 'pointer';
+      a.addEventListener('click', function(e){
+        e.stopPropagation();
+        window.parent.postMessage({type:'ch-navigate', href: orig}, '*');
+      });
+    } else {
+      a.style.cursor = 'default';
+    }
   });
 
   // Make text regions editable (skip hidden elements)
@@ -380,6 +390,18 @@ async function savePage() {
     btn.textContent = '💾 Запази';
   }
 }
+
+/* ── IFRAME NAV ── */
+window.addEventListener('message', function(e){
+  if (!e.data || e.data.type !== 'ch-navigate') return;
+  var href = e.data.href.replace(/^\.?\//, '');
+  var page = PAGES.find(p => p.file === href || href.includes(p.file.replace('.html','')));
+  if (page) {
+    var tabs = document.querySelectorAll('.ptab');
+    var idx  = PAGES.indexOf(page);
+    if (tabs[idx]) loadPage(page, tabs[idx]);
+  }
+});
 
 /* ── HELPERS ── */
 function setStatus(msg) {
